@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F3F3"
+    android:orientation="vertical"
+    tools:context=".activity.AddressModifyActivity">
+
+    <include layout="@layout/layout_title"
+        android:id="@+id/title_ll"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/title_ll"
+        android:layout_marginHorizontal="14dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="收货人"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="92dp"
+                android:background="@drawable/selecter_input_bg"
+                android:paddingLeft="15dp"
+                android:hint="收货人姓名"
+                android:textSize="13sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="手机号码"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="92dp"
+                android:background="@drawable/selecter_input_bg"
+                android:paddingLeft="15dp"
+                android:hint="收货人手机号码"
+                android:textSize="13sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="所在区域"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="92dp"
+                android:background="@drawable/selecter_input_bg"
+                android:paddingLeft="15dp"
+                android:hint="收货人所在区域"
+                android:textSize="13sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="详细地址"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="92dp"
+                android:background="@drawable/selecter_input_bg"
+                android:paddingLeft="15dp"
+                android:hint="收货人所在区域"
+                android:textSize="13sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="地址标签"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="92dp"
+                android:background="@drawable/selecter_bg_button"
+                android:gravity="center"
+                android:text="家"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="学校"
+                android:background="@drawable/selecter_bg_button"
+                android:layout_marginLeft="165dp"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/selecter_bg_button"
+                android:text="公司"
+                android:layout_marginLeft="238dp"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="设置为默认收货地址"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/selecter_input_bg"
+                android:textSize="13sp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F3F3"
+    android:orientation="vertical"
+    tools:context=".activity.user.UserBalanceActivity">
+
+    <include layout="@layout/layout_title" />
+
+    <com.ums.eproject.view.OverScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:gravity="center"
+                android:background="@drawable/white_round_shape_15"
+                android:padding="15dp"
+                android:layout_margin="30dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginTop="12dp"
+                    android:src="@mipmap/balance_head"
+                    android:layout_width="79dp"
+                    android:layout_height="79dp"/>
+                <TextView
+                    android:layout_marginTop="14dp"
+                    android:text="100元"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="账户余额"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_marginLeft="5dp"
+                        android:src="@mipmap/black_eyes"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"/>
+                </LinearLayout>
+
+                <com.ums.eproject.view.ResizableImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/code_test_2" />
+
+                <com.ums.eproject.view.ResizableImageView
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/code_test" />
+            </LinearLayout>
+            <LinearLayout
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/white_round_shape_10"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:text="余额变动明细"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="全部"
+                    android:textColor="#cfcece"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:src="@mipmap/user_right"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp" />
+        </LinearLayout>
+    </com.ums.eproject.view.OverScrollView>
+</LinearLayout>

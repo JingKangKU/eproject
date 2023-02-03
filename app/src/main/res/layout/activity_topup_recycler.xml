@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F3F3"
+    android:orientation="vertical"
+    tools:context=".activity.TopupActivity">
+
+    <include layout="@layout/layout_title" />
+    <com.ums.eproject.view.OverScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="充值金额"
+            android:textColor="#ff1d1d1d"
+            android:textSize="17sp" />
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:layout_marginTop="18dp"
+           android:id="@+id/topup_recycler_view"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/white_round_shape_5"
+            android:paddingLeft="14dp"
+            android:paddingTop="17dp"
+            android:paddingRight="14dp"
+            android:paddingBottom="17dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="其他金额："
+                android:textColor="#ff323232"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/login_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:hint="¥手输金额"
+                android:inputType="phone|number"
+                android:textColor="#e01222"
+                android:textColorHint="#ffbebdbd"
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="58dp"
+            android:background="@drawable/bull_round_shape_22"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="立即充值"
+                android:textColor="#ffffffff"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    </com.ums.eproject.view.OverScrollView>
+</LinearLayout>

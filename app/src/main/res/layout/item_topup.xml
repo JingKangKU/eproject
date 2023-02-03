@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".activity.user.UserBalanceActivity">
+
+    <LinearLayout
+        android:id="@+id/item_topup_linear"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <TextView
+            android:gravity="bottom"
+            android:text="￥"
+            android:textColor="@drawable/label_item_text_color_select"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:gravity="bottom"
+            android:id="@+id/item_topup_amt"
+            android:textColor="@drawable/label_item_text_color_select"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:gravity="bottom"
+            android:text="元"
+            android:textColor="@drawable/label_item_text_color_select"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    
+</LinearLayout>

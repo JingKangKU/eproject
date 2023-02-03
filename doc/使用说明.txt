@@ -1,0 +1,15 @@
+动态权限请求及扫码功能代码：
+private void test() {
+        UMSPermissionUtil.requestPermission(new PermissionListener() {
+            @Override
+            public void permissionGranted(@NonNull String[] permission) {
+                Intent i = new Intent(LoginActivity.this, ScanActivity.class);
+                startActivityForResult(i, CommonConst.REQUEST_SCAN);
+            }
+
+            @Override
+            public void permissionDenied(@NonNull String[] permission) {
+
+            }
+        }, Manifest.permission.CAMERA);
+    }

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.ums.eproject.view.ResizableImageView
+                android:id="@+id/func_3_left_1_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/home_img_2" />
+
+            <TextView
+                android:id="@+id/func_3_left_1_chn_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="11dp"
+                android:text="出行头条"
+                android:textColor="#ff2f3133"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/func_3_left_1_eng_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="29dp"
+                android:text="CHU XING TOU TIAO"
+                android:textColor="#ff2f3133"
+                android:textSize="6sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="10dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.ums.eproject.view.ResizableImageView
+                android:id="@+id/func_3_left_2_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/home_img_3" />
+
+            <TextView
+                android:id="@+id/func_3_left_2_chn_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="11dp"
+                android:text="权益专区"
+                android:textColor="#ff2f3133"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/func_3_left_2_eng_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="29dp"
+                android:text="QUAN YI"
+                android:textColor="#ff2f3133"
+                android:textSize="6sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="15dp"
+        android:layout_height="1dp" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <com.ums.eproject.view.ResizableImageView
+            android:id="@+id/func_3_right_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/home_img_1" />
+
+        <TextView
+            android:id="@+id/func_3_right_chn_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="11dp"
+            android:text="金融产品专区"
+            android:textColor="#2f3133"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/func_3_right_eng_tex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="29dp"
+            android:text="jin rong chan pin"
+            android:textColor="#ff2f3133"
+            android:textSize="6sp" />
+    </RelativeLayout>
+</LinearLayout>

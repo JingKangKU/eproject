@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:background="@drawable/white_round_shape"
+        android:paddingBottom="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <com.ums.eproject.view.ScaleImageView
+            android:id="@+id/item_goods_image"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:scaleType="fitXY"
+            app:shapeAppearance="@style/RoundedStyle"
+            android:src="@drawable/goods_test_img" />
+
+        <TextView
+            android:id="@+id/item_goods_title"
+            android:lines="2"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="账户充值"
+            android:textColor="#ff272727"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/item_goods_pic"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="￥ 298.00起"
+            android:textColor="#e01222"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    
+</LinearLayout>

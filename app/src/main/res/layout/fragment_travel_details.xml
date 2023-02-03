@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/code_bg_shape"
+    android:orientation="vertical"
+    tools:context=".activity.CodeActivity">
+
+    <LinearLayout
+        android:id="@+id/code_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/main_title_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:id="@+id/main_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="出行·泰州"
+                android:textColor="#ff323332"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="11dp"
+                android:src="@mipmap/code_left"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </LinearLayout>
+    <com.ums.eproject.view.OverScrollView
+        android:background="#F3F3F3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="29dp"
+            android:layout_marginBottom="240dp"
+            android:background="@drawable/white_round_shape_15"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="泰e通免密乘车"
+                android:textColor="#ff323332"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="28dp"
+                android:layout_marginTop="45dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="卡类型"
+                    android:textColor="#7E7E7E"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/tv_cardtype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="学生卡"
+                    android:textColor="#202020"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15sp"/>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="28dp"
+                android:background="#D2D2D2" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="28dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="行程详情"
+                    android:textColor="#7E7E7E"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/tv_travel_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="公交一路"
+                    android:textColor="#202020"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15sp"/>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="28dp"
+                android:background="#D2D2D2" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="28dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="订单金额"
+                    android:textColor="#7E7E7E"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_billamt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2元"
+                    android:textColor="#202020"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15sp"/>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="28dp"
+                android:background="#D2D2D2" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="28dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="实付金额"
+                    android:textColor="#7E7E7E"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/tv_payamt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1元"
+                    android:textColor="#202020"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15sp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/trans" />
+
+    </RelativeLayout>
+    </com.ums.eproject.view.OverScrollView>
+</LinearLayout>

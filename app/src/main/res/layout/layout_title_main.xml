@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title_view"
+    android:background="@drawable/title_bg_shape"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/title_back"
+            android:layout_marginLeft="2dp"
+            android:src="@mipmap/title_back"
+            android:layout_centerVertical="true"
+            android:padding="13dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_centerInParent="true"
+            android:text="泰e通商城GO"
+            android:textColor="#ffffffff"
+            android:textSize="17sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/title_right"
+            android:visibility="gone"
+            android:layout_marginRight="13dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="充值记录"
+                android:textColor="#ffcfeaff"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_marginLeft="4dp"
+                android:src="@mipmap/user_right"
+                android:layout_width="11dp"
+                android:layout_height="11dp" />
+        </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:background="@drawable/white_round_shape_14"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="18dp"
+        android:gravity="center_vertical"
+        android:layout_marginRight="18dp"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/title_main_icon_search"
+            android:src="@mipmap/main_search"
+            android:layout_width="13dp"
+            android:layout_height="13dp" />
+        <TextView
+            android:layout_marginLeft="9dp"
+            android:text="积分商城"
+            android:textColor="#ff878686"
+            android:textSize="13sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

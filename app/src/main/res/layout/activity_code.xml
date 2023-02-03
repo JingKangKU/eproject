@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.CodeActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <ImageView
+                android:id="@+id/main_title_back"
+                android:layout_centerVertical="true"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <TextView
+                android:id="@+id/main_title_text"
+                android:layout_centerInParent="true"
+                android:text="出行·泰州"
+                android:textColor="#ff323332"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="11dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/code_left"
+                android:layout_width="18dp"
+                android:layout_height="18dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
