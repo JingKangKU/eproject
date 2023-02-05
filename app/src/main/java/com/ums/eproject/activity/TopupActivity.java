@@ -15,6 +15,7 @@ import com.mosect.lib.immersive.LayoutAdapter;
 import com.ums.eproject.R;
 import com.ums.eproject.adapter.TopupAdapter;
 import com.ums.eproject.bean.DepositRuleBean;
+import com.ums.eproject.bean.DepositTrial;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.SingleOption;
 import com.ums.eproject.https.HttpSubscriber;
@@ -32,6 +33,7 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
     private LinearLayout title_view, title_right;
     private TextView title_text;
     private RecyclerView topup_recycler_view;
+    private double depositAmount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,7 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
         immersiveLayout.requestLayout();
 
         topup_recycler_view = findViewById(R.id.topup_recycler_view);
+        findViewById(R.id.topup_recharge).setOnClickListener(this);;
 
         getDepositRuleList();
     }
@@ -74,17 +77,17 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
         adapter.setClickListener(new TopupAdapter.ClickListenerInterface() {
             @Override
             public void doClick(SingleOption singleOption,int position) {
-                memDepositTrial(singleOption.getDepositAmount());
+                depositAmount = singleOption.getDepositAmount();
             }
         });
         topup_recycler_view.setAdapter(adapter);
     }
     private void memDepositTrial(double depositAmount) {
-        CommRequestApi.getInstance().memDepositTrial(depositAmount,new HttpSubscriber<>(new SubscriberOnListener<GoodsDetail>() {
+        CommRequestApi.getInstance().memDepositTrial(depositAmount,new HttpSubscriber<>(new SubscriberOnListener<DepositTrial>() {
             @Override
-            public void onSucceed(GoodsDetail data) {
+            public void onSucceed(DepositTrial data) {
                 if (data.getCode() == 200) {
-
+                    MsgUtil.showCustom(context,"充值金额："+data.getData().getRechargeAmount()+"   试算金额："+data.getData().getPayAmount());
                 } else {
                     MsgUtil.showCustom(context, data.getMessage());
                 }
@@ -121,6 +124,9 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         if (v.getId() == R.id.title_back) {
             finish();
+        }
+        if (v.getId() == R.id.topup_recharge){
+            memDepositTrial(depositAmount);
         }
     }
 

@@ -5,6 +5,7 @@ package com.ums.eproject.https;
 
 import com.ums.eproject.bean.AuthBean;
 import com.ums.eproject.bean.DepositRuleBean;
+import com.ums.eproject.bean.DepositTrial;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.NETData;
@@ -76,5 +77,5 @@ public interface HttpRequestService {
     //在线充值试算
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
     @POST("/tetapp/mem/memDepositTrial")
-    Observable<GoodsDetail> memDepositTrial(@Header("signKey") String signKey, @Body RequestBody body);
+    Observable<DepositTrial> memDepositTrial(@Header("signKey") String signKey, @Body RequestBody body);
 }

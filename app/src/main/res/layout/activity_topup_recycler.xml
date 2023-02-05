@@ -33,6 +33,7 @@
            android:layout_height="wrap_content"/>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -65,6 +66,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/topup_recharge"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="58dp"
@@ -72,6 +74,7 @@
             android:gravity="center">
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="立即充值"

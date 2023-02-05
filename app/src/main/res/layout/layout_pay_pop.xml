@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_title"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:id="@+id/pop_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/code_left" />
+        <TextView
+            android:text="选择付款方式"
+            android:layout_centerInParent="true"
+            android:textSize="17sp"
+            android:textColor="#111111"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+    <com.ums.eproject.view.IOSScrollview
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/popup_item1"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/pay_ye"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp" />
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:text="余额支付"
+                    android:textSize="15sp"
+                    android:textColor="#111111"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/popup_item1_selected"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/select"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp" />
+            </LinearLayout>
+            <View
+                android:background="#f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+            <LinearLayout
+                android:id="@+id/popup_item2"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/pay_ysf"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp" />
+                <TextView
+
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="云闪付"
+                    android:textSize="15sp"
+                    android:textColor="#111111"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_ysf"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="11sp"
+                    android:textColor="#f0f0f0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/popup_item2_selected"
+                    android:visibility="gone"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <View
+                android:background="#f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+            <LinearLayout
+                android:id="@+id/popup_item3"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/pay_wx"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp" />
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:text="微信支付"
+                    android:textSize="15sp"
+                    android:textColor="#111111"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/popup_item3_selected"
+                    android:visibility="gone"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <View
+                android:background="#f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+            <LinearLayout
+                android:id="@+id/popup_item4"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/pay_zfb"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp" />
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:text="支付宝支付"
+                    android:textSize="15sp"
+                    android:textColor="#111111"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/popup_item4_selected"
+                    android:visibility="gone"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <View
+                android:layout_marginBottom="0.5dp"
+                android:background="#f3f3f3"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+        </LinearLayout>
+    </com.ums.eproject.view.IOSScrollview>
+
+</LinearLayout>

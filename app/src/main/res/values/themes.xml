@@ -23,7 +23,18 @@
         <item name="cornerSizeTopLeft">10dp</item>
         <item name="cornerSizeTopRight">10dp</item>
     </style>
-
+    <style name="RoundedAllStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+    </style>
+    <!--自定义pop_animTranslate -->
+    <style name="pop_animTranslate">
+        <item name="android:windowEnterAnimation">@anim/set_pop_in</item>
+        <item name="android:windowExitAnimation">@anim/set_pop_out</item>
+    </style>
     <!-- loading dialog -->
     <style name="loading_dialog" parent="android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>

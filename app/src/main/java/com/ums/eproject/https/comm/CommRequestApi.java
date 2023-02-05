@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.ums.eproject.bean.AuthBean;
 import com.ums.eproject.bean.DepositRuleBean;
+import com.ums.eproject.bean.DepositTrial;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.NETData;
@@ -311,7 +312,7 @@ public class CommRequestApi extends BaseApi {
     }
 
 
-    public void memDepositTrial(double depositAmount,Subscriber<GoodsDetail> subscriber){
+    public void memDepositTrial(double depositAmount,Subscriber<DepositTrial> subscriber){
         JSONObject json = new JSONObject();
         String signKey = "";
         try {

@@ -19,6 +19,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.impl.ScrollBoundaryDeciderAdapter;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
+import com.ums.eproject.R;
 import com.ums.eproject.activity.MainActivity;
 
 
@@ -156,5 +157,36 @@ public class UIHelp {
     }
 
 
+    public static void showPopupWindow(final Activity activity, View view, View contentView ,int transdefault){
+        lightoff(activity);
+
+        ImageView item_1,item_2,item_3,item_4;
+        item_1 = contentView.findViewById(R.id.popup_item1_selected);
+        item_2 = contentView.findViewById(R.id.popup_item2_selected);
+        item_3 = contentView.findViewById(R.id.popup_item3_selected);
+        item_4 = contentView.findViewById(R.id.popup_item4_selected);
+        ImageView[] itemViews = new ImageView[]{item_1, item_2, item_3, item_4};
+        for (int i = 0 ; i < itemViews.length ; i ++){
+            if (i == transdefault){
+                itemViews[i].setImageResource(R.mipmap.selected);
+            }else{
+                itemViews[i].setImageResource(R.mipmap.select);
+            }
+        }
+
+        window_mode1 = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        window_mode1.setBackgroundDrawable( new ColorDrawable(Color.TRANSPARENT) );
+        window_mode1.setOutsideTouchable( true );
+        window_mode1.setTouchable( true );
+        window_mode1.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                lighton(activity);
+            }
+        });
+        window_mode1.setAnimationStyle(R.style.pop_animTranslate);
+        contentView.measure(makeDropDownMeasureSpec(window_mode1.getWidth()), (window_mode1.getHeight()));
+        window_mode1.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+    }
 
 }

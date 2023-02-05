@@ -48,6 +48,7 @@ import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
 import com.ums.eproject.utils.MsgUtil;
 import com.ums.eproject.utils.StrUtil;
+import com.ums.eproject.utils.UIHelp;
 import com.ums.eproject.utils.UriUtils;
 
 import java.io.File;
@@ -62,8 +63,8 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
     private LinearLayout title_view, title_right;
     private TextView title_text;
     private XBanner goods_detail_banner;
-    private ArrayList<String> imageUrlList;
     private WebView goods_detail_wb;
+    private TextView goods_detail_buy;
     private TextView goods_detail_price,goods_detail_original_price,goods_detail_name,goods_detail_sub_title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,8 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
 
         goods_detail_banner = findViewById(R.id.goods_detail_banner);
         goods_detail_wb = findViewById(R.id.goods_detail_wb);
+        goods_detail_buy = findViewById(R.id.goods_detail_buy);
+        goods_detail_buy.setOnClickListener(this);
 
         initWebView();
 
@@ -145,6 +148,7 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
                 //点击事件
+
             }
         });
     }
@@ -209,6 +213,9 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         if (v.getId() == R.id.title_back) {
             finish();
+        }
+        if (v.getId() == R.id.goods_detail_buy){
+            UIHelp.startActivity(context,GoodsOrderActivity.class);
         }
     }
 
