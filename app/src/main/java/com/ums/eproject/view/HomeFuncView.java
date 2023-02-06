@@ -58,7 +58,7 @@ public class HomeFuncView extends LinearLayout {
                     .into(func_1_right_image);
             func_1_left_chn_txt.setText(listBean.getDetails().get(0).getFuncName());
             func_1_right_chn_txt.setText(listBean.getDetails().get(0).getFuncName());
-
+            this.addView(view);
         }
 
         if (groupLayOutType == 2) {
@@ -77,6 +77,8 @@ public class HomeFuncView extends LinearLayout {
             func_2_left_chn_tex.setText(listBean.getDetails().get(0).getFuncName());
             func_2_right_1_chn_txt.setText(listBean.getDetails().get(1).getFuncName());
             func_2_right_2_chn_txt.setText(listBean.getDetails().get(2).getFuncName());
+
+            this.addView(view);
         }
 
         if (groupLayOutType == 3) {
@@ -100,7 +102,7 @@ public class HomeFuncView extends LinearLayout {
             func_3_left_1_chn_txt.setText(listBean.getDetails().get(0).getFuncName());
             func_3_left_2_chn_txt.setText(listBean.getDetails().get(1).getFuncName());
             func_3_right_chn_txt.setText(listBean.getDetails().get(2).getFuncName());
-
+            this.addView(view);
         }
     }
 
