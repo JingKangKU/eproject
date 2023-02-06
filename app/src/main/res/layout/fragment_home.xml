@@ -69,15 +69,15 @@
             <com.stx.xhb.androidx.XBanner
                 android:id="@+id/home_top_banner"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
                 app:AutoPlayTime="4000"
                 app:pointsPosition="RIGHT"
                 app:isShowNumberIndicator="true"
                 app:isShowIndicatorOnlyOne="true"
-                app:pageChangeDuration="4000"
+                app:pageChangeDuration="2000"
                 app:pointNormal="@mipmap/ic_page_indicator_focused"
                 app:pointSelect="@mipmap/ic_page_indicator"
-                app:tipTextSize="16sp" >
+                app:tipTextSize="14sp" >
             </com.stx.xhb.androidx.XBanner>
 
             <LinearLayout

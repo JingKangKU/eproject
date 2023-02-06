@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.chinaums.common.utils.UMSScreenUtil;
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.mosect.lib.immersive.LayoutAdapter;
 import com.stx.xhb.androidx.XBanner;
@@ -91,7 +92,11 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
         goods_detail_name = findViewById(R.id.goods_detail_name);
         goods_detail_sub_title = findViewById(R.id.goods_detail_sub_title);
 
+
         goods_detail_banner = findViewById(R.id.goods_detail_banner);
+        int wm = UIHelp.getScreenWidth(this) - UMSScreenUtil.dp2px(0);
+        int hm = wm / 1 * 1;
+        goods_detail_banner.setLayoutParams(new LinearLayout.LayoutParams(wm, hm));
         goods_detail_wb = findViewById(R.id.goods_detail_wb);
         goods_detail_buy = findViewById(R.id.goods_detail_buy);
         goods_detail_buy.setOnClickListener(this);
