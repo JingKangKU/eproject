@@ -12,9 +12,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-<!--        <com.ums.eproject.view.OverScrollView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
+        <com.ums.eproject.view.OverScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
             <LinearLayout
@@ -194,10 +194,14 @@
                                 android:layout_height="30dp">
 
                                 <ImageView
+                                    android:id="@+id/goods_order_goods_num_reduce"
                                     android:src="@mipmap/goods_reduce"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
                                     android:layout_width="10dp"
-                                    android:layout_height="10dp"/>
+                                    android:layout_height="30dp"/>
                                 <TextView
+                                    android:id="@+id/goods_order_goods_num"
                                     android:gravity="center"
                                     android:text="1"
                                     android:textColor="#343434"
@@ -206,9 +210,12 @@
                                     android:layout_width="0dp"
                                     android:layout_height="20dp"/>
                                 <ImageView
+                                    android:id="@+id/goods_order_goods_num_add"
                                     android:src="@mipmap/goods_add"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
                                     android:layout_width="10dp"
-                                    android:layout_height="10dp"/>
+                                    android:layout_height="30dp"/>
                             </LinearLayout>
 
 
@@ -324,7 +331,7 @@
             </LinearLayout>
 
 
-<!--        </com.ums.eproject.view.OverScrollView>-->
+        </com.ums.eproject.view.OverScrollView>
         <LinearLayout
             android:background="#FFFFFF"
             android:gravity="center_vertical"
@@ -372,6 +379,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/goods_order_thing_pic"
                     android:text="110"
                     android:textColor="#ffee2823"
                     android:textSize="16sp"
