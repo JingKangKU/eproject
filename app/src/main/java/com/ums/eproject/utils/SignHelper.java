@@ -10,9 +10,12 @@ import com.alibaba.fastjson.TypeReference;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -61,6 +64,102 @@ public class SignHelper {
 		// 加密后报文
 		return MD5Util.md5(sb.toString()).toLowerCase();
 
+	}
+
+	public static String getSignValue4Bean(Object obj, String signKey) {
+		StringBuilder sb = new StringBuilder();
+		try {
+			Field[] fields = obj.getClass().getDeclaredFields();
+			Map<String, String> map = new HashMap<String, String>();
+			for (Field f : fields) {
+				String propertyName = f.getName();
+				Log.d("chendong", "the propertyName is " + propertyName);
+				if ("serialVersionUID".equals(propertyName)) {
+					continue;
+				}
+				String propertyValue = getFieldValue(f, obj);
+				if (propertyValue == null || "".equals(propertyValue)) {
+//						Log.w(TAG, "propertyName:"+propertyName+" value is null!");
+					continue;
+				}
+				map.put(propertyName, propertyValue);
+			}
+			Field[] superFields = obj.getClass().getSuperclass().getDeclaredFields();
+			for (Field f : superFields) {
+				String propertyName = f.getName();
+				Log.d("chendong", "the propertyName is " + propertyName);
+				if ("serialVersionUID".equals(propertyName)) {
+					continue;
+				}
+				String propertyValue = getFieldValue(f, obj);
+				if (propertyValue == null || "".equals(propertyValue)) {
+//						Log.w(TAG, "propertyName:"+propertyName+" value is null!");
+					continue;
+				}
+				map.put(propertyName, propertyValue);
+			}
+			List<String> keys = new ArrayList<String>(map.keySet());
+			//字段排序
+			Collections.sort(keys);
+
+			for (int i = 0; i < keys.size(); i++) {
+				String key = keys.get(i);
+				String value = map.get(key);
+				sb.append(value);
+//                if (i == keys.size() - 1) {//拼接时，不包括最后一个&字符
+//                    sb.append(key).append("=").append(value);
+//                } else {
+//                    sb.append(key).append("=").append(value).append("&");
+//                }
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		sb.append("&key=").append(signKey);
+		Log.d("chendong", "the signdata is " + sb.toString());
+		return MD5Util.md5(sb.toString()).toLowerCase();
+	}
+
+	//获取字段值
+	private static String getFieldValue(Field f, Object obj) throws IllegalArgumentException, IllegalAccessException {
+		Class clazz = f.getType();
+		f.setAccessible(true);
+		if (clazz == String.class) {
+			return (String) f.get(obj);
+		}
+		if (clazz == Long.class) {
+			try {
+				return String.valueOf(f.getLong(obj));
+			}catch (Exception e){
+				return null;
+			}
+		} else if (clazz == int.class) {
+			return String.valueOf(f.getInt(obj));
+		} else if (clazz == List.class) {
+			//todo 针对集合类型的数据进行处理
+//            StringBuilder sb = new StringBuilder();
+//            List<Object> lists = (List<Object>) f.get(obj);
+//            if (null != lists && lists.size() > 0) {
+//                sb.append("[");
+//                if (lists != null) {
+//                    for (int i = 0; i < lists.size(); i++) {
+//                        Object o = lists.get(i);
+//                        sb.append("{" + getSignData(o) + "}");
+//                        if (i != lists.size() - 1) {
+//                            sb.append("&");
+//                        }
+//                    }
+//                }
+//                sb.append("]");
+//            }
+			return "list";
+		} else {
+			//todo 针对对象类型的数据进行处理
+//            Object o = f.get(obj);
+//            System.out.println(o);
+			return "object";
+		}
 	}
 
 	/**

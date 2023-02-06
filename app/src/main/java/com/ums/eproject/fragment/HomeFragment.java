@@ -26,6 +26,7 @@ import com.ums.eproject.activity.AuditWebViewActivity;
 import com.ums.eproject.activity.CommonWebViewActivity;
 import com.ums.eproject.activity.EasyparkActivity;
 import com.ums.eproject.activity.MallActivity;
+import com.ums.eproject.activity.MarketingActivity;
 import com.ums.eproject.adapter.HomeAbilityAdapter;
 import com.ums.eproject.adapter.HomeBottomAdapter;
 import com.ums.eproject.adapter.TopupAdapter;
@@ -211,13 +212,12 @@ public class HomeFragment extends Fragment  implements View.OnClickListener {
                 if (linkUrl.equals(Constant.linkApp.shopping)){
                     UIHelp.startActivity(context, MallActivity.class);
                 }else if(linkUrl.equals(Constant.linkApp.marketing)) { //全民营销
-
+                    UIHelp.startActivity(context, MarketingActivity.class);
                 }
                 break;
             case Constant.linkType.wx_app:
                 break;
             case Constant.linkType.dynamic_app:
-
                 getDynamicLink(linkUrl,navName);
                 break;
         }

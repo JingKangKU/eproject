@@ -4,12 +4,16 @@ package com.ums.eproject.https.comm;
 import android.content.Context;
 import android.util.Log;
 
+import com.ums.eproject.bean.AddressBean;
 import com.ums.eproject.bean.AuthBean;
+import com.ums.eproject.bean.BaseRequest;
+import com.ums.eproject.bean.CBPayResultBean;
 import com.ums.eproject.bean.DepositRuleBean;
 import com.ums.eproject.bean.DepositTrial;
 import com.ums.eproject.bean.DynamicLink;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
+import com.ums.eproject.bean.MarketProductsBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.ProductsBean;
@@ -23,6 +27,8 @@ import com.ums.eproject.utils.SignHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -362,5 +368,166 @@ public class CommRequestApi extends BaseApi {
         Observable observable = httpRequestService.getDynamicLink(signKey,body).map(new HttpResultFunc<>());
 
         toSubscribe(observable,subscriber);
+    }
+
+    public void saveAddress(AddressBean dataBean, Subscriber<AddressBean> subscriber) {
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("name", dataBean.getName());
+            json.put("mobile", dataBean.getMobile());
+            json.put("provinceName", dataBean.getProvinceName());
+            json.put("cityName", dataBean.getCityName());
+            json.put("countyName", dataBean.getCountyName());
+            json.put("detailAddress", dataBean.getDetailAddress());
+            json.put("isDefault", dataBean.getIsDefault());
+            if (null != dataBean.getId() && dataBean.getId() != 0)
+                json.put("id", dataBean.getId());
+            //业务参数end
+
+            json.put("randomStr", signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign", sign);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        String signKey = "";
+//        try {
+//            signKey = RandomStrUtil.getRandomString();
+//            dataBean.setRandomStr(signKey);
+//            dataBean.setSource(Constant.source);
+//            String sign = SignHelper.getSignValue4Bean(dataBean, signKey + Constant.publicKey);
+//            dataBean.setSign(sign);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"), json.toString());
+        Observable observable = httpRequestService.saveAddress(signKey, body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    public void queryAllAddes(Subscriber<BaseRequest<List<AddressBean>>> subscriber) {
+        String signKey = "";
+        AddressBean bean = new AddressBean();
+        try {
+            signKey = RandomStrUtil.getRandomString();
+            bean.setRandomStr(signKey);
+            bean.setSource(Constant.source);
+            String sign = SignHelper.getSignValue4Bean(bean, signKey + Constant.publicKey);
+            Log.d("chendong", "origin sign : " + sign);
+            bean.setSign(sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Observable observable = httpRequestService.queryAllAddes(signKey, bean).map(new HttpResultFunc<>());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    public void queryAddByID(Long id, Subscriber<BaseRequest<AddressBean>> subscriber) {
+        String signKey = "";
+        JSONObject json = new JSONObject();
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("id", id);
+            //业务参数end
+
+            json.put("randomStr", signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign", sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"), json.toString());
+        Observable observable = httpRequestService.queryAddByID(signKey, body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    public void delAddByID(Long id, Subscriber<BaseRequest<String>> subscriber) {
+        String signKey = "";
+        JSONObject json = new JSONObject();
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("id", id);
+            //业务参数end
+
+            json.put("randomStr", signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign", sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"), json.toString());
+        Observable observable = httpRequestService.delAddByID(signKey, body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    public void busFeeC2BPay(String code, Subscriber<BaseRequest<CBPayResultBean>> subscriber) {
+        String signKey = "";
+        JSONObject json = new JSONObject();
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("code", code);
+            //业务参数end
+
+            json.put("randomStr", signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign", sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"), json.toString());
+        Observable observable = httpRequestService.busFeeC2BPay(signKey, body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable, subscriber);
+    }
+
+
+    public void queryMarketProducts(Subscriber<BaseRequest<MarketProductsBean>> subscriber) {
+        String signKey = "";
+        JSONObject json = new JSONObject();
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            //业务参数end
+
+            json.put("randomStr", signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign", sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"), json.toString());
+        Observable observable = httpRequestService.queryMarketProducts(signKey, body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable, subscriber);
     }
 }
