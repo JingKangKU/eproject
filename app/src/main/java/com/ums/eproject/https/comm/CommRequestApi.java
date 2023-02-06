@@ -11,6 +11,7 @@ import com.ums.eproject.bean.BaseRequest;
 import com.ums.eproject.bean.CBPayResultBean;
 import com.ums.eproject.bean.DepositRuleBean;
 import com.ums.eproject.bean.DepositTrial;
+import com.ums.eproject.bean.DynamicLink;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.MarketProductsBean;
@@ -297,55 +298,55 @@ public class CommRequestApi extends BaseApi {
         toSubscribe(observable, subscriber);
     }
 
-    public void getProductDetails(long id,Subscriber<GoodsDetail> subscriber){
+    public void getProductDetails(long id, Subscriber<GoodsDetail> subscriber) {
         JSONObject json = new JSONObject();
         String signKey = "";
         try {
             signKey = RandomStrUtil.getRandomString();
 
             //业务参数start
-            json.put("id",id);
+            json.put("id", id);
             //业务参数end
 
-            json.put("randomStr",signKey);
+            json.put("randomStr", signKey);
             json.put("source", Constant.source);
 
             String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
-            json.put("sign",sign);
+            json.put("sign", sign);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
-        Observable observable = httpRequestService.getProductDetails(signKey,body).map(new HttpResultFunc<>());
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"), json.toString());
+        Observable observable = httpRequestService.getProductDetails(signKey, body).map(new HttpResultFunc<>());
 
-        toSubscribe(observable,subscriber);
+        toSubscribe(observable, subscriber);
     }
 
 
-    public void memDepositTrial(double depositAmount,Subscriber<DepositTrial> subscriber){
+    public void memDepositTrial(double depositAmount, Subscriber<DepositTrial> subscriber) {
         JSONObject json = new JSONObject();
         String signKey = "";
         try {
             signKey = RandomStrUtil.getRandomString();
 
             //业务参数start
-            json.put("depositAmount",depositAmount);
+            json.put("depositAmount", depositAmount);
             //业务参数end
 
-            json.put("randomStr",signKey);
+            json.put("randomStr", signKey);
             json.put("source", Constant.source);
 
             String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
-            json.put("sign",sign);
+            json.put("sign", sign);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
-        Observable observable = httpRequestService.memDepositTrial(signKey,body).map(new HttpResultFunc<>());
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"), json.toString());
+        Observable observable = httpRequestService.memDepositTrial(signKey, body).map(new HttpResultFunc<>());
 
-        toSubscribe(observable,subscriber);
+        toSubscribe(observable, subscriber);
     }
 
     public void saveAddress(AddressBean dataBean, Subscriber<AddressBean> subscriber) {
@@ -509,4 +510,24 @@ public class CommRequestApi extends BaseApi {
         toSubscribe(observable, subscriber);
     }
 
+    public void getDynamicLink(String linkUrl, Subscriber<DynamicLink> subscriber) {
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            json.put("linkUrl", linkUrl);
+            //业务参数end
+
+            json.put("randomStr", signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign", sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"), json.toString());
+        Observable observable = httpRequestService.getDynamicLink(signKey, body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable, subscriber);
+    }
 }

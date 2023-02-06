@@ -9,6 +9,7 @@ import com.ums.eproject.bean.BaseRequest;
 import com.ums.eproject.bean.CBPayResultBean;
 import com.ums.eproject.bean.DepositRuleBean;
 import com.ums.eproject.bean.DepositTrial;
+import com.ums.eproject.bean.DynamicLink;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.MarketProductsBean;
@@ -114,5 +115,8 @@ public interface HttpRequestService {
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
     @POST("/tetapp/mkt/queryMarketProducts")
     Observable<BaseRequest<MarketProductsBean>> queryMarketProducts(@Header("signKey") String signKey, @Body RequestBody body);
-
+    //获取动态H5地址
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mem/getDynamicLink")
+    Observable<DynamicLink> getDynamicLink(@Header("signKey") String signKey, @Body RequestBody body);
 }
