@@ -108,7 +108,7 @@ public class UserBean {
             private Object memberTypeExpire;
             private int memberStatus;
             private String memberStatusAlias;
-            private int balance;
+            private double balance;
             private int leftScore;
 
             public int getMemberId() {
@@ -231,11 +231,11 @@ public class UserBean {
                 this.memberStatusAlias = memberStatusAlias;
             }
 
-            public int getBalance() {
+            public double getBalance() {
                 return balance;
             }
 
-            public void setBalance(int balance) {
+            public void setBalance(double balance) {
                 this.balance = balance;
             }
 

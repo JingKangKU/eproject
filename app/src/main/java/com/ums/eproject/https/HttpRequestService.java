@@ -3,16 +3,22 @@ package com.ums.eproject.https;
 
 
 
+import com.ums.eproject.bean.AddressBean;
 import com.ums.eproject.bean.AuthBean;
+import com.ums.eproject.bean.BaseRequest;
+import com.ums.eproject.bean.CBPayResultBean;
 import com.ums.eproject.bean.DepositRuleBean;
 import com.ums.eproject.bean.DepositTrial;
 import com.ums.eproject.bean.DynamicLink;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
+import com.ums.eproject.bean.MarketProductsBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.ProductsBean;
 import com.ums.eproject.bean.UserBean;
+
+import java.util.List;
 
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -84,4 +90,34 @@ public interface HttpRequestService {
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
     @POST("/tetapp/mem/getDynamicLink")
     Observable<DynamicLink> getDynamicLink(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //新增收货地址
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mem/saveReceiveAddr")
+    Observable<BaseRequest<String>> saveAddress(@Header("signKey") String signKey, @Body RequestBody body);
+    //查询所有收货地址
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mem/queryMemReceiveAddr")
+    Observable<BaseRequest<List<AddressBean>>> queryAllAddes(@Header("signKey") String signKey, @Body AddressBean body);
+    //根据id查询单个收货地址
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mem/getReceiveAddr")
+    Observable<BaseRequest<AddressBean>> queryAddByID(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //根据id删除单个收货地址
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mem/deleteReceiveAddr")
+    Observable<BaseRequest<String>> delAddByID(@Header("signKey") String signKey, @Body RequestBody body);
+
+
+    //根据id删除单个收货地址
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mem/busFeeC2BPay")
+    Observable<BaseRequest<CBPayResultBean>> busFeeC2BPay(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //全民营销商品查询
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mkt/queryMarketProducts")
+    Observable<BaseRequest<MarketProductsBean>> queryMarketProducts(@Header("signKey") String signKey, @Body RequestBody body);
+
 }

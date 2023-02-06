@@ -10,27 +10,27 @@ public class BaseBean  implements Serializable {
     //随机值
     private String randomStr;
 
-    private String getSign() {
+    public String getSign() {
         return sign;
     }
 
-    private void setSign(String sign) {
+    public void setSign(String sign) {
         this.sign = sign;
     }
 
-    private String getSource() {
+    public String getSource() {
         return source;
     }
 
-    private void setSource(String source) {
+    public void setSource(String source) {
         this.source = source;
     }
 
-    private String getRandomStr() {
+    public String getRandomStr() {
         return randomStr;
     }
 
-    private void setRandomStr(String randomStr) {
+    public void setRandomStr(String randomStr) {
         this.randomStr = randomStr;
     }
 

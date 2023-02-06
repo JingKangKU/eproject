@@ -53,6 +53,7 @@ public class UserFragment extends Fragment  implements View.OnClickListener {
             case R.id.user_item_2:
             case R.id.user_item_3:
             case R.id.user_item_4:
+                break;
             case R.id.user_item_address:
                 UIHelp.startActivity(requireActivity(), AddressActivity.class);
                 break;

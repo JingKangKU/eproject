@@ -31,6 +31,8 @@ import com.mosect.lib.immersive.ImmersiveLayout;
 import com.mosect.lib.immersive.LayoutAdapter;
 import com.ums.eproject.R;
 import com.ums.eproject.bean.AuthBean;
+import com.ums.eproject.bean.BaseRequest;
+import com.ums.eproject.bean.CBPayResultBean;
 import com.ums.eproject.bean.UserBean;
 import com.ums.eproject.fragment.CodeFragment;
 import com.ums.eproject.fragment.HomeFragment;
@@ -150,7 +152,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (requestCode == REQUEST_SCAN && resultCode == RESULT_OK) {//二维码扫描
             try {
                 String scanResult = data.getExtras().getString("result");
-                MsgUtil.showCustom(MainActivity.this, scanResult);
+                busFeeC2BPay(scanResult);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -265,6 +267,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         // 底部整体比较暗，则启用暗黑导航栏模式
         // ImmersiveLayout.darkNavigationBar(this);
     }
+    private void busFeeC2BPay(String result) {
+        CommRequestApi.getInstance().busFeeC2BPay(result, new HttpSubscriber<>(new SubscriberOnListener<BaseRequest<CBPayResultBean>>() {
+            @Override
+            public void onSucceed(BaseRequest<CBPayResultBean> bean) {
+                if (bean.getCode() == 200) {
+                    if (null != bean.getData()) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("data", bean.getData());
+                        UIHelp.startActivity(MainActivity.this, TravelResultActivity.class, bundle);
+                    }
+                } else {
+                    MsgUtil.showCustom(context, bean.getMessage());
+                }
+            }
 
+            @Override
+            public void onError(int code, String msg) {
+                Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
+
+            }
+        }, context));
+    }
 
 }
