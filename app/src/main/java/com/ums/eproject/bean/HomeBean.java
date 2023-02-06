@@ -94,17 +94,17 @@ public class HomeBean {
             private int groupNo;
             private int groupLayOutType;
 
-            private String linkType;
+            private int linkType;
             private String linkUrl;
             private String imageUrl;
             private String navName;
             private String name;
 
-            public String getLinkType() {
+            public int getLinkType() {
                 return linkType;
             }
 
-            public void setLinkType(String linkType) {
+            public void setLinkType(int linkType) {
                 this.linkType = linkType;
             }
 

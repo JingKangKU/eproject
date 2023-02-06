@@ -76,5 +76,13 @@ public class Constant {
     }
 
 
+    public static class linkType{
+        public static final int none = 0; //无
+        public static final int static_h5 = 1; //静态H5
+        public static final int img = 2; //图片
+        public static final int app_page = 3; //app
+        public static final int wx_app = 4; //微信小程序
+        public static final int dynamic_app = 5; //动态H5
+    }
 
 }

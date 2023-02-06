@@ -57,6 +57,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.CommonWebViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.GoodsOrderActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

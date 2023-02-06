@@ -1,5 +1,6 @@
 package com.ums.eproject.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -9,7 +10,8 @@ import android.widget.ImageView;
  * by jk 宽度固定高度自适应
  */
 
-public class ResizableImageView extends androidx.appcompat.widget.AppCompatImageView {
+@SuppressLint("AppCompatCustomView")
+public class ResizableImageView extends ImageView {
 
     public ResizableImageView(Context context) {
         super(context);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F3F3F3"
@@ -9,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="12dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:orientation="vertical"
@@ -17,6 +18,7 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -64,330 +66,43 @@
                         android:textSize="11sp"/>
                 </LinearLayout>
             </RelativeLayout>
-
+            <com.stx.xhb.androidx.XBanner
+                android:id="@+id/home_top_banner"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:AutoPlayTime="4000"
+                app:pointsPosition="RIGHT"
+                app:isShowNumberIndicator="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:pageChangeDuration="4000"
+                app:pointNormal="@mipmap/ic_page_indicator_focused"
+                app:pointSelect="@mipmap/ic_page_indicator"
+                app:tipTextSize="16sp" >
+            </com.stx.xhb.androidx.XBanner>
 
             <LinearLayout
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_marginTop="13dp"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/white_round_shape_10"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <LinearLayout
-                    android:orientation="horizontal"
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="12dp"
+                    android:id="@+id/home_recycler_ability_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:src="@mipmap/home_btn_1"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"/>
-                        <TextView
-                            android:text="长途购票"
-                            android:textColor="#ff000000"
-                            android:textSize="11sp"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:src="@mipmap/home_btn_2"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"/>
-                        <TextView
-                            android:text="掌上公交"
-                            android:textColor="#ff000000"
-                            android:textSize="11sp"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:src="@mipmap/home_btn_3"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"/>
-                        <TextView
-                            android:text="飞鹿包车"
-                            android:textColor="#ff000000"
-                            android:textSize="11sp"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:src="@mipmap/home_btn_4"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"/>
-                        <TextView
-                            android:text="滴滴出行"
-                            android:textColor="#ff000000"
-                            android:textSize="11sp"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="14dp"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ll_park">
-                        <ImageView
-                            android:src="@mipmap/home_btn_5"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"/>
-                        <TextView
-                            android:text="好停车"
-                            android:textColor="#ff000000"
-                            android:textSize="11sp"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:src="@mipmap/home_btn_6"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"/>
-                        <TextView
-                            android:text="共享电单车"
-                            android:textColor="#ff000000"
-                            android:textSize="11sp"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:src="@mipmap/home_btn_7"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"/>
-                        <TextView
-                            android:text="全民营销"
-                            android:textColor="#ff000000"
-                            android:textSize="11sp"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/home_go"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:src="@mipmap/home_btn_8"
-                            android:layout_width="38dp"
-                            android:layout_height="38dp"/>
-                        <TextView
-                            android:text="商城GO"
-                            android:textColor="#ff000000"
-                            android:textSize="11sp"
-                            android:layout_marginTop="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_marginTop="13dp"
-                android:orientation="horizontal"
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="12dp"
+                android:id="@+id/home_recycler_func_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-                    <com.ums.eproject.view.ResizableImageView
-                        android:src="@mipmap/home_img_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_marginTop="11dp"
-                        android:layout_marginLeft="12dp"
-                        android:text="金融产品专区"
-                        android:textColor="#ff2f3133"
-                        android:textSize="14sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_marginTop="29dp"
-                        android:layout_marginLeft="12dp"
-                        android:text="jin rong chan pin"
-                        android:textColor="#ff2f3133"
-                        android:textSize="6sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </RelativeLayout>
-                <View
-                    android:layout_width="15dp"
-                    android:layout_height="1dp"/>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-                    <RelativeLayout
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <com.ums.eproject.view.ResizableImageView
-                            android:src="@mipmap/home_img_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:layout_marginTop="11dp"
-                            android:layout_marginLeft="12dp"
-                            android:text="出行头条"
-                            android:textColor="#ff2f3133"
-                            android:textSize="14sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:layout_marginTop="29dp"
-                            android:layout_marginLeft="12dp"
-                            android:text="CHU XING TOU TIAO"
-                            android:textColor="#ff2f3133"
-                            android:textSize="6sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </RelativeLayout>
+                android:layout_height="wrap_content"/>
 
-                    <RelativeLayout
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <com.ums.eproject.view.ResizableImageView
-                            android:src="@mipmap/home_img_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:layout_marginTop="11dp"
-                            android:layout_marginLeft="12dp"
-                            android:text="权益专区"
-                            android:textColor="#ff2f3133"
-                            android:textSize="14sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:layout_marginTop="29dp"
-                            android:layout_marginLeft="12dp"
-                            android:text="QUAN YI"
-                            android:textColor="#ff2f3133"
-                            android:textSize="6sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </RelativeLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginBottom="13dp"
-                android:layout_marginTop="13dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-                    <com.ums.eproject.view.ResizableImageView
-                        android:src="@mipmap/home_img_4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_marginTop="11dp"
-                        android:layout_marginLeft="12dp"
-                        android:text="KFC"
-                        android:textColor="#ff2f3133"
-                        android:textSize="14sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_marginTop="29dp"
-                        android:layout_marginLeft="12dp"
-                        android:text=""
-                        android:textColor="#ff2f3133"
-                        android:textSize="6sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </RelativeLayout>
-                <View
-                    android:layout_width="15dp"
-                    android:layout_height="1dp"/>
-                <RelativeLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-                    <com.ums.eproject.view.ResizableImageView
-                        android:src="@mipmap/home_img_5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_marginTop="11dp"
-                        android:layout_marginLeft="12dp"
-                        android:text="海底捞"
-                        android:textColor="#ff2f3133"
-                        android:textSize="14sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_marginTop="29dp"
-                        android:layout_marginLeft="12dp"
-                        android:text="HAI DI LAO"
-                        android:textColor="#ff2f3133"
-                        android:textSize="6sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </RelativeLayout>
-            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="13dp"/>
