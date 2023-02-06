@@ -1,96 +1,110 @@
 package com.ums.eproject.bean;
 
-public class AddressBean {
-    private int code;
-    private String message;
-    public DataBean data;
+public class AddressBean extends BaseBean{
+    public Long id;
+    public String name;
+    public String mobile;
+    public String isDefault;
+    public String postCode;
+    public String areaCode;
+    public String provinceName;
+    public String cityName;
+    public String countyName;
+    public String detailAddress;
 
-    public static class DataBean{
-        public long id;
-        public String name;
-        public String mobile;
-        public String isDefault;
-        public String postCode;
-        public String areaCode;
-        public String provinceName;
-        public String cityName;
-        public String countyName;
-        public String detailAddress;
+    @Override
+    public String toString() {
+        return "AddressData{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", isDefault='" + isDefault + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", areaCode='" + areaCode + '\'' +
+                ", provinceName='" + provinceName + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", countyName='" + countyName + '\'' +
+                ", detailAddress='" + detailAddress + '\'' +
+                '}';
+    }
 
-        public long getId() {
-            return id;
-        }
+    public Long getId() {
+        return id;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public String getMobile() {
-            return mobile;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public void setMobile(String mobile) {
-            this.mobile = mobile;
-        }
+    public String getMobile() {
+        return mobile;
+    }
 
-        public String getIsDefault() {
-            return isDefault;
-        }
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
-        public void setIsDefault(String isDefault) {
-            this.isDefault = isDefault;
-        }
+    public String getIsDefault() {
+        return isDefault;
+    }
 
-        public String getPostCode() {
-            return postCode;
-        }
+    public void setIsDefault(String isDefault) {
+        this.isDefault = isDefault;
+    }
 
-        public void setPostCode(String postCode) {
-            this.postCode = postCode;
-        }
+    public String getPostCode() {
+        return postCode;
+    }
 
-        public String getAreaCode() {
-            return areaCode;
-        }
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
 
-        public void setAreaCode(String areaCode) {
-            this.areaCode = areaCode;
-        }
+    public String getAreaCode() {
+        return areaCode;
+    }
 
-        public String getProvinceName() {
-            return provinceName;
-        }
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode;
+    }
 
-        public void setProvinceName(String provinceName) {
-            this.provinceName = provinceName;
-        }
+    public String getProvinceName() {
+        return provinceName;
+    }
 
-        public String getCityName() {
-            return cityName;
-        }
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
+    }
 
-        public void setCityName(String cityName) {
-            this.cityName = cityName;
-        }
+    public String getCityName() {
+        return cityName;
+    }
 
-        public String getCountyName() {
-            return countyName;
-        }
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
 
-        public void setCountyName(String countyName) {
-            this.countyName = countyName;
-        }
+    public String getCountyName() {
+        return countyName;
+    }
 
-        public String getDetailAddress() {
-            return detailAddress;
-        }
+    public void setCountyName(String countyName) {
+        this.countyName = countyName;
+    }
 
-        public void setDetailAddress(String detailAddress) {
-            this.detailAddress = detailAddress;
-        }
+    public String getDetailAddress() {
+        return detailAddress;
+    }
+
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
     }
 }

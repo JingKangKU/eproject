@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/bg_radio_select" android:state_checked="false"></item>
+    <item android:drawable="@mipmap/bg_radio_select" android:state_checked="false" android:state_window_focused="false"></item>
+    <item android:drawable="@mipmap/bg_radio_selected" android:state_checked="true"></item>
+    <item android:drawable="@mipmap/bg_radio_selected" android:state_checked="true" android:state_window_focused="false"></item>
+
+</selector>

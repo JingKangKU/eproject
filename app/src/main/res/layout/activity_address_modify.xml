@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F3F3"
+    android:orientation="vertical"
+    tools:context=".activity.AddressModifyActivity">
+
+    <include
+        android:id="@+id/title_ll"
+        layout="@layout/layout_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/white_round_shape_15"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/title_ll">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="收货人"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="92dp"
+                android:background="@drawable/selecter_bg_input"
+                android:hint="收货人姓名"
+                android:paddingLeft="15dp"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="手机号码"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/et_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="92dp"
+                android:background="@drawable/selecter_bg_input"
+                android:hint="收货人手机号码"
+                android:paddingLeft="15dp"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="所在区域"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/et_area"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="92dp"
+                android:background="@drawable/selecter_bg_input"
+                android:drawableRight="@mipmap/expand"
+                android:hint="收货人所在区域"
+                android:paddingHorizontal="15dp"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="详细地址"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/et_details"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="92dp"
+                android:background="@drawable/selecter_bg_input"
+                android:hint="收货人所在区域"
+                android:paddingLeft="15dp"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="地址标签"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+
+            <RadioGroup
+                android:id="@+id/rg_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_home"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="92dp"
+                    android:background="@drawable/selecter_bg_button"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="家"
+                    android:textColor="@drawable/selecter_color_button"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_school"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/selecter_bg_button"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="学校"
+                    android:textColor="@drawable/selecter_color_button"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_company"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/selecter_bg_button"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="公司"
+                    android:textColor="@drawable/selecter_color_button"
+                    android:textSize="17sp" />
+            </RadioGroup>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="设置为默认收货地址"
+                android:textColor="#ff1d1d1d"
+                android:textSize="17sp" />
+
+            <CheckBox
+                android:id="@+id/cb_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:button="@null"
+                android:checked="true"
+                android:drawableRight="@drawable/selecter_bg_radio"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
