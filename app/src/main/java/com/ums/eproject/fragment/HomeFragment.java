@@ -29,6 +29,7 @@ import com.ums.eproject.activity.MallActivity;
 import com.ums.eproject.adapter.HomeAbilityAdapter;
 import com.ums.eproject.adapter.HomeBottomAdapter;
 import com.ums.eproject.adapter.TopupAdapter;
+import com.ums.eproject.bean.DynamicLink;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.SingleOption;
@@ -162,7 +163,26 @@ public class HomeFragment extends Fragment  implements View.OnClickListener {
             }
         }, context));
     }
+    private void getDynamicLink(String linkUrl,String navName) {
+        CommRequestApi.getInstance().getDynamicLink(linkUrl,new HttpSubscriber<>(new SubscriberOnListener<DynamicLink>() {
+            @Override
+            public void onSucceed(DynamicLink data) {
+                if (data.getCode() == 200){
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("url",data.getData().getLinkUrl());
+                    bundle.putSerializable("titleText",navName);
+                    UIHelp.startActivity(context, CommonWebViewActivity.class,bundle);
+                }else{
+                    MsgUtil.showCustom(getActivity(),data.getMessage());
+                }
+            }
+            @Override
+            public void onError(int code, String msg) {
+                Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
 
+            }
+        }, context));
+    }
     private void doItemClick(HomeBean.DataBean.ListBean listBean ,HomeBean.DataBean.ListBean.DetailsBean detailsBean){
         int linkType = 0;
         String linkUrl = "";
@@ -185,12 +205,20 @@ public class HomeFragment extends Fragment  implements View.OnClickListener {
                 UIHelp.startActivity(context, CommonWebViewActivity.class,bundle);
                 break;
             case Constant.linkType.img:
+
                 break;
             case Constant.linkType.app_page:
+                if (linkUrl.equals(Constant.linkApp.shopping)){
+                    UIHelp.startActivity(context, MallActivity.class);
+                }else if(linkUrl.equals(Constant.linkApp.marketing)) { //全民营销
+
+                }
                 break;
             case Constant.linkType.wx_app:
                 break;
             case Constant.linkType.dynamic_app:
+
+                getDynamicLink(linkUrl,navName);
                 break;
         }
     }

@@ -7,6 +7,7 @@ import android.util.Log;
 import com.ums.eproject.bean.AuthBean;
 import com.ums.eproject.bean.DepositRuleBean;
 import com.ums.eproject.bean.DepositTrial;
+import com.ums.eproject.bean.DynamicLink;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.NETData;
@@ -333,6 +334,32 @@ public class CommRequestApi extends BaseApi {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
         Observable observable = httpRequestService.memDepositTrial(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+
+    public void getDynamicLink(String linkUrl,Subscriber<DynamicLink> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("linkUrl",linkUrl);
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.getDynamicLink(signKey,body).map(new HttpResultFunc<>());
 
         toSubscribe(observable,subscriber);
     }

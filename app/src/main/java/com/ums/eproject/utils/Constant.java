@@ -85,4 +85,10 @@ public class Constant {
         public static final int dynamic_app = 5; //动态H5
     }
 
+    public static class linkApp{
+        public static final String marketing = "app:marketing"; //全民营销
+        public static final String shopping = "app:shopping"; //商城GO
+        public static final String mobilebus = "app:mobilebus"; //掌上公交
+    }
+
 }
