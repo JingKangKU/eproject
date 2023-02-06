@@ -1,5 +1,6 @@
 package com.ums.eproject.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.bumptech.glide.Glide;
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.mosect.lib.immersive.LayoutAdapter;
@@ -16,13 +19,16 @@ import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.entity.BaseBannerInfo;
 import com.stx.xhb.androidx.transformers.Transformer;
 import com.ums.eproject.R;
+import com.ums.eproject.bean.AddressBean;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.https.HttpSubscriber;
 import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
+import com.ums.eproject.utils.Constant;
 import com.ums.eproject.utils.MsgUtil;
 import com.ums.eproject.utils.StrUtil;
 import com.ums.eproject.utils.UIHelp;
+import com.ums.eproject.view.ScaleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +40,14 @@ public class GoodsOrderActivity extends BaseActivity implements View.OnClickList
     private LinearLayout title_view, title_right;
     private TextView title_text;
     private TextView goods_order_go_pay;
+    private GoodsDetail.DataBean.InfoBean goodsInfo;
+    private LinearLayout ll_goods_order_address_null, ll_goods_order_address;
+    private TextView order_goods_address,order_goods_name,order_goods_mobile;
+
+    private final static int openAddressReq = 100;
+
+    private ScaleImageView order_goods_img;
+    private TextView order_goods_price,order_goods_title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,25 +69,47 @@ public class GoodsOrderActivity extends BaseActivity implements View.OnClickList
         immersiveLayout.requestLayout();
 
         findViewById(R.id.goods_order_go_pay).setOnClickListener(this);
+        ll_goods_order_address_null = findViewById(R.id.ll_goods_order_address_null);
+        ll_goods_order_address = findViewById(R.id.ll_goods_order_address);
 
-//        Bundle bundle = getIntent().getBundleExtra("bundle");
-//        long goodsId = bundle.getLong("goodsId");
-//        getProductDetails(goodsId);
+        order_goods_address = findViewById(R.id.order_goods_address);
+        order_goods_name = findViewById(R.id.order_goods_name);
+        order_goods_mobile = findViewById(R.id.order_goods_mobile);
+
+        order_goods_title = findViewById(R.id.order_goods_title);
+        order_goods_price = findViewById(R.id.order_goods_price);
+        order_goods_img  = findViewById(R.id.order_goods_img);
+
+        ll_goods_order_address_null.setOnClickListener(this);
+        ll_goods_order_address.setOnClickListener(this);
+        ll_goods_order_address_null.setVisibility(View.VISIBLE);
+        ll_goods_order_address.setVisibility(View.GONE);
+
+        Bundle bundle = getIntent().getBundleExtra("bundle");
+        goodsInfo = (GoodsDetail.DataBean.InfoBean) bundle.getSerializable("goodsInfo");
+
+        setGoodsData(goodsInfo);
+    }
+
+    private void setGoodsData(GoodsDetail.DataBean.InfoBean goodsInfo) {
+        order_goods_title.setText(goodsInfo.getName());
+        order_goods_price.setText(String.valueOf(goodsInfo.getPrice()));
+        Glide.with(context).load(goodsInfo.getPicUrl()).into(order_goods_img);
     }
 
 
     private void getProductDetails(long id) {
-        CommRequestApi.getInstance().getProductDetails(id,new HttpSubscriber<>(new SubscriberOnListener<GoodsDetail>() {
+        CommRequestApi.getInstance().getProductDetails(id, new HttpSubscriber<>(new SubscriberOnListener<GoodsDetail>() {
             @Override
             public void onSucceed(GoodsDetail data) {
                 if (data.getCode() == 200) {
-
 
 
                 } else {
                     MsgUtil.showCustom(context, data.getMessage());
                 }
             }
+
             @Override
             public void onError(int code, String msg) {
                 Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
@@ -106,11 +142,38 @@ public class GoodsOrderActivity extends BaseActivity implements View.OnClickList
         if (v.getId() == R.id.title_back) {
             finish();
         }
-        if (v.getId() == R.id.goods_order_go_pay){
-            UIHelp.startActivity(context,GoodsPayActivity.class);
+        if (v.getId() == R.id.goods_order_go_pay) {
+            UIHelp.startActivity(context, GoodsPayActivity.class);
+        }
+        if (v.getId() == R.id.ll_goods_order_address_null || v.getId() == R.id.ll_goods_order_address) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("startForOrder",Constant.startForOrder);
+            UIHelp.startActivity(this, AddressActivity.class, bundle,openAddressReq);
         }
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == openAddressReq && resultCode == RESULT_OK) {
+            if (data != null) {
+                AddressBean addressBean = (AddressBean) data.getSerializableExtra("addressBean");
+                setAddressData(addressBean);
+
+            }
+        }
+    }
+
+    private void setAddressData(AddressBean addressBean){
+        addressBean.toString();
+        ll_goods_order_address_null.setVisibility(View.GONE);
+        ll_goods_order_address.setVisibility(View.VISIBLE);
+        order_goods_address.setText(addressBean.getAddressDesc());
+        order_goods_name.setText(addressBean.getName());
+        order_goods_mobile.setText(addressBean.getMobile());
+    }
+
 
     @Override
     protected void onResume() {

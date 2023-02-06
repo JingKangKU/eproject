@@ -31,6 +31,7 @@ public class AddressAdapter extends RecyclerView.Adapter {
     private List<AddressBean> datas;
     Context context;
     EditCallBackListener listener;
+    ItemClickListener itemClickListener;
 
     public AddressAdapter(Context context) {
         this.context = context;
@@ -50,6 +51,10 @@ public class AddressAdapter extends RecyclerView.Adapter {
 
     public void setListener(EditCallBackListener listener) {
         this.listener = listener;
+    }
+
+    public void setItemClickListener(ItemClickListener itemClickListener){
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -134,6 +139,14 @@ public class AddressAdapter extends RecyclerView.Adapter {
             }
         });
 
+        // TODO: 2023/2/6 jk  条目点击返回
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               itemClickListener.itemClick(data);
+            }
+        });
+
     }
 
     @Override
@@ -190,5 +203,9 @@ public class AddressAdapter extends RecyclerView.Adapter {
 
     public interface EditCallBackListener {
         void doAfterEdit();
+    }
+
+    public interface ItemClickListener {
+        void itemClick(AddressBean addressBean);
     }
 }

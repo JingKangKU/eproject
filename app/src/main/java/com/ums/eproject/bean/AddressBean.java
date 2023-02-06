@@ -12,6 +12,10 @@ public class AddressBean extends BaseBean{
     public String countyName;
     public String detailAddress;
 
+    // TODO: 2023/2/6  jk 新增完整地址返回
+    public String getAddressDesc(){
+        return provinceName + cityName + countyName + detailAddress;
+    }
     @Override
     public String toString() {
         return "AddressData{" +

@@ -1,8 +1,9 @@
 package com.ums.eproject.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class GoodsDetail {
+public class GoodsDetail implements Serializable{
 
 
     /**
@@ -46,7 +47,7 @@ public class GoodsDetail {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean  implements Serializable{
         /**
          * id : 5021014
          * childmerId : null
@@ -112,7 +113,7 @@ public class GoodsDetail {
             this.submerInfo = submerInfo;
         }
 
-        public static class InfoBean {
+        public static class InfoBean implements Serializable {
             private int id;
             private Object childmerId;
             private Object submerId;

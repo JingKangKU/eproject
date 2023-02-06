@@ -67,6 +67,7 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
     private WebView goods_detail_wb;
     private TextView goods_detail_buy;
     private TextView goods_detail_price,goods_detail_original_price,goods_detail_name,goods_detail_sub_title;
+    private GoodsDetail.DataBean.InfoBean goodsInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -171,6 +172,7 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onSucceed(GoodsDetail data) {
                 if (data.getCode() == 200) {
+                    goodsInfo = data.getData().getInfo();
                     setViewData(data.getData().getInfo());
                 } else {
                     MsgUtil.showCustom(context, data.getMessage());
@@ -220,7 +222,9 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
             finish();
         }
         if (v.getId() == R.id.goods_detail_buy){
-            UIHelp.startActivity(context,GoodsOrderActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("goodsInfo",goodsInfo);
+            UIHelp.startActivity(context,GoodsOrderActivity.class,bundle);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.ums.eproject.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mosect.lib.immersive.ImmersiveLayout;
 import com.ums.eproject.R;
 import com.ums.eproject.adapter.AddressAdapter;
 import com.ums.eproject.bean.AddressBean;
@@ -17,6 +19,7 @@ import com.ums.eproject.bean.BaseRequest;
 import com.ums.eproject.https.HttpSubscriber;
 import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
+import com.ums.eproject.utils.Constant;
 import com.ums.eproject.utils.MsgUtil;
 import com.ums.eproject.utils.UIHelp;
 
@@ -68,12 +71,29 @@ public class AddressActivity extends BaseActivity implements View.OnClickListene
                 UIHelp.startActivity(context, AddressModifyActivity.class, bundle);
             }
         });
+
+        // TODO: 2023/2/6 jk 地址条目点击
+        Bundle bundle = getIntent().getBundleExtra("bundle");
+        adapter.setItemClickListener(new AddressAdapter.ItemClickListener() {
+            @Override
+            public void itemClick(AddressBean addressBean) {
+                if (bundle !=null && bundle.getInt("startForOrder") == Constant.startForOrder){
+                    Intent intent = getIntent();
+                    intent.putExtra("addressBean", addressBean);
+                    setResult(RESULT_OK,intent);
+                    finish();
+                }
+            }
+        });
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         getAllAddreses();
+        ImmersiveLayout.darkStatusBar(this); // TODO: 2023/2/6 jk 高亮顶部状态栏
     }
 
     @Override
