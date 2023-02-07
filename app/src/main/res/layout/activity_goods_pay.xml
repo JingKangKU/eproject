@@ -155,26 +155,24 @@
                             <LinearLayout
                                 android:padding="4dp"
                                 android:gravity="center"
-                                android:background="@mipmap/goods_num_bg"
-                                android:layout_width="70dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="30dp">
 
-                                <ImageView
-                                    android:src="@mipmap/goods_reduce"
-                                    android:layout_width="10dp"
-                                    android:layout_height="10dp"/>
                                 <TextView
                                     android:gravity="center"
-                                    android:text="1"
+                                    android:text="x"
                                     android:textColor="#343434"
                                     android:textSize="13sp"
-                                    android:layout_weight="1"
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="20dp"/>
-                                <ImageView
-                                    android:src="@mipmap/goods_add"
-                                    android:layout_width="10dp"
-                                    android:layout_height="10dp"/>
+                                <TextView
+                                    android:gravity="center"
+                                    android:text="3"
+                                    android:textColor="#343434"
+                                    android:textSize="13sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"/>
+
                             </LinearLayout>
 
 
@@ -316,6 +314,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/ll_goods_order_pay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

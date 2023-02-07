@@ -4,9 +4,11 @@ package com.ums.eproject.fragment;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.chinaums.common.utils.UMSScreenUtil;
 import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.entity.BaseBannerInfo;
 import com.stx.xhb.androidx.transformers.Transformer;
@@ -70,7 +73,9 @@ public class HomeFragment extends Fragment  implements View.OnClickListener {
         home_recycler_func_view = view.findViewById(R.id.home_recycler_func_view);
         home_recycler_ability_view = view.findViewById(R.id.home_recycler_ability_view);
         home_top_banner = view.findViewById(R.id.home_top_banner);
-
+        int wm = UIHelp.getScreenWidth(getActivity()) - UMSScreenUtil.dp2px(30);
+        int hm = wm / 5 * 2;
+        home_top_banner.setLayoutParams(new LinearLayout.LayoutParams(wm, hm));
         getHomePage();
 
         return view;
