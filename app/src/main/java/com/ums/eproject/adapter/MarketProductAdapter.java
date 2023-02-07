@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ums.eproject.R;
 import com.ums.eproject.bean.MarketProductsBean.MarketProductBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MarketProductAdapter extends RecyclerView.Adapter {
@@ -22,6 +23,7 @@ public class MarketProductAdapter extends RecyclerView.Adapter {
 
     public MarketProductAdapter(Context context) {
         this.context = context;
+        datas = new ArrayList<>();
     }
 
     public List<MarketProductBean> getDatas() {
@@ -30,6 +32,9 @@ public class MarketProductAdapter extends RecyclerView.Adapter {
 
     public void setDatas(List<MarketProductBean> datas) {
         this.datas = datas;
+    }
+    public void addDatas(List<MarketProductBean> datas) {
+        this.datas.addAll(datas);
     }
 
     public EditCallBackListener getListener() {

@@ -507,18 +507,18 @@ public class CommRequestApi extends BaseApi {
     }
 
 
-    public void queryMarketProducts(Subscriber<BaseRequest<MarketProductsBean>> subscriber) {
+    public void queryMarketProducts(int pageNum, int pageSize,Subscriber<BaseRequest<MarketProductsBean>> subscriber) {
         String signKey = "";
         JSONObject json = new JSONObject();
         try {
             signKey = RandomStrUtil.getRandomString();
 
             //业务参数start
-            //业务参数end
-
+            json.put("pageNum", pageNum);
             json.put("randomStr", signKey);
+            json.put("pageSize", pageSize);
             json.put("source", Constant.source);
-
+            //业务参数end
             String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
             json.put("sign", sign);
         } catch (Exception e) {
