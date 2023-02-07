@@ -16,6 +16,7 @@ import com.ums.eproject.bean.MarketProductsBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.ProductsBean;
+import com.ums.eproject.bean.StartAdvertise;
 import com.ums.eproject.bean.UserBean;
 
 import java.util.List;
@@ -120,4 +121,8 @@ public interface HttpRequestService {
     @POST("/tetapp/mkt/queryMarketProducts")
     Observable<BaseRequest<MarketProductsBean>> queryMarketProducts(@Header("signKey") String signKey, @Body RequestBody body);
 
+    //开屏广告
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:true"})
+    @POST("/tetapp/mkt/listStartAdvertise")
+    Observable<StartAdvertise> listStartAdvertise(@Header("signKey") String signKey, @Body RequestBody body);
 }

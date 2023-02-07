@@ -16,7 +16,7 @@ import es.dmoral.toasty.Toasty;
 
 public class AppContext extends LitePalApplication {
     private static AppContext app;
-
+    private static Context context;
     public AppContext() {
         app = this;
     }
@@ -32,7 +32,7 @@ public class AppContext extends LitePalApplication {
     public void onCreate() {
         super.onCreate();
         Connector.getDatabase();
-
+        context = getApplicationContext();
         Toasty.Config.getInstance().setInfoColor(ContextCompat.getColor(this, R.color.toasty_info));
     }
 
@@ -42,5 +42,7 @@ public class AppContext extends LitePalApplication {
         super.attachBaseContext(base);
     }
 
-
+    public static Context getContext() {
+        return context;
+    }
 }

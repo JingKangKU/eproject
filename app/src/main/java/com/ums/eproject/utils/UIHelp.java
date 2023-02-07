@@ -231,5 +231,20 @@ public class UIHelp {
         }
     }
 
+    public static double getWsH(Activity activity) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
+            int width = activity.getWindowManager().getCurrentWindowMetrics().getBounds().width();
+            int height = activity.getWindowManager().getCurrentWindowMetrics().getBounds().height();
+
+            Insets insets = activity.getWindowManager().getCurrentWindowMetrics().getWindowInsets()
+                    .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars());
+            return DoubleUitl.div(Double.parseDouble(String.valueOf(width - insets.right - insets.left)),Double.parseDouble(String.valueOf(height - insets.bottom - insets.top)),2);
+        } else {
+            //获取减去系统栏的屏幕的高度和宽度
+            DisplayMetrics displayMetrics = activity.getResources().getDisplayMetrics();
+            return DoubleUitl.div(Double.parseDouble(String.valueOf(displayMetrics.widthPixels)),Double.parseDouble(String.valueOf(displayMetrics.heightPixels)),2) ;
+        }
+
+    }
 
 }

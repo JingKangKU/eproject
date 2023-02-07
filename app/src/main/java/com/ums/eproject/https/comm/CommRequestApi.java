@@ -17,6 +17,7 @@ import com.ums.eproject.bean.MarketProductsBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.ProductsBean;
+import com.ums.eproject.bean.StartAdvertise;
 import com.ums.eproject.bean.UserBean;
 import com.ums.eproject.https.BaseApi;
 import com.ums.eproject.https.HttpRequestService;
@@ -530,4 +531,31 @@ public class CommRequestApi extends BaseApi {
 
         toSubscribe(observable, subscriber);
     }
+
+    public void listStartAdvertise(double screenRate,Subscriber<StartAdvertise> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("osVersion","0");
+            json.put("screenRate",screenRate);
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.listStartAdvertise(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
 }

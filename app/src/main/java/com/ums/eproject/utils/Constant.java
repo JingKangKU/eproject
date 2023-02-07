@@ -20,9 +20,7 @@ public class Constant {
     public static String signReqHeader = "signKey";
 
     public static String tokenReqHeader = "XAuthorization";
-    public static String tokenReq="";
-    public static String token="";
-    public static String tokenHead="";
+
 
     // 公共密钥，2个用途，敏感信息加密和加签的时候使用
     public static String publicKey = "40qicgCuuOJL2uRZ";
