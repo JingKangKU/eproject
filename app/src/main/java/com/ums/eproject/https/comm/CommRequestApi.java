@@ -1,6 +1,7 @@
 package com.ums.eproject.https.comm;
 
 
+import android.content.Context;
 import android.util.Log;
 
 import com.ums.eproject.bean.AddressBean;
@@ -331,7 +332,7 @@ public class CommRequestApi extends BaseApi {
     }
 
     //商品下单
-    public void preOrderPerPdt(Context context,PlaceOrderBean placeOrderBean, Subscriber<PerPdtOrder> subscriber){
+    public void preOrderPerPdt(Context context, PlaceOrderBean placeOrderBean, Subscriber<PerPdtOrder> subscriber){
         JSONObject json = placeOrderBean.toJson();
         if (json == null){
             MsgUtil.showCustom(context,"数据解析异常,请重新打开页面");
