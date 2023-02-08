@@ -6,6 +6,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/login_submit_shape.xml" value="0.18333333333333332" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/white_round_shape_10.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/yello_round_shape_13.xml" value="0.10462962962962963" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_address.xml" value="0.13722826086956522" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_audit_state.xml" value="0.1286231884057971" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_common_web_view.xml" value="0.11775362318840579" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_goods_detail.xml" value="0.10144927536231885" />
@@ -17,6 +18,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_topup_recycler.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_balance.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_user.xml" value="0.13722826086956522" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_goods.xml" value="0.15625" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_home_ability.xml" value="0.11775362318840579" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_banner_home_top.xml" value="0.11775362318840579" />

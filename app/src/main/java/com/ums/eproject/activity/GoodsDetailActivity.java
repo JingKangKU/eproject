@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.chinaums.common.utils.UMSScreenUtil;
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.mosect.lib.immersive.LayoutAdapter;
 import com.stx.xhb.androidx.XBanner;
@@ -66,6 +67,7 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
     private WebView goods_detail_wb;
     private TextView goods_detail_buy;
     private TextView goods_detail_price,goods_detail_original_price,goods_detail_name,goods_detail_sub_title;
+    private GoodsDetail.DataBean.InfoBean goodsInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +93,11 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
         goods_detail_name = findViewById(R.id.goods_detail_name);
         goods_detail_sub_title = findViewById(R.id.goods_detail_sub_title);
 
+
         goods_detail_banner = findViewById(R.id.goods_detail_banner);
+        int wm = UIHelp.getScreenWidth(this) - UMSScreenUtil.dp2px(0);
+        int hm = wm / 1 * 1;
+        goods_detail_banner.setLayoutParams(new LinearLayout.LayoutParams(wm, hm));
         goods_detail_wb = findViewById(R.id.goods_detail_wb);
         goods_detail_buy = findViewById(R.id.goods_detail_buy);
         goods_detail_buy.setOnClickListener(this);
@@ -166,6 +172,7 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onSucceed(GoodsDetail data) {
                 if (data.getCode() == 200) {
+                    goodsInfo = data.getData().getInfo();
                     setViewData(data.getData().getInfo());
                 } else {
                     MsgUtil.showCustom(context, data.getMessage());
@@ -215,7 +222,9 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
             finish();
         }
         if (v.getId() == R.id.goods_detail_buy){
-            UIHelp.startActivity(context,GoodsOrderActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("goodsInfo",goodsInfo);
+            UIHelp.startActivity(context,GoodsOrderActivity.class,bundle);
         }
     }
 

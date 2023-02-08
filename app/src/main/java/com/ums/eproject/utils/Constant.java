@@ -91,4 +91,7 @@ public class Constant {
         public static final String mobilebus = "app:mobilebus"; //掌上公交
     }
 
+    public static final int startForOrder = 101; //order 启动地址列表
+
+    public static final int buyMaxThingNum = 30; //一个订单最多30件
 }

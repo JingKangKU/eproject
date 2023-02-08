@@ -49,7 +49,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="江苏省泰州市海陵区凤凰东路58号"
+                            android:id="@+id/order_goods_address"
                             android:textColor="#151515"
                             android:textSize="17sp"
                             android:layout_width="wrap_content"
@@ -61,13 +61,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="张小"
+                                android:id="@+id/order_goods_name"
                                 android:textColor="#ff565656"
                                 android:textSize="13sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
-                                android:text="18755340568"
+                                android:layout_marginStart="10dp"
+                                android:id="@+id/order_goods_mobile"
                                 android:textColor="#ff939393"
                                 android:textSize="13sp"
                                 android:layout_width="wrap_content"
@@ -77,6 +78,38 @@
 
                     </LinearLayout>
                 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_goods_order_address_null"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/white_round_shape_10"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="18dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="18dp">
+                    <ImageView
+                        android:src="@mipmap/goods_navigation"
+                        android:layout_width="21dp"
+                        android:layout_height="21dp"/>
+                    <TextView
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="点击选择收货地址"
+                        android:textColor="#ff565656"
+                        android:textSize="13sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:src="@mipmap/right"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -110,6 +143,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/order_goods_title"
                             android:text="老香斋红酒蔓越莓法式中秋月饼"
                             android:textColor="#151515"
                             android:textSize="13sp"
@@ -144,6 +178,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
+                                android:id="@+id/order_goods_price"
                                 android:layout_weight="1"
                                 android:text="83.00"
                                 android:textColor="#ffee2823"
@@ -159,10 +194,14 @@
                                 android:layout_height="30dp">
 
                                 <ImageView
+                                    android:id="@+id/goods_order_goods_num_reduce"
                                     android:src="@mipmap/goods_reduce"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
                                     android:layout_width="10dp"
-                                    android:layout_height="10dp"/>
+                                    android:layout_height="30dp"/>
                                 <TextView
+                                    android:id="@+id/goods_order_goods_num"
                                     android:gravity="center"
                                     android:text="1"
                                     android:textColor="#343434"
@@ -171,9 +210,12 @@
                                     android:layout_width="0dp"
                                     android:layout_height="20dp"/>
                                 <ImageView
+                                    android:id="@+id/goods_order_goods_num_add"
                                     android:src="@mipmap/goods_add"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
                                     android:layout_width="10dp"
-                                    android:layout_height="10dp"/>
+                                    android:layout_height="30dp"/>
                             </LinearLayout>
 
 
@@ -311,6 +353,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/goods_order_thing_num"
                     android:text="1"
                     android:textColor="#ff818080"
                     android:textSize="13sp"
@@ -336,6 +379,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/goods_order_thing_pic"
                     android:text="110"
                     android:textColor="#ffee2823"
                     android:textSize="16sp"
