@@ -1,7 +1,6 @@
 package com.ums.eproject.https.comm;
 
 
-import android.content.Context;
 import android.util.Log;
 
 import com.ums.eproject.bean.AddressBean;
@@ -14,6 +13,7 @@ import com.ums.eproject.bean.DynamicLink;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.MarketProductsBean;
+import com.ums.eproject.bean.MarketingDetailsBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.ProductsBean;
@@ -25,7 +25,6 @@ import com.ums.eproject.utils.Constant;
 import com.ums.eproject.utils.RandomStrUtil;
 import com.ums.eproject.utils.SignHelper;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -527,6 +526,29 @@ public class CommRequestApi extends BaseApi {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"), json.toString());
         Observable observable = httpRequestService.queryMarketProducts(signKey, body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    public void getMarketProductDetails(long id, Subscriber<BaseRequest<MarketingDetailsBean>> subscriber) {
+        String signKey = "";
+        JSONObject json = new JSONObject();
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("id", id);
+            json.put("randomStr", signKey);
+            json.put("source", Constant.source);
+            //业务参数end
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign", sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"), json.toString());
+        Observable observable = httpRequestService.getMarketProductDetails(signKey, body).map(new HttpResultFunc<>());
 
         toSubscribe(observable, subscriber);
     }

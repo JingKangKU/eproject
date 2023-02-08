@@ -51,6 +51,7 @@ public class MarketingActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        pageNum = 1;
         getMarketProducts(pageNum, pageSize);
     }
 
@@ -64,6 +65,7 @@ public class MarketingActivity extends BaseActivity {
                     refreshLayout.finishLoadMore(false);
                     resetpageNum(pageNum);
                 } else {
+                    setpageNum(data.getData().getPageNum());
                     List<MarketProductsBean.MarketProductBean> datas = data.getData().getList();
                     if (null != datas & datas.size() > 0) {
                         if (pageNum == 1) {
@@ -112,7 +114,11 @@ public class MarketingActivity extends BaseActivity {
     }
 
     private void resetpageNum(int pageNum) {
-        this.pageNum = pageNum--;
+        this.pageNum = pageNum > 1 ? pageNum-- : 1;
+    }
+
+    private void setpageNum(int pageNum) {
+        this.pageNum = pageNum;
     }
 
     private void refreshNotifyRecyclerView(List<MarketProductsBean.MarketProductBean> list) {
