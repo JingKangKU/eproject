@@ -57,6 +57,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.PdfPngActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.CommonWebViewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -90,6 +94,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.user.UserBalanceActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.user.UserOrderActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

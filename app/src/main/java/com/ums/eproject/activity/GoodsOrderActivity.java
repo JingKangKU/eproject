@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +22,8 @@ import com.stx.xhb.androidx.transformers.Transformer;
 import com.ums.eproject.R;
 import com.ums.eproject.bean.AddressBean;
 import com.ums.eproject.bean.GoodsDetail;
+import com.ums.eproject.bean.PerPdtOrder;
+import com.ums.eproject.bean.ProductsBean;
 import com.ums.eproject.https.HttpSubscriber;
 import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
@@ -56,6 +59,7 @@ public class GoodsOrderActivity extends BaseActivity implements View.OnClickList
     private TextView goods_order_goods_num;
 
     private AddressBean addressBean;
+    private EditText goods_order_remark;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +87,8 @@ public class GoodsOrderActivity extends BaseActivity implements View.OnClickList
         order_goods_address = findViewById(R.id.order_goods_address);
         order_goods_name = findViewById(R.id.order_goods_name);
         order_goods_mobile = findViewById(R.id.order_goods_mobile);
+
+        goods_order_remark = findViewById(R.id.goods_order_remark);
 
         order_goods_title = findViewById(R.id.order_goods_title);
         order_goods_price = findViewById(R.id.order_goods_price);
@@ -125,44 +131,33 @@ public class GoodsOrderActivity extends BaseActivity implements View.OnClickList
     }
 
 
-    private void getProductDetails(long id) {
-        CommRequestApi.getInstance().getProductDetails(id, new HttpSubscriber<>(new SubscriberOnListener<GoodsDetail>() {
+    private void trialPerPdtOrder(long productId,Long skuId,int shippingType,long receiveAddrId,
+                                  double quantity,double price,double score) {
+
+        CommRequestApi.getInstance().trialPerPdtOrder(productId, skuId, shippingType,
+                receiveAddrId,quantity,price,score,
+                new HttpSubscriber<>(new SubscriberOnListener<PerPdtOrder>() {
             @Override
-            public void onSucceed(GoodsDetail data) {
+            public void onSucceed(PerPdtOrder data) {
                 if (data.getCode() == 200) {
-
-
+                    String remark =  goods_order_remark.getText().toString().trim();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("perPdtOrder",data);
+                    bundle.putSerializable("addressBean",addressBean);
+                    bundle.putString("remark",remark);
+                    UIHelp.startActivity(context, GoodsPayActivity.class,bundle);
                 } else {
                     MsgUtil.showCustom(context, data.getMessage());
-                }
-            }
 
+                }
+
+            }
             @Override
             public void onError(int code, String msg) {
                 Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
-
             }
-        }, context));
+        }, context,false));
     }
-//    private void getProductDetails(long id) {
-//        CommRequestApi.getInstance().getProductDetails(id,new HttpSubscriber<>(new SubscriberOnListener<GoodsDetail>() {
-//            @Override
-//            public void onSucceed(GoodsDetail data) {
-//                if (data.getCode() == 200) {
-//
-//
-//
-//                } else {
-//                    MsgUtil.showCustom(context, data.getMessage());
-//                }
-//            }
-//            @Override
-//            public void onError(int code, String msg) {
-//                Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
-//
-//            }
-//        }, context));
-//    }
 
     @Override
     public void onClick(View v) {
@@ -171,7 +166,10 @@ public class GoodsOrderActivity extends BaseActivity implements View.OnClickList
         }
         if (v.getId() == R.id.goods_order_go_pay) {
             if (addressBean!=null && !StrUtil.isEmpty(addressBean.getMobile())){
-                UIHelp.startActivity(context, GoodsPayActivity.class);
+
+                trialPerPdtOrder(goodsInfo.getId(),null,Constant.shippingType_kd,
+                        addressBean.getId(),Double.parseDouble(String.valueOf(thingNum)),
+                        Double.parseDouble(String.valueOf(thingPic * thingNum)),0);
             }else{
                 MsgUtil.showCustom(context,"请选择收获地址");
             }

@@ -92,4 +92,21 @@ public class Constant {
     public static final int startForOrder = 101; //order 启动地址列表
 
     public static final int buyMaxThingNum = 30; //一个订单最多30件
+
+    public static final int shippingType_zt = 0; //运输方式 0: 自提
+    public static final int shippingType_kd = 1; //运输方式 1: 快递
+
+    public static final String[] transTypes = new String[]{"余额支付","云闪付","微信支付","支付宝支付"};
+
+    public static final int ComPayType_ye = 7; //余额支付
+    public static int getComPayType(int index){ // 2: 微信; 4:支付宝; 5：云闪付; 7，余额
+        switch (index){
+            case 0:return 7;
+            case 1:return 5;
+            case 2:return 2;
+            case 3:return 4;
+
+        }
+        return 0;
+    }
 }

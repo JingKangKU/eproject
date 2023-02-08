@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -77,8 +78,9 @@ public class MallActivity extends BaseActivity implements View.OnClickListener {
         }
 
         //设置ViewPager的适配器
-        adapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(),fragments);
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(fragments.size());
         //关联viewpager
         tabLayout.setupWithViewPager(viewPager);
         //设置滚动方式

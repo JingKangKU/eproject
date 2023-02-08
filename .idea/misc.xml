@@ -16,12 +16,16 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_goods_pay.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_login.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_main.xml" value="0.13269927536231885" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_mall.xml" value="0.1272644927536232" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_pay_state.xml" value="0.1286231884057971" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_pdfpng.xml" value="0.1272644927536232" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_splash.xml" value="0.13269927536231885" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_test.xml" value="0.11775362318840579" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_topup_recycler.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_balance.xml" value="0.13360507246376813" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_order.xml" value="0.1272644927536232" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_mall.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_user.xml" value="0.13722826086956522" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_goods.xml" value="0.15625" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_home_ability.xml" value="0.11775362318840579" />

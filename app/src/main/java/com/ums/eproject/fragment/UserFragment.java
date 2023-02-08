@@ -16,6 +16,7 @@ import com.ums.eproject.R;
 import com.ums.eproject.activity.AddressActivity;
 import com.ums.eproject.activity.user.UserBalanceActivity;
 import com.ums.eproject.activity.TopupActivity;
+import com.ums.eproject.activity.user.UserOrderActivity;
 import com.ums.eproject.utils.UIHelp;
 
 import java.util.Objects;
@@ -51,15 +52,21 @@ public class UserFragment extends Fragment  implements View.OnClickListener {
                 UIHelp.startActivity(requireActivity(), TopupActivity.class);
                 break;
             case R.id.user_item_2:
+                break;
             case R.id.user_item_3:
+                break;
             case R.id.user_item_4:
+                UIHelp.startActivity(requireActivity(), UserOrderActivity.class);
                 break;
             case R.id.user_item_address:
                 UIHelp.startActivity(requireActivity(), AddressActivity.class);
                 break;
             case R.id.user_item_6:
+                break;
             case R.id.user_item_7:
+                break;
             case R.id.user_item_8:
+                break;
             case R.id.ll_user_balance:
                 UIHelp.startActivity(requireActivity(), UserBalanceActivity.class);
                 break;

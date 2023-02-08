@@ -112,6 +112,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         login_account.setOnClickListener(this);
         login_register.setOnClickListener(this);
         login_submit.setOnClickListener(this);
+        login_desc.setOnClickListener(this);
         findViewById(R.id.tv_login_yzm).setOnClickListener(this);
         findViewById(R.id.tv_login_pw).setOnClickListener(this);
         login_send_msg_code = findViewById(R.id.login_send_msg_code);
@@ -190,6 +191,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
             case R.id.tv_login_register_eyes:
                 showAndHidePw(isHideCifPw,tv_login_register_eyes,login_confirm_pw,false);
+                break;
+            case R.id.login_desc:
+                UIHelp.startActivity(context,PdfPngActivity.class);
                 break;
         }
     }

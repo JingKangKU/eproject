@@ -50,30 +50,8 @@ public class MallFragment extends Fragment {
 
         tabLayout = view.findViewById(R.id.tabLayout);
 
-        initView();
 
         return view;
-    }
-
-    private void initView() {
-        //初始化数据
-        fragments = new ArrayList<>();
-//        fragments.add(new CommodityFragment("推荐"));
-//        fragments.add(new CommodityFragment("能源"));
-//        fragments.add(new CommodityFragment("石油"));
-//        fragments.add(new CommodityFragment("酒店"));
-//
-//        fragments.add(new CommodityFragment("积分商城"));
-//        fragments.add(new CommodityFragment("其他"));
-
-
-        //设置ViewPager的适配器
-        adapter = new ViewPagerAdapter(getChildFragmentManager(), fragments);
-        viewPager.setAdapter(adapter);
-        //关联viewpager
-        tabLayout.setupWithViewPager(viewPager);
-        //设置滚动方式
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
     }
 
 

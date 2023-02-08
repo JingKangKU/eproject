@@ -58,7 +58,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         double wsh = UIHelp.getWsH(this);
         new Handler().postDelayed(new Runnable(){ public void run() {
             listStartAdvertise(wsh);
-        } }, 1000);
+        } }, 0);
 
     }
 
@@ -70,7 +70,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
                 toLoginOrMain();
             }
         });
-        countDownView.startCountDown();
+
         countDownView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,6 +122,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void setImageViewUrl(String url) {
+        countDownView.startCountDown();
         Glide.with(context).load(url).into(splash_img);
 //        toLoginOrMain();
     }
