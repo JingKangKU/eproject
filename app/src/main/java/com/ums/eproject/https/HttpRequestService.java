@@ -13,6 +13,7 @@ import com.ums.eproject.bean.DynamicLink;
 import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.MarketProductsBean;
+import com.ums.eproject.bean.MarketingDetailsBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.ProductsBean;
@@ -120,6 +121,11 @@ public interface HttpRequestService {
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
     @POST("/tetapp/mkt/queryMarketProducts")
     Observable<BaseRequest<MarketProductsBean>> queryMarketProducts(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //全民营销商品明细查询
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mkt/getMarketProductDetails")
+    Observable<BaseRequest<MarketingDetailsBean>> getMarketProductDetails(@Header("signKey") String signKey, @Body RequestBody body);
 
     //开屏广告
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:true"})

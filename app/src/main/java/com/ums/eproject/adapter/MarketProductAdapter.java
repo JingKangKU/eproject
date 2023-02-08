@@ -1,6 +1,8 @@
 package com.ums.eproject.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +12,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.ums.eproject.R;
+import com.ums.eproject.activity.AddressModifyActivity;
+import com.ums.eproject.activity.MarketingDetailsActivity;
+import com.ums.eproject.bean.BaseRequest;
 import com.ums.eproject.bean.MarketProductsBean.MarketProductBean;
+import com.ums.eproject.bean.MarketingDetailsBean;
+import com.ums.eproject.https.HttpSubscriber;
+import com.ums.eproject.https.SubscriberOnListener;
+import com.ums.eproject.https.comm.CommRequestApi;
+import com.ums.eproject.utils.UIHelp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +69,25 @@ public class MarketProductAdapter extends RecyclerView.Adapter {
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.getSubjectTv().setText(data.getSubjectCatogryName());
         viewHolder.getUnitTv().setText(data.getUnitName());
+        Glide.with(context).load(data.getPicUrl()).into(viewHolder.productIV);
+        viewHolder.getItemview().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommRequestApi.getInstance().getMarketProductDetails(data.getId(),new HttpSubscriber<>(new SubscriberOnListener<BaseRequest<MarketingDetailsBean>>() {
+                    @Override
+                    public void onSucceed(BaseRequest<MarketingDetailsBean> data) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("data", data.getData());
+                        UIHelp.startActivity(context, MarketingDetailsActivity.class, bundle);
+                    }
 
+                    @Override
+                    public void onError(int code, String msg) {
+
+                    }
+                },context));
+            }
+        });
     }
 
     @Override
@@ -82,13 +111,15 @@ public class MarketProductAdapter extends RecyclerView.Adapter {
             return productIV;
         }
 
+        public View getItemview() {
+            return itemView;
+        }
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             subjectTv = itemView.findViewById(R.id.tv_name_suject);
             unitTv = itemView.findViewById(R.id.tv_name_unit);
             productIV = itemView.findViewById(R.id.iv_product);
-
-
         }
     }
 
