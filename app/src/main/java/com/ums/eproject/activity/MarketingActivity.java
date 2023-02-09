@@ -2,6 +2,10 @@ package com.ums.eproject.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -27,6 +31,9 @@ import es.dmoral.toasty.Toasty;
 
 public class MarketingActivity extends BaseActivity {
     private static final String TAG = MarketingActivity.class.getName();
+    private LinearLayout title_view, title_right;
+    private TextView title_text;
+    private ImageView backIv;
     private RecyclerView productsRv;
     private MarketProductAdapter adapter;
     private SmartRefreshLayout refreshLayout;
@@ -37,6 +44,7 @@ public class MarketingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marketing);
+        initTitle("全民营销");
         productsRv = findViewById(R.id.rv_products);
         adapter = new MarketProductAdapter(MarketingActivity.this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
@@ -54,7 +62,19 @@ public class MarketingActivity extends BaseActivity {
         pageNum = 1;
         getMarketProducts(pageNum, pageSize);
     }
-
+    private void initTitle(String title) {
+        title_view = findViewById(R.id.title_view);
+        backIv = findViewById(R.id.title_back);
+        backIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MarketingActivity.this.finish();
+            }
+        });
+        title_right = findViewById(R.id.title_right);
+        title_text = findViewById(R.id.title_text);
+        title_text.setText(title);
+    }
     private void getMarketProducts(final int pageNum, int pageSize) {
         CommRequestApi.getInstance().queryMarketProducts(pageNum, pageSize, new HttpSubscriber<>(new SubscriberOnListener<BaseRequest<MarketProductsBean>>() {
             @Override

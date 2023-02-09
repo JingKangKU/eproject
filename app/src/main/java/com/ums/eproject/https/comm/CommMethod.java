@@ -18,6 +18,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.CustomConverterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -34,7 +35,7 @@ public class CommMethod {
     private CommMethod() {
         retrofit = new Retrofit.Builder()
                 .client(genericClient())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(CustomConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
@@ -42,7 +43,7 @@ public class CommMethod {
     private CommMethod(String base_url) {
         retrofit = new Retrofit.Builder()
                 .client(genericClient())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(CustomConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(base_url)
                 .build();

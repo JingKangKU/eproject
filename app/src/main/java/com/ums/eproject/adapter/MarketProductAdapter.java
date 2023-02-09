@@ -23,6 +23,7 @@ import com.ums.eproject.https.HttpSubscriber;
 import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
 import com.ums.eproject.utils.UIHelp;
+import com.ums.eproject.view.ScaleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,7 @@ public class MarketProductAdapter extends RecyclerView.Adapter {
         MarketProductBean data = datas.get(position);
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.getSubjectTv().setText(data.getSubjectCatogryName());
-        viewHolder.getUnitTv().setText(data.getUnitName());
+        viewHolder.getUnitTv().setText(data.getName());
         Glide.with(context).load(data.getPicUrl()).into(viewHolder.productIV);
         viewHolder.getItemview().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +98,7 @@ public class MarketProductAdapter extends RecyclerView.Adapter {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView subjectTv, unitTv;
-        private ImageView productIV;
+        private ScaleImageView productIV;
 
         public TextView getSubjectTv() {
             return subjectTv;
@@ -107,7 +108,7 @@ public class MarketProductAdapter extends RecyclerView.Adapter {
             return unitTv;
         }
 
-        public ImageView getProductIV() {
+        public ScaleImageView getProductIV() {
             return productIV;
         }
 
