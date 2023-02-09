@@ -42,6 +42,9 @@ import es.dmoral.toasty.Toasty;
 
 public class MarketingDetailsActivity extends BaseActivity {
     private static final String TAG = MarketingDetailsActivity.class.getName();
+    private LinearLayout title_view, title_right;
+    private TextView title_text;
+    private ImageView backIv;
     private XBanner picXB;
     private WebView detailsWV;
     MarketingDetailsBean showData;
@@ -52,6 +55,7 @@ public class MarketingDetailsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_marketing);
+        initTitle("全民营销");
         picXB = findViewById(R.id.banner_detail_marketing);
         detailsWV = findViewById(R.id.wb_desc_marketing);
         subjectName = findViewById(R.id.tv_subject);
@@ -60,19 +64,36 @@ public class MarketingDetailsActivity extends BaseActivity {
         Bundle bundle = this.getIntent().getBundleExtra("bundle");
         showData = (MarketingDetailsBean) bundle.getSerializable("data");
         if (null != showData) {
-            setBannerData();
+            if (null != showData.getGallery()) {
+                setBannerData();
+            }
             setWebViewData(showData.getDescription());
             subjectName.setText(showData.getSubjectCategoryName());
-            unitName.setText(showData.getUnitName());
+            unitName.setText(showData.getTitle());
             callLL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" + showData.getContactPerson()));
+                    intent.setData(Uri.parse("tel:" + showData.getContactTel()));
                     startActivity(intent);
                 }
             });
         }
+    }
+
+    private void initTitle(String title) {
+        title_view = findViewById(R.id.title_view);
+        backIv = findViewById(R.id.title_back);
+        backIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MarketingDetailsActivity.this.finish();
+            }
+        });
+        title_right = findViewById(R.id.title_right);
+        title_text = findViewById(R.id.title_text);
+        title_text.setText(title);
     }
 
     @Override
