@@ -16,6 +16,8 @@ import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.MarketProductsBean;
 import com.ums.eproject.bean.MarketingDetailsBean;
 import com.ums.eproject.bean.NETData;
+import com.ums.eproject.bean.OrderBean;
+import com.ums.eproject.bean.OrderDetailBean;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.PerPdtOrder;
 import com.ums.eproject.bean.PlaceOrderBean;
@@ -33,6 +35,7 @@ import com.ums.eproject.utils.UIHelp;
 
 import org.json.JSONObject;
 
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -142,6 +145,33 @@ public class CommRequestApi extends BaseApi {
         }
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),json.toString());
         Observable observable = httpRequestService.loginByPwd(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    public void forgetPwd(String mobile,String passwd,String code,Subscriber<UserBean> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("mobile", AesUtil.encryptValue(mobile));
+            json.put("passwd", AesUtil.encryptValue(passwd));
+            json.put("code", code);
+//            json.put("passwd", AesUtil.encryptValue("pw123456")); // TODO: 2023/1/16 test
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),json.toString());
+        Observable observable = httpRequestService.forgetPwd(signKey,body).map(new HttpResultFunc<>());
 
         toSubscribe(observable,subscriber);
     }
@@ -644,6 +674,60 @@ public class CommRequestApi extends BaseApi {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
         Observable observable = httpRequestService.listStartAdvertise(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+
+    public void queryOrders(String orderStatus,int mktType,int pageNum,int pageSize,Subscriber<OrderBean> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("orderStatus", orderStatus);//订单状态
+            json.put("mktType",mktType);//订单类型
+            json.put("pageNum",pageNum);
+            json.put("pageSize",pageSize);
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.queryOrders(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    public void getOrderDetail(long id,Subscriber<OrderDetailBean> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("id", id);
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.getOrderDetail(signKey,body).map(new HttpResultFunc<>());
 
         toSubscribe(observable,subscriber);
     }

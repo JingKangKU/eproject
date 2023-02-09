@@ -35,6 +35,8 @@ import com.luck.picture.lib.tools.SPUtils;
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.mosect.lib.immersive.LayoutAdapter;
 import com.ums.eproject.R;
+import com.ums.eproject.activity.user.UserAgreementListActivity;
+import com.ums.eproject.activity.user.UserResetPWActivity;
 import com.ums.eproject.app.AppContext;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.UserBean;
@@ -69,6 +71,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private boolean isHidePw;
     private boolean isHideCifPw;
+
+    private ImageView login_agreement_img;
+    private boolean isAgree;//是否同意协议
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,12 +114,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         linear_login_confirm_pw = findViewById(R.id.linear_login_confirm_pw);
         linear_login_bottom = findViewById(R.id.linear_login_bottom);
 
+        login_agreement_img = findViewById(R.id.login_agreement_img);
+        login_agreement_img.setOnClickListener(this);
+        login_agreement_img.setImageResource(R.mipmap.select);
+        isAgree = false;
+
         login_account.setOnClickListener(this);
         login_register.setOnClickListener(this);
         login_submit.setOnClickListener(this);
         login_desc.setOnClickListener(this);
         findViewById(R.id.tv_login_yzm).setOnClickListener(this);
         findViewById(R.id.tv_login_pw).setOnClickListener(this);
+        findViewById(R.id.tv_login_wjpw).setOnClickListener(this);
         login_send_msg_code = findViewById(R.id.login_send_msg_code);
         login_send_register_msg_code = findViewById(R.id.login_send_register_msg_code);
         login_send_msg_code.setOnClickListener(this);
@@ -176,6 +187,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.tv_login_pw://密码登录页面
                 showPw();
                 break;
+            case R.id.tv_login_wjpw://忘记密码
+                UIHelp.startActivity(context, UserResetPWActivity.class);
+                break;
             case R.id.login_send_msg_code:
                 mCountDownTimerUtilsCode = new CountDownTimerUtil(login_send_msg_code, 60000, 1000);
                 mCountDownTimerUtilsCode.start();
@@ -193,10 +207,23 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 showAndHidePw(isHideCifPw,tv_login_register_eyes,login_confirm_pw,false);
                 break;
             case R.id.login_desc:
-                UIHelp.startActivity(context,PdfPngActivity.class);
+                UIHelp.startActivity(context, UserAgreementListActivity.class);
+                break;
+            case R.id.login_agreement_img:
+                setAgree();
                 break;
         }
     }
+
+    private void setAgree() {
+        isAgree = !isAgree;
+        if (isAgree){
+            login_agreement_img.setImageResource(R.mipmap.selected);
+        }else{
+            login_agreement_img.setImageResource(R.mipmap.select);
+        }
+    }
+
     private void doSubmit() {
         String mobile = login_phone.getText().toString().trim();
         String code = login_verification.getText().toString().trim();
@@ -239,6 +266,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             if (!pwd.equals(confirmPwd)){
                 MsgUtil.showCustom(context,"两次密码输入不一致");return;
             }
+            if (!isAgree){
+                MsgUtil.showCustom(context,"请阅读并同意相关协议");return;
+            }
+
             memRegister(mobile,code,pwd);
         }
     }

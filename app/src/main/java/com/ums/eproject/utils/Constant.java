@@ -1,6 +1,8 @@
 package com.ums.eproject.utils;
 
 
+import com.ums.eproject.R;
+
 /**
  * 常量
  */
@@ -109,4 +111,77 @@ public class Constant {
         }
         return 0;
     }
+
+    //订单查询状态
+    public static final String orderStatus_all = "";//全部
+    public static final String orderStatus_unpaid = "0";//待支付
+    public static final String orderStatus_harvested = "1,2";//待收货
+    public static final String orderStatus_success = "3";//已完成
+    public static final String orderStatus_cancel_and_refund = "4,5,9";//已取消
+
+    //服务器订单状态  0:待付款; 1:待发货; 2:待收货 3:已完成; 4:已关闭; 5:无效订单; 9:已退货
+    public static final int resp_orderStatus_dfk = 0;
+    public static final int resp_orderStatus_dfh = 1;
+    public static final int resp_orderStatus_dsh = 2;
+    public static final int resp_orderStatus_ywc = 3;
+    public static final int resp_orderStatus_ygb = 4;
+    public static final int resp_orderStatus_wx = 5;
+    public static final int resp_orderStatus_yth = 9;
+
+    //服务器订单类型 0:普通购买; 1:秒杀; 2:团购; 3:砍价
+    public static final int resp_mktType_ptg = 0;
+    public static final int resp_mktType_ms = 1;
+    public static final int resp_mktType_tg = 2;
+    public static final int resp_mktType_kj = 3;
+
+    //订单详情的title 订单详情的desc
+    public static String[] getOrderTitleAndDesc(int orderStatus){
+        switch (orderStatus){
+            case resp_orderStatus_dfk:
+                return new String[]{"订单待支付","该笔订单未支付！"};
+            case resp_orderStatus_dfh:
+                return new String[]{"订单待发货","该笔订单未发货！"};
+            case resp_orderStatus_dsh:
+                return new String[]{"订单待收货","该笔订单已发货！"};
+            case resp_orderStatus_ywc:
+                return new String[]{"订单已完成","该笔订单已完成！"};
+            case resp_orderStatus_ygb:
+                return new String[]{"订单已关闭","该笔订单已关闭！"};
+            case resp_orderStatus_wx:
+                return new String[]{"无效订单","该笔订单已无效！"};
+            case resp_orderStatus_yth:
+                return new String[]{"订单已退货","该笔订单已退货！"};
+        }
+        return new String[]{"状态未知","未知"};
+    }
+
+    //订单详情的状态图片资源id
+    public static int getOrderStatusIconId(int orderStatus){
+//        switch (orderStatus){
+//            case resp_orderStatus_dfk:
+//                return R.mipmap.order_detail_qx;
+//            case resp_orderStatus_dfh:
+//                return R.mipmap.order_detail_qx;
+//            case resp_orderStatus_dsh:
+//                return R.mipmap.order_detail_qx;
+//            case resp_orderStatus_ywc:
+//                return R.mipmap.order_detail_qx;
+//            case resp_orderStatus_ygb:
+//                return R.mipmap.order_detail_qx;
+//            case resp_orderStatus_wx:
+//                return R.mipmap.order_detail_qx;
+//            case resp_orderStatus_yth:
+//                return R.mipmap.order_detail_qx;
+//        }
+        return R.mipmap.order_detail_qx;
+    }
+
+
+    //用户相关三个协议
+    //用户服务协议
+    public static final String agreement_yh = "http://36.137.57.29:7480/tetprotocols/userservice.html";
+    //隐私协议
+    public static final String agreement_ys = "http://36.137.57.29:7480/tetprotocols/privateinfo.html";
+    //免密协议
+    public static final String agreement_mm = "http://36.137.57.29:7480/tetprotocols/grantservice.html";
 }

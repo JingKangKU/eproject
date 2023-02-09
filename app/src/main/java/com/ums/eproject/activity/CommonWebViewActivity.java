@@ -47,7 +47,7 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
     private TextView title_text;
 
     private WebView web_view;
-
+    private boolean supportZoom;//是否支持放大缩小
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +72,7 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
         Bundle bundle = getIntent().getBundleExtra("bundle");
         String url = bundle.getString("url");
         String titleText = bundle.getString("titleText");
+        supportZoom = bundle.getBoolean("supportZoom",false);
         title_text.setText(titleText);
         initWebView(url);
     }
@@ -115,7 +116,9 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
         webSettings.setAllowFileAccess(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
-        webSettings.setSupportZoom(true);
+
+        webSettings.setSupportZoom(supportZoom);//是否支持缩放
+
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
             webSettings.setDisplayZoomControls(false);
         }

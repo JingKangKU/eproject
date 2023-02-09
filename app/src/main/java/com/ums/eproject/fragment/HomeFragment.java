@@ -189,6 +189,8 @@ public class HomeFragment extends Fragment  implements View.OnClickListener {
             }
         }, context));
     }
+
+    //todo 处理首页跳转
     private void doItemClick(HomeBean.DataBean.ListBean listBean ,HomeBean.DataBean.ListBean.DetailsBean detailsBean){
         int linkType = 0;
         String linkUrl = "";

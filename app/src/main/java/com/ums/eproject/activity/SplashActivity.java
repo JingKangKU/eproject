@@ -141,6 +141,11 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         }
         finish();
     }
+    @Override
+    public void onBackPressed() {
+        //拦截返回事件
+//        super.onBackPressed();
+    }
 
 
 }
