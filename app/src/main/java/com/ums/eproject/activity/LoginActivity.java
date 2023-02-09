@@ -31,9 +31,11 @@ import com.chinaums.common.component.ScanActivity;
 import com.chinaums.common.utils.CommonConst;
 import com.chinaums.common.utils.permission.PermissionListener;
 import com.chinaums.common.utils.permission.UMSPermissionUtil;
+import com.luck.picture.lib.tools.SPUtils;
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.mosect.lib.immersive.LayoutAdapter;
 import com.ums.eproject.R;
+import com.ums.eproject.app.AppContext;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.UserBean;
 import com.ums.eproject.https.HttpSubscriber;
@@ -42,7 +44,7 @@ import com.ums.eproject.https.comm.CommRequestApi;
 import com.ums.eproject.utils.Constant;
 import com.ums.eproject.utils.CountDownTimerUtil;
 import com.ums.eproject.utils.MsgUtil;
-import com.ums.eproject.utils.SPUtils;
+
 import com.ums.eproject.utils.StrUtil;
 import com.ums.eproject.utils.UIHelp;
 
@@ -116,7 +118,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         login_send_register_msg_code = findViewById(R.id.login_send_register_msg_code);
         login_send_msg_code.setOnClickListener(this);
         login_send_register_msg_code.setOnClickListener(this);
-        String loginName = (String) SPUtils.getParam(context,"login_name","");
+        String loginName = (String) SPUtils.getInstance().getString("login_name");
 
         login_phone.setText(loginName);
 
@@ -370,7 +372,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onSucceed(NETData data) {
                 if (data.getCode() == 200){
-                    SPUtils.setParam(context,"login_name",mobile);
+                    SPUtils.getInstance().put("login_name",mobile);
                     MsgUtil.showCustom(context,"注册成功");
                     clickAcc();
                 }else{
@@ -424,11 +426,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     //登录成功后的处理
     private void loginSuccess(UserBean userBean,String mobile){
-        SPUtils.setParam(context,"login_name",mobile);
+        SPUtils.getInstance().put("login_name",mobile);
 
-        Constant.tokenReq = userBean.getData().getTokenHead()+userBean.getData().getToken();
-        Constant.token = userBean.getData().getToken();
-        Constant.tokenHead = userBean.getData().getTokenHead();
+        SPUtils.getInstance().put("tokenReq",userBean.getData().getTokenHead()+userBean.getData().getToken());
+        SPUtils.getInstance().put("token",userBean.getData().getToken());
+        SPUtils.getInstance().put("tokenHead",userBean.getData().getTokenHead());
 
         if (userBean.getData().getUserInfo().getIsVerified() == 0){   //0未实名  1已实名 todo
             Bundle bundle = new Bundle();

@@ -4,6 +4,8 @@ package com.ums.eproject.https.interceptor;
 import static okhttp3.internal.platform.Platform.INFO;
 
 
+import com.luck.picture.lib.tools.SPUtils;
+import com.ums.eproject.app.AppContext;
 import com.ums.eproject.utils.AesUtil;
 import com.ums.eproject.utils.Constant;
 import com.ums.eproject.utils.MLog;
@@ -285,6 +287,8 @@ public class LoggingInterceptor implements Interceptor {
      * @Return: boolean
      **/
     private Request checkIgnoreToken(Request request) {
+        String tokenReq = SPUtils.getInstance().getString("tokenReq");
+
         try {
             boolean ignoreToken;
             String ignoreTokenStr = request.header("ignoreToken");
@@ -299,7 +303,7 @@ public class LoggingInterceptor implements Interceptor {
             }
             if (!ignoreToken) {
                 request = request.newBuilder()
-                        .addHeader(Constant.tokenReqHeader,Constant.tokenReq)
+                        .addHeader(Constant.tokenReqHeader,tokenReq)
                         .build();
                 return request;
             }
@@ -340,17 +344,18 @@ public class LoggingInterceptor implements Interceptor {
                         MLog.d("token失效，结束获取...");
                         JSONObject dataJson =  jsonObject.optJSONObject("data");
                         if (dataJson!=null){
-                            Constant.tokenHead = dataJson.optString("tokenHead");
-                            Constant.token = dataJson.optString("token");
-                            Constant.tokenReq = Constant.tokenHead+Constant.token;
+                            SPUtils.getInstance().put("tokenReq", dataJson.optString("tokenHead")+dataJson.optString("token"));
+                            SPUtils.getInstance().put("token", dataJson.optString("token"));
+                            SPUtils.getInstance().put("tokenHead", dataJson.optString("tokenHead"));
                         }
+
                         //使用新的Token，创建新的请求
+                        String tokenReq = SPUtils.getInstance().getString("tokenReq");
                         Request newRequest = chain.request().newBuilder()
-                                .addHeader(Constant.tokenReqHeader, Constant.tokenReq)
+                                .addHeader(Constant.tokenReqHeader, tokenReq)
                                 .build();
                         return chain.proceed(newRequest);
                     }
-
                 }
             }
         } catch (Exception e) {
@@ -361,13 +366,15 @@ public class LoggingInterceptor implements Interceptor {
 
 
     private RequestBody getRefreshTokenReqBody(){
+        String token = SPUtils.getInstance().getString("token");
+        String tokenHead = SPUtils.getInstance().getString("tokenHead");
         JSONObject json = new JSONObject();
         String signKey = "";
         try {
             signKey = RandomStrUtil.getRandomString();
             //业务参数start
-            json.put("token", Constant.token);
-            json.put("tokenHead",Constant.tokenHead);
+            json.put("token", token);
+            json.put("tokenHead",tokenHead);
             //业务参数end
             json.put("randomStr",signKey);
             json.put("source", Constant.source);

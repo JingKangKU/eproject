@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/bg_splash.xml" value="0.1953125" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/bottom_ellipse.xml" value="0.1953125" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/login_submit_shape.xml" value="0.18333333333333332" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/white_round_shape_10.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/yello_round_shape_13.xml" value="0.10462962962962963" />
@@ -13,7 +15,9 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_goods_order.xml" value="0.10144927536231885" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_goods_pay.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_login.xml" value="0.13360507246376813" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_main.xml" value="0.13269927536231885" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_pay_state.xml" value="0.1286231884057971" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_splash.xml" value="0.13269927536231885" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_test.xml" value="0.11775362318840579" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_topup_recycler.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_balance.xml" value="0.13360507246376813" />
@@ -28,6 +32,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_home_func_3.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_pay_pop.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_trans_pop.xml" value="0.13360507246376813" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
   </component>
