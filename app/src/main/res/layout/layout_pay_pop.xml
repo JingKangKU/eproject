@@ -63,7 +63,7 @@
                 <ImageView
                     android:id="@+id/popup_item1_selected"
                     android:layout_gravity="center_vertical"
-                    android:src="@mipmap/select"
+                    android:src="@mipmap/selected"
                     android:layout_width="15dp"
                     android:layout_height="15dp" />
             </LinearLayout>
@@ -104,9 +104,8 @@
                     android:layout_height="wrap_content" />
                 <ImageView
                     android:id="@+id/popup_item2_selected"
-                    android:visibility="gone"
                     android:layout_gravity="center_vertical"
-                    android:src="@mipmap/select"
+                    android:src="@mipmap/selected"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
             </LinearLayout>
@@ -138,9 +137,8 @@
                     android:layout_height="wrap_content" />
                 <ImageView
                     android:id="@+id/popup_item3_selected"
-                    android:visibility="gone"
                     android:layout_gravity="center_vertical"
-                    android:src="@mipmap/select"
+                    android:src="@mipmap/selected"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
             </LinearLayout>
@@ -172,9 +170,8 @@
                     android:layout_height="wrap_content" />
                 <ImageView
                     android:id="@+id/popup_item4_selected"
-                    android:visibility="gone"
                     android:layout_gravity="center_vertical"
-                    android:src="@mipmap/select"
+                    android:src="@mipmap/selected"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
             </LinearLayout>

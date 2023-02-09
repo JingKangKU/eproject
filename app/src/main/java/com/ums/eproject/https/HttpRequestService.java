@@ -16,6 +16,7 @@ import com.ums.eproject.bean.MarketProductsBean;
 import com.ums.eproject.bean.MarketingDetailsBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.PdtCategory;
+import com.ums.eproject.bean.PerPdtOrder;
 import com.ums.eproject.bean.ProductsBean;
 import com.ums.eproject.bean.StartAdvertise;
 import com.ums.eproject.bean.UserBean;
@@ -78,7 +79,17 @@ public interface HttpRequestService {
     @POST("/tetapp/mkt/queryProducts")
     Observable<ProductsBean> queryProducts(@Header("signKey") String signKey, @Body RequestBody body);
 
-    //商品分类列表查询
+    //商品订单试算
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/ord/trialPerPdtOrder")
+    Observable<PerPdtOrder> trialPerPdtOrder(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //商品下单
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/ord/preOrderPerPdt")
+    Observable<PerPdtOrder> preOrderPerPdt(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //商品查询
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
     @POST("/tetapp/mkt/getProductDetails")
     Observable<GoodsDetail> getProductDetails(@Header("signKey") String signKey, @Body RequestBody body);

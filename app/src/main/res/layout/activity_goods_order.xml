@@ -313,6 +313,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <EditText
+                            android:id="@+id/goods_order_remark"
                             android:layout_marginStart="10dp"
                             android:textCursorDrawable="@null"
                             android:background="@null"

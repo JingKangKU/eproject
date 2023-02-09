@@ -47,7 +47,7 @@ import es.dmoral.toasty.Toasty;
  * A simple {@link Fragment} subclass.
  * create an instance of this fragment.
  */
-public class CommodityFragment extends Fragment {
+public class CommodityFragment extends BaseLazyFragment {
 
     private PdtCategory.DataBean dataBean;
     private Context context;
@@ -59,22 +59,35 @@ public class CommodityFragment extends Fragment {
     public CommodityFragment(PdtCategory.DataBean dataBean){
         this.dataBean = dataBean;
     }
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected int getContentViewId() {
+        return R.layout.fragment_commodity;
+    }
+
+    @Override
+    protected void initView(View view) {
+        super.initView(view);
         context = getActivity();
-        View view = inflater.inflate(R.layout.fragment_commodity, container, false);
-        refreshLayout = view.findViewById(R.id.goods_refreshLayout);
-        goods_recycler_view = view.findViewById(R.id.goods_recycler_view);
-
-        initRefreshLayout();
-
-
-        initRecyclerView();
         pageNum = 1;
         pageSize = 10;
+        refreshLayout = view.findViewById(R.id.goods_refreshLayout);
+        goods_recycler_view = view.findViewById(R.id.goods_recycler_view);
+        initRefreshLayout();
+        initRecyclerView();
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
         queryProducts(pageNum,pageSize);
-        return view;
+    }
+
+    @Override
+    protected void initEvent() {
+        super.initEvent();
+
     }
 
     private void initRefreshLayout(){

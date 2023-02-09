@@ -49,8 +49,8 @@ public class DepositRuleBean {
 
     public static class DataBean {
         private int canUserInput;
-        private double userInputMin;
-        private double userInputMax;
+        private int userInputMin;
+        private int userInputMax;
         private List<Integer> depositAmountList;
         private List<?> depositRuleList;
 
@@ -62,19 +62,19 @@ public class DepositRuleBean {
             this.canUserInput = canUserInput;
         }
 
-        public double getUserInputMin() {
+        public int getUserInputMin() {
             return userInputMin;
         }
 
-        public void setUserInputMin(double userInputMin) {
+        public void setUserInputMin(int userInputMin) {
             this.userInputMin = userInputMin;
         }
 
-        public double getUserInputMax() {
+        public int getUserInputMax() {
             return userInputMax;
         }
 
-        public void setUserInputMax(double userInputMax) {
+        public void setUserInputMax(int userInputMax) {
             this.userInputMax = userInputMax;
         }
 

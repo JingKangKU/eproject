@@ -50,7 +50,8 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="江苏省泰州市海陵区凤凰东路58号"
+                            android:id="@+id/pay_order_address_desc"
+                            android:text=""
                             android:textColor="#151515"
                             android:textSize="17sp"
                             android:layout_width="wrap_content"
@@ -62,13 +63,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="张小"
+                                android:id="@+id/pay_order_address_name"
+                                android:text=""
                                 android:textColor="#ff565656"
                                 android:textSize="13sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
-                                android:text="18755340568"
+                                android:id="@+id/pay_order_address_mobile"
+                                android:layout_marginStart="10dp"
+                                android:text=""
                                 android:textColor="#ff939393"
                                 android:textSize="13sp"
                                 android:layout_width="wrap_content"
@@ -96,7 +100,7 @@
                     android:paddingBottom="18dp">
 
                     <com.ums.eproject.view.ScaleImageView
-                        android:id="@+id/order_goods_img"
+                        android:id="@+id/pay_goods_img"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:scaleType="fitXY"
@@ -111,7 +115,8 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:text="老香斋红酒蔓越莓法式中秋月饼"
+                            android:id="@+id/pay_goods_title"
+                            android:text=""
                             android:textColor="#151515"
                             android:textSize="13sp"
                             android:layout_width="wrap_content"
@@ -145,6 +150,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
+                                android:id="@+id/pay_goods_price"
                                 android:layout_weight="1"
                                 android:text="83.00"
                                 android:textColor="#ffee2823"
@@ -166,6 +172,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="20dp"/>
                                 <TextView
+                                    android:id="@+id/pay_goods_quantity"
                                     android:gravity="center"
                                     android:text="3"
                                     android:textColor="#343434"
@@ -269,16 +276,14 @@
                             android:textSize="15sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
-                        <EditText
+                        <TextView
+                            android:id="@+id/pay_goods_remark"
                             android:layout_marginStart="10dp"
-                            android:textCursorDrawable="@null"
-                            android:background="@null"
-                            android:hint="选填"
-                            android:textColorHint="#9c9c9c"
+                            android:text="无"
                             android:textColor="#333333"
                             android:textSize="15sp"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"/>
+                            android:layout_height="wrap_content"/>
 
                     </LinearLayout>
                     <View
@@ -300,6 +305,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/pay_goods_type"
                             android:text="账户余额"
                             android:textColor="#111111"
                             android:textSize="15sp"
@@ -482,6 +488,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:id="@+id/pay_order_actual_price"
                     android:text="110"
                     android:textColor="#ffee2823"
                     android:textSize="16sp"

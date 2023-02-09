@@ -1,6 +1,7 @@
 package com.ums.eproject.https.comm;
 
 
+import android.content.Context;
 import android.util.Log;
 
 import com.ums.eproject.bean.AddressBean;
@@ -16,6 +17,8 @@ import com.ums.eproject.bean.MarketProductsBean;
 import com.ums.eproject.bean.MarketingDetailsBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.PdtCategory;
+import com.ums.eproject.bean.PerPdtOrder;
+import com.ums.eproject.bean.PlaceOrderBean;
 import com.ums.eproject.bean.ProductsBean;
 import com.ums.eproject.bean.StartAdvertise;
 import com.ums.eproject.bean.UserBean;
@@ -23,8 +26,10 @@ import com.ums.eproject.https.BaseApi;
 import com.ums.eproject.https.HttpRequestService;
 import com.ums.eproject.utils.AesUtil;
 import com.ums.eproject.utils.Constant;
+import com.ums.eproject.utils.MsgUtil;
 import com.ums.eproject.utils.RandomStrUtil;
 import com.ums.eproject.utils.SignHelper;
+import com.ums.eproject.utils.UIHelp;
 
 import org.json.JSONObject;
 
@@ -289,6 +294,69 @@ public class CommRequestApi extends BaseApi {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
         Observable observable = httpRequestService.queryProducts(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    public void trialPerPdtOrder(long productId,Long skuId,int shippingType,long receiveAddrId,
+                                 double quantity,double price,double score,Subscriber<PerPdtOrder> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("productId",productId);
+            json.put("skuId",skuId);
+            json.put("shippingType",shippingType);
+            json.put("receiveAddrId",receiveAddrId);
+            json.put("quantity",quantity);
+            json.put("price",price);
+            json.put("score",score);
+
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.trialPerPdtOrder(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    //商品下单
+    public void preOrderPerPdt(Context context, PlaceOrderBean placeOrderBean, Subscriber<PerPdtOrder> subscriber){
+        JSONObject json = placeOrderBean.toJson();
+        if (json == null){
+            MsgUtil.showCustom(context,"数据解析异常,请重新打开页面");
+            return;
+        }
+
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.preOrderPerPdt(signKey,body).map(new HttpResultFunc<>());
 
         toSubscribe(observable,subscriber);
     }

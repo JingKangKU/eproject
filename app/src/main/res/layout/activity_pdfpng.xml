@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F3F3"
+    android:orientation="vertical"
+    tools:context=".activity.PdfPngActivity">
+
+    <include layout="@layout/layout_title" />
+    <com.ums.eproject.view.OverScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ll_pdf_png"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.ums.eproject.view.ResizableImageView
+                android:id="@+id/pdf_png_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </com.ums.eproject.view.OverScrollView>
+</LinearLayout>
