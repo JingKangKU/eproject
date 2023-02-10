@@ -22,6 +22,7 @@ import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
 import com.ums.eproject.utils.Constant;
 import com.ums.eproject.utils.MsgUtil;
+import com.ums.eproject.view.ScaleImageView;
 import com.ums.eproject.view.SquareImageView;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class UserOrderDetailActivity extends BaseActivity implements View.OnClic
     private ImageView or_dtl_img;
     private TextView or_dtl_title,or_dtl_desc;
 
-    private SquareImageView user_order_goods_img;
+    private ScaleImageView user_order_goods_img;
     private TextView user_order_goods_name,user_order_goods_price,user_order_goods_quantity,user_order_goods_itemAmount;
 
     private TextView or_dtl_id,or_dtl_xd_time,or_dtl_pay_time,or_dtl_pay_type,or_dtl_remark,or_dtl_pay_totalAmount,or_dtl_pay_payAmount;

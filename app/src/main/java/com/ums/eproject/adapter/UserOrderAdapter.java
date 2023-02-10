@@ -87,7 +87,7 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.View
 
         TextView user_order_no,user_order_type;
         TextView user_order_goods_name,user_order_goods_price,user_order_goods_quantity,user_order_goods_itemAmount;
-        SquareImageView user_order_goods_img;
+        ScaleImageView user_order_goods_img;
         TextView user_order_del;
 
         public ViewHolder(View view) {

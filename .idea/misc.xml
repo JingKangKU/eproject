@@ -6,6 +6,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/bg_splash.xml" value="0.1953125" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/bottom_ellipse.xml" value="0.1953125" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_17.xml" value="0.12685185185185185" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_25.xml" value="0.13518518518518519" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_5.xml" value="0.12685185185185185" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/login_submit_shape.xml" value="0.18333333333333332" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/white_round_shape_10.xml" value="0.1" />
@@ -17,6 +18,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_goods_detail.xml" value="0.10144927536231885" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_goods_order.xml" value="0.10144927536231885" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_goods_pay.xml" value="0.13360507246376813" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_img_preview.xml" value="0.129981884057971" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_login.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_main.xml" value="0.13269927536231885" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_mall.xml" value="0.1272644927536232" />
@@ -29,6 +31,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_balance.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_order.xml" value="0.1272644927536232" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_order_detail.xml" value="0.11503623188405797" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_reset_pw.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_reset_px.xml" value="0.13496376811594202" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_commodity.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_home.xml" value="0.1" />
@@ -44,6 +47,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_home_func_2.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_home_func_3.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_pay_pop.xml" value="0.13360507246376813" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_title_user.xml" value="0.129981884057971" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_trans_pop.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>

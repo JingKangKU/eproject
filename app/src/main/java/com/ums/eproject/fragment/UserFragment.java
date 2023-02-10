@@ -1,6 +1,7 @@
 package com.ums.eproject.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 
@@ -9,17 +10,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.ums.eproject.R;
 import com.ums.eproject.activity.AddressActivity;
+import com.ums.eproject.activity.MainActivity;
 import com.ums.eproject.activity.user.UserBalanceActivity;
 import com.ums.eproject.activity.TopupActivity;
 import com.ums.eproject.activity.user.UserOrderActivity;
+import com.ums.eproject.bean.MemberBean;
+import com.ums.eproject.bean.OrderDetailBean;
+import com.ums.eproject.https.HttpSubscriber;
+import com.ums.eproject.https.SubscriberOnListener;
+import com.ums.eproject.https.comm.CommRequestApi;
+import com.ums.eproject.utils.MsgUtil;
 import com.ums.eproject.utils.UIHelp;
 
 import java.util.Objects;
+
+import es.dmoral.toasty.Toasty;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +39,8 @@ import java.util.Objects;
 public class UserFragment extends Fragment  implements View.OnClickListener {
 
     private LinearLayout ll_user_balance,user_topup,user_item_8,user_item_7,user_item_6,user_item_5,user_item_4,user_item_3,user_item_2;
+    private Context context;
+    private TextView user_info_balance;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,6 +55,10 @@ public class UserFragment extends Fragment  implements View.OnClickListener {
         view.findViewById(R.id.user_item_7).setOnClickListener(this);
         view.findViewById(R.id.user_item_8).setOnClickListener(this);
         view.findViewById(R.id.ll_user_balance).setOnClickListener(this);
+        user_info_balance = view.findViewById(R.id.user_info_balance);
+        context = getActivity();
+        getMemberDetails();
+
         return view;
     }
 
@@ -71,5 +88,30 @@ public class UserFragment extends Fragment  implements View.OnClickListener {
                 UIHelp.startActivity(requireActivity(), UserBalanceActivity.class);
                 break;
         }
+    }
+
+    private void getMemberDetails() {
+        CommRequestApi.getInstance().getMemberDetails( new HttpSubscriber<>(new SubscriberOnListener<MemberBean>() {
+            @Override
+            public void onSucceed(MemberBean data) {
+                if (data.getCode() == 200) {
+                    ((MainActivity) getActivity()).setUserFragmentTitleInfo(data);
+                    setUserInfoData(data);
+                } else {
+                    MsgUtil.showCustom(context, data.getMessage());
+
+                }
+
+            }
+            @Override
+            public void onError(int code, String msg) {
+                Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
+
+            }
+        }, context));
+    }
+
+    private void setUserInfoData(MemberBean data) {
+        user_info_balance.setText(String.valueOf(data.getData().getBalance()));
     }
 }

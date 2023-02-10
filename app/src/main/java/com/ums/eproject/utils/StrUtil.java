@@ -21,4 +21,12 @@ public class StrUtil {
         }
         return false;
     }
+
+    public static boolean isComplexPassword(String pass) {
+        if (isEmpty(pass)) {
+            return false;
+        }
+        String regx = "(?=.*[\\d]+)(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[^a-zA-Z0-9]+).{8,}";
+        return pass.matches(regx);
+    }
 }

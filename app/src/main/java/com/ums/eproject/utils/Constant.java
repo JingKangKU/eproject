@@ -2,6 +2,7 @@ package com.ums.eproject.utils;
 
 
 import com.ums.eproject.R;
+import com.ums.eproject.bean.UserBean;
 
 /**
  * 常量
@@ -184,4 +185,7 @@ public class Constant {
     public static final String agreement_ys = "http://36.137.57.29:7480/tetprotocols/privateinfo.html";
     //免密协议
     public static final String agreement_mm = "http://36.137.57.29:7480/tetprotocols/grantservice.html";
+
+    // TODO: 2023/2/10 全局持有 会员信息对象  待修改
+    public static UserBean.DataBean USER_INFO;
 }

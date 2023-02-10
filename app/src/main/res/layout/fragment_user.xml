@@ -40,7 +40,8 @@
                         android:layout_height="16dp"/>
                 </LinearLayout>
                 <TextView
-                    android:text="0.0"
+                    android:id="@+id/user_info_balance"
+                    android:text="0"
                     android:textColor="#fffefefe"
                     android:textSize="33sp"
                     android:layout_width="wrap_content"

@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -107,6 +108,8 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
         Bundle bundle = getIntent().getBundleExtra("bundle");
         long goodsId = bundle.getLong("goodsId");
         getProductDetails(goodsId);
+
+        goods_detail_original_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG );
     }
     private void setViewData(GoodsDetail.DataBean.InfoBean infoBean){
         goods_detail_price.setText(String.valueOf(infoBean.getPrice()));

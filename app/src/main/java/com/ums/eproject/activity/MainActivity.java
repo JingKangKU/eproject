@@ -33,6 +33,7 @@ import com.ums.eproject.R;
 import com.ums.eproject.bean.AuthBean;
 import com.ums.eproject.bean.BaseRequest;
 import com.ums.eproject.bean.CBPayResultBean;
+import com.ums.eproject.bean.MemberBean;
 import com.ums.eproject.bean.UserBean;
 import com.ums.eproject.fragment.CodeFragment;
 import com.ums.eproject.fragment.HomeFragment;
@@ -64,6 +65,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout linear_user_audit;
     private Context context;
 
+    //UserFlagMent相关
+    private TextView user_info_mobile,user_info_card_type;
+    private LinearLayout linear_user_audit_state_succ,linear_user_audit_state_none;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +91,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         //user页面的头布局子组件点击
         findViewById(R.id.linear_user_audit).setOnClickListener(this);
-        findViewById(R.id.linear_user_audit_state).setOnClickListener(this);
+        user_info_mobile = findViewById(R.id.user_info_mobile);
+        user_info_card_type = findViewById(R.id.user_info_card_type);
+        linear_user_audit_state_succ = findViewById(R.id.linear_user_audit_state_succ);
+        linear_user_audit_state_none = findViewById(R.id.linear_user_audit_state_none);
+        linear_user_audit_state_succ.setOnClickListener(this);
+        linear_user_audit_state_none.setOnClickListener(this);
 
 
         ImmersiveLayout immersiveLayout = new ImmersiveLayout(this);
@@ -109,7 +118,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         clickMainBtn();
 
     }
+    public void setUserFragmentTitleInfo(MemberBean memberBean){
+        user_info_mobile.setText(memberBean.getData().getMobile());
+        user_info_card_type.setText(memberBean.getData().getMemberTypeAlias());
+        if (memberBean.getData().getIsVerified() == 1){ //0未实名  1已实名
+            linear_user_audit_state_succ.setVisibility(View.VISIBLE);
+        }else{
+            linear_user_audit_state_none.setVisibility(View.GONE);
+        }
 
+
+    }
     @Override
     public void onClick(View v) {
 
@@ -126,8 +145,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.linear_user_audit:
                 goToAudit();
                 break;
-            case R.id.linear_user_audit_state:
+            case R.id.linear_user_audit_state_succ:
                 goToAuditState(3);
+                break;
+            case R.id.linear_user_audit_state_none:
+                goToAuditState(4);
                 break;
             case R.id.iv_scan:
                 gotoScan();
