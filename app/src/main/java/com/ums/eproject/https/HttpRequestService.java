@@ -7,6 +7,7 @@ import com.ums.eproject.bean.AddressBean;
 import com.ums.eproject.bean.AuthBean;
 import com.ums.eproject.bean.BaseRequest;
 import com.ums.eproject.bean.CBPayResultBean;
+import com.ums.eproject.bean.CommonBean;
 import com.ums.eproject.bean.DepositRuleBean;
 import com.ums.eproject.bean.DepositTrial;
 import com.ums.eproject.bean.DynamicLink;
@@ -160,6 +161,16 @@ public interface HttpRequestService {
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
     @POST("/tetapp/ord/getOrderDetail")
     Observable<OrderDetailBean> getOrderDetail(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //取消订单
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/ord/cancelOrder")
+    Observable<CommonBean> cancelOrder(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //删除订单
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/ord/deleteOrder")
+    Observable<CommonBean> deleteOrder(@Header("signKey") String signKey, @Body RequestBody body);
 
     //我的会员信息
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})

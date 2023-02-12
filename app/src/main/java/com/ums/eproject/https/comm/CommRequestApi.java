@@ -8,6 +8,7 @@ import com.ums.eproject.bean.AddressBean;
 import com.ums.eproject.bean.AuthBean;
 import com.ums.eproject.bean.BaseRequest;
 import com.ums.eproject.bean.CBPayResultBean;
+import com.ums.eproject.bean.CommonBean;
 import com.ums.eproject.bean.DepositRuleBean;
 import com.ums.eproject.bean.DepositTrial;
 import com.ums.eproject.bean.DynamicLink;
@@ -730,6 +731,56 @@ public class CommRequestApi extends BaseApi {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
         Observable observable = httpRequestService.getOrderDetail(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    public void cancelOrder(long id,Subscriber<CommonBean> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("id", id);
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.cancelOrder(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    public void deleteOrder(long id,Subscriber<CommonBean> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("id", id);
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.deleteOrder(signKey,body).map(new HttpResultFunc<>());
 
         toSubscribe(observable,subscriber);
     }

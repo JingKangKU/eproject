@@ -1,5 +1,6 @@
 package com.ums.eproject.activity.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,7 +14,9 @@ import com.google.android.material.tabs.TabLayout;
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.ums.eproject.R;
 import com.ums.eproject.activity.BaseActivity;
+import com.ums.eproject.adapter.UserOrderAdapter;
 import com.ums.eproject.adapter.ViewPagerOrderAdapter;
+import com.ums.eproject.bean.CommonBean;
 import com.ums.eproject.bean.OrderBean;
 import com.ums.eproject.bean.OrderDetailBean;
 import com.ums.eproject.fragment.OrderFragment;
@@ -44,6 +47,9 @@ public class UserOrderDetailActivity extends BaseActivity implements View.OnClic
 
     private TextView or_dtl_kd_company,or_dtl_kd_id,or_dtl_kd_name,or_dtl_kd_phone,or_dtl_kd_address,or_dtl_kd_time;
 
+    private TextView or_dtl_cancel,or_dtl_delete;
+
+    private long orderId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +60,7 @@ public class UserOrderDetailActivity extends BaseActivity implements View.OnClic
         title_right.setVisibility(View.GONE);
         title_text = findViewById(R.id.title_text);
         title_text.setText("订单详情");
-
+        findViewById(R.id.title_back).setOnClickListener(this);
         // 请求沉浸式布局
         ImmersiveLayout immersiveLayout = new ImmersiveLayout(this);
         immersiveLayout.addAdapter(layout -> title_view.setPadding(0, layout.getPaddingTop(), 0, 0));
@@ -64,13 +70,16 @@ public class UserOrderDetailActivity extends BaseActivity implements View.OnClic
         initView();
 
         Bundle bundle = getIntent().getBundleExtra("bundle");
-        long orderId = bundle.getLong("orderId");
+        orderId = bundle.getLong("orderId",0);
         getOrderDetail(orderId);
     }
     private void initView() {
         or_dtl_img = findViewById(R.id.or_dtl_img);
         or_dtl_title = findViewById(R.id.or_dtl_title);
         or_dtl_desc = findViewById(R.id.or_dtl_desc);
+
+        or_dtl_cancel = findViewById(R.id.or_dtl_cancel);
+        or_dtl_delete = findViewById(R.id.or_dtl_delete);
 
         user_order_goods_img = findViewById(R.id.user_order_goods_img);
         user_order_goods_name = findViewById(R.id.user_order_goods_name);
@@ -93,16 +102,28 @@ public class UserOrderDetailActivity extends BaseActivity implements View.OnClic
         or_dtl_kd_address = findViewById(R.id.or_dtl_kd_address);
         or_dtl_kd_time = findViewById(R.id.or_dtl_kd_time);
 
+        or_dtl_cancel.setOnClickListener(this);
+        or_dtl_delete.setOnClickListener(this);
     }
 
     private void setOrderData(OrderDetailBean.DataBean data) {
         OrderDetailBean.DataBean.PdtLisBean pdt = data.getPdtLis().get(0);// TODO: 2023/2/9 单一下单商品待改造
-//        or_dtl_img.setImageResource(Constant.getOrderStatusIconId(data.getOrderStatus()));
-//        or_dtl_title.setText(Constant.getOrderTitleAndDesc(data.getOrderStatus())[0]);
-//        or_dtl_desc.setText(Constant.getOrderTitleAndDesc(data.getOrderStatus())[1]);
-        or_dtl_img.setImageResource(Constant.getOrderStatusIconId(1));
-        or_dtl_title.setText(Constant.getOrderTitleAndDesc(1)[0]);
-        or_dtl_desc.setText(Constant.getOrderTitleAndDesc(1)[1]);
+        or_dtl_img.setImageResource(Constant.getOrderStatusIconId(data.getOrderStatus()));
+        or_dtl_title.setText(Constant.getOrderTitleAndDesc(data.getOrderStatus())[0]);
+        or_dtl_desc.setText(Constant.getOrderTitleAndDesc(data.getOrderStatus())[1]);
+
+        if (data.getOrderStatus() ==Constant.resp_orderStatus_dfk){//待付款 可取消
+            or_dtl_cancel.setVisibility(View.VISIBLE);
+        }else{
+            or_dtl_cancel.setVisibility(View.GONE);
+        }
+
+        if (data.getOrderStatus() ==Constant.resp_orderStatus_ywc
+            || data.getOrderStatus() ==Constant.resp_orderStatus_ygb){ //已完成已关闭 可删除
+            or_dtl_delete.setVisibility(View.VISIBLE);
+        }else{
+            or_dtl_delete.setVisibility(View.GONE);
+        }
 
         Glide.with(context).load(pdt.getPicUrl()).into(user_order_goods_img);
         user_order_goods_name.setText(pdt.getProductName());
@@ -128,7 +149,6 @@ public class UserOrderDetailActivity extends BaseActivity implements View.OnClic
 
 
     private void getOrderDetail(long orderId) {
-
         CommRequestApi.getInstance().getOrderDetail(orderId, new HttpSubscriber<>(new SubscriberOnListener<OrderDetailBean>() {
             @Override
             public void onSucceed(OrderDetailBean data) {
@@ -150,6 +170,45 @@ public class UserOrderDetailActivity extends BaseActivity implements View.OnClic
         }, context));
     }
 
+    private void cancelOrder(long orderId) {
+        CommRequestApi.getInstance().cancelOrder(orderId, new HttpSubscriber<>(new SubscriberOnListener<CommonBean>() {
+            @Override
+            public void onSucceed(CommonBean data) {
+                if (data.getCode() == 200) {
+                    MsgUtil.showCustom(context,"已取消当前订单");
+
+                    getOrderDetail(orderId);
+                } else {
+                    MsgUtil.showCustom(context, data.getMessage());
+                }
+            }
+            @Override
+            public void onError(int code, String msg) {
+                Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
+
+            }
+        }, context));
+    }
+
+    private void deleteOrder(long orderId) {
+        CommRequestApi.getInstance().deleteOrder(orderId, new HttpSubscriber<>(new SubscriberOnListener<CommonBean>() {
+            @Override
+            public void onSucceed(CommonBean data) {
+                if (data.getCode() == 200) {
+                    MsgUtil.showCustom(context,"已删除当前订单");
+
+                    getOrderDetail(orderId);
+                } else {
+                    MsgUtil.showCustom(context, data.getMessage());
+                }
+            }
+            @Override
+            public void onError(int code, String msg) {
+                Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
+
+            }
+        }, context));
+    }
 
     @Override
     protected void onResume() {
@@ -163,8 +222,20 @@ public class UserOrderDetailActivity extends BaseActivity implements View.OnClic
             case R.id.title_back:
                 finish();
                 break;
+            case R.id.or_dtl_cancel:
+                cancelOrder(orderId);
+                break;
+            case R.id.or_dtl_delete:
+                deleteOrder(orderId);
+                break;
         }
     }
 
 
+    @Override
+    public void finish(){
+        Intent data =  new Intent();
+        setResult(RESULT_OK, data);
+        super .finish();
+    }
 }

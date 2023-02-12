@@ -120,13 +120,14 @@ public class Constant {
     public static final String orderStatus_success = "3";//已完成
     public static final String orderStatus_cancel_and_refund = "4,5,9";//已取消
 
-    //服务器订单状态  0:待付款; 1:待发货; 2:待收货 3:已完成; 4:已关闭; 5:无效订单; 9:已退货
+    //服务器订单状态  0:待付款; 1:待发货; 2:待收货 3:已完成; 4:已关闭; 5:无效订单;6:已删除 9:已退货
     public static final int resp_orderStatus_dfk = 0;
     public static final int resp_orderStatus_dfh = 1;
     public static final int resp_orderStatus_dsh = 2;
     public static final int resp_orderStatus_ywc = 3;
     public static final int resp_orderStatus_ygb = 4;
     public static final int resp_orderStatus_wx = 5;
+    public static final int resp_orderStatus_del = 6;
     public static final int resp_orderStatus_yth = 9;
 
     //服务器订单类型 0:普通购买; 1:秒杀; 2:团购; 3:砍价
@@ -147,11 +148,13 @@ public class Constant {
             case resp_orderStatus_ywc:
                 return new String[]{"订单已完成","该笔订单已完成！"};
             case resp_orderStatus_ygb:
-                return new String[]{"订单已关闭","该笔订单已关闭！"};
+                return new String[]{"订单已取消","该笔订单已取消！"};
             case resp_orderStatus_wx:
                 return new String[]{"无效订单","该笔订单已无效！"};
             case resp_orderStatus_yth:
                 return new String[]{"订单已退货","该笔订单已退货！"};
+            case resp_orderStatus_del:
+                return new String[]{"订单已删除","该笔订单已删除！"};
         }
         return new String[]{"状态未知","未知"};
     }

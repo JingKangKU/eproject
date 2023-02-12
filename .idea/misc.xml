@@ -6,6 +6,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/bg_splash.xml" value="0.1953125" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/bottom_ellipse.xml" value="0.1953125" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_17.xml" value="0.12685185185185185" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_22.xml" value="0.1287037037037037" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_25.xml" value="0.13518518518518519" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_5.xml" value="0.12685185185185185" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/login_submit_shape.xml" value="0.18333333333333332" />
@@ -42,6 +43,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_home_ability.xml" value="0.11775362318840579" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_user_order.xml" value="0.11503623188405797" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_banner_home_top.xml" value="0.11775362318840579" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_dialog_confirm.xml" value="0.11911231884057971" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_home_func.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_home_func_1.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_home_func_2.xml" value="0.1" />

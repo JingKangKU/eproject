@@ -11,15 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.ums.eproject.R;
 import com.ums.eproject.bean.OrderBean;
+import com.ums.eproject.bean.OrderDetailBean;
 import com.ums.eproject.bean.ProductsBean;
+import com.ums.eproject.https.HttpSubscriber;
+import com.ums.eproject.https.SubscriberOnListener;
+import com.ums.eproject.https.comm.CommRequestApi;
 import com.ums.eproject.utils.Constant;
 import com.ums.eproject.utils.MsgUtil;
+import com.ums.eproject.view.ConfirmDialog;
 import com.ums.eproject.view.ScaleImageView;
 import com.ums.eproject.view.SquareImageView;
 
 import org.w3c.dom.Text;
 
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.ViewHolder> {
     private Context context;
@@ -60,11 +67,23 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.View
         holder.user_order_del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 2023/2/9
-                MsgUtil.showCustom(context,"调用订单删除或关闭");
+                ConfirmDialog confirmDialog = new ConfirmDialog(context, "确认取消当前订单？");
+                confirmDialog.setOnAction(new ConfirmDialog.OnAction() {
+                    @Override
+                    public void onCancleClicked(ConfirmDialog confirmDialog) {
+                        confirmDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onConfirmClicked(ConfirmDialog confirmDialog) {
+                        cancelClickListenerInterface.doClick(listBean.getOrderId());
+                        confirmDialog.dismiss();
+                    }
+                });
+                confirmDialog.show();
             }
         });
-        //待支付可关闭
+        //待支付状态的订单可关闭
         if (Constant.resp_orderStatus_dfk == listBean.getOrderStatus()){
             holder.user_order_del.setVisibility(View.VISIBLE);
         }else{
@@ -77,6 +96,7 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.View
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
@@ -104,11 +124,21 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.View
         }
 
     }
+    //订单点击回调
     private ClickListenerInterface clickListenerInterface;
     public interface ClickListenerInterface {
         void doClick(long id);
     }
     public void setClickListener(ClickListenerInterface clickListenerInterface) {
         this.clickListenerInterface = clickListenerInterface;
+    }
+
+    //取消订单回调
+    private CancelClickListenerInterface cancelClickListenerInterface;
+    public interface CancelClickListenerInterface {
+        void doClick(long id);
+    }
+    public void setCancelClickListener(CancelClickListenerInterface cancelClickListenerInterface) {
+        this.cancelClickListenerInterface = cancelClickListenerInterface;
     }
 }

@@ -198,7 +198,9 @@
                                     android:src="@mipmap/goods_reduce"
                                     android:paddingTop="10dp"
                                     android:paddingBottom="10dp"
-                                    android:layout_width="10dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:layout_width="20dp"
                                     android:layout_height="30dp"/>
                                 <TextView
                                     android:id="@+id/goods_order_goods_num"
@@ -206,15 +208,16 @@
                                     android:text="1"
                                     android:textColor="#343434"
                                     android:textSize="13sp"
-                                    android:layout_weight="1"
-                                    android:layout_width="0dp"
+                                    android:layout_width="30dp"
                                     android:layout_height="20dp"/>
                                 <ImageView
                                     android:id="@+id/goods_order_goods_num_add"
                                     android:src="@mipmap/goods_add"
                                     android:paddingTop="10dp"
                                     android:paddingBottom="10dp"
-                                    android:layout_width="10dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:layout_width="20dp"
                                     android:layout_height="30dp"/>
                             </LinearLayout>
 
