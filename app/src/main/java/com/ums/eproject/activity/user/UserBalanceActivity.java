@@ -8,6 +8,13 @@ import android.widget.TextView;
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.ums.eproject.R;
 import com.ums.eproject.activity.BaseActivity;
+import com.ums.eproject.bean.MemberBean;
+import com.ums.eproject.https.HttpSubscriber;
+import com.ums.eproject.https.SubscriberOnListener;
+import com.ums.eproject.https.comm.CommRequestApi;
+import com.ums.eproject.utils.MsgUtil;
+
+import es.dmoral.toasty.Toasty;
 
 public class UserBalanceActivity extends BaseActivity implements View.OnClickListener {
 
@@ -33,7 +40,7 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
         immersiveLayout.requestLayout();
 
 
-
+        getAccountBalance();
     }
 
     @Override
@@ -50,6 +57,24 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
                 break;
         }
     }
+    private void getAccountBalance() {
+        CommRequestApi.getInstance().getAccountBalance( new HttpSubscriber<>(new SubscriberOnListener<MemberBean>() {
+            @Override
+            public void onSucceed(MemberBean data) {
+                if (data.getCode() == 200) {
 
+                } else {
+                    MsgUtil.showCustom(context, data.getMessage());
+
+                }
+
+            }
+            @Override
+            public void onError(int code, String msg) {
+                Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
+
+            }
+        }, context,false));
+    }
 
 }

@@ -57,10 +57,20 @@ public class UserFragment extends Fragment  implements View.OnClickListener {
         view.findViewById(R.id.ll_user_balance).setOnClickListener(this);
         user_info_balance = view.findViewById(R.id.user_info_balance);
         context = getActivity();
-        getMemberDetails();
+        getMemberDetails(true);
 
         return view;
     }
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        //首次加载不执行 此处调用网络加载,与onCreateView调用的网络加载不冲突
+        if(!hidden){
+            getMemberDetails(false);
+        }
+    }
+
+
 
     @Override
     public void onClick(View v) {
@@ -90,7 +100,7 @@ public class UserFragment extends Fragment  implements View.OnClickListener {
         }
     }
 
-    private void getMemberDetails() {
+    private void getMemberDetails(boolean isOpenDialog) {
         CommRequestApi.getInstance().getMemberDetails( new HttpSubscriber<>(new SubscriberOnListener<MemberBean>() {
             @Override
             public void onSucceed(MemberBean data) {
@@ -108,7 +118,7 @@ public class UserFragment extends Fragment  implements View.OnClickListener {
                 Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
 
             }
-        }, context));
+        }, context,isOpenDialog));
     }
 
     private void setUserInfoData(MemberBean data) {

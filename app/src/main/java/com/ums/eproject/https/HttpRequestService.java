@@ -166,4 +166,9 @@ public interface HttpRequestService {
     @POST("/tetapp/mem/getMemberDetails")
     Observable<MemberBean> getMemberDetails(@Header("signKey") String signKey, @Body RequestBody body);
 
+    //会员余额查询
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mem/getAccountBalance")
+    Observable<MemberBean> getAccountBalance(@Header("signKey") String signKey, @Body RequestBody body);
+
 }
