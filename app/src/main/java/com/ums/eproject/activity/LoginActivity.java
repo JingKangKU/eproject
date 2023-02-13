@@ -232,7 +232,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         if (submitType == sub_type_pw_login){
             if(mobile.equals("19941566866")){
-                loginByPwd(mobile,"pw123456");
+                loginByPwd(mobile,pwd);
                 return;
             }
             if (StrUtil.isEmpty(mobile)){
@@ -265,6 +265,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
             if (!pwd.equals(confirmPwd)){
                 MsgUtil.showCustom(context,"两次密码输入不一致");return;
+            }
+            if (!StrUtil.isComplexPassword(pwd)){
+                MsgUtil.showCustom(context,"密码规则不符，必须包含数字、大写字符、小写字符和特殊符且不能少于8位");return;
             }
             if (!isAgree){
                 MsgUtil.showCustom(context,"请阅读并同意相关协议");return;
@@ -461,6 +464,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     //登录成功后的处理
     private void loginSuccess(UserBean userBean,String mobile){
+
         SPUtils.getInstance().put("login_name",mobile);
 
         SPUtils.getInstance().put("tokenReq",userBean.getData().getTokenHead()+userBean.getData().getToken());

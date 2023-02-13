@@ -29,7 +29,7 @@ public class PdfPngActivity extends BaseActivity implements View.OnClickListener
         title_right.setVisibility(View.GONE);
         title_text = findViewById(R.id.title_text);
         title_text.setText("预览协议");
-
+        findViewById(R.id.title_back).setOnClickListener(this);
         // 请求沉浸式布局
         ImmersiveLayout immersiveLayout = new ImmersiveLayout(this);
         immersiveLayout.addAdapter(layout -> title_view.setPadding(0, layout.getPaddingTop(), 0, 0));

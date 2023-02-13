@@ -86,7 +86,7 @@ public class OrderDetailBean {
         private String shippingType;
         private double totalAmount;
         private int totalScore;
-        private String orderStatus;
+        private int orderStatus;
         private String orderStatusName;
         private String orderPayType;
         private double payAmount;
@@ -172,11 +172,11 @@ public class OrderDetailBean {
             this.totalScore = totalScore;
         }
 
-        public String getOrderStatus() {
+        public int getOrderStatus() {
             return orderStatus;
         }
 
-        public void setOrderStatus(String orderStatus) {
+        public void setOrderStatus(int orderStatus) {
             this.orderStatus = orderStatus;
         }
 

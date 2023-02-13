@@ -46,10 +46,14 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.ums.eproject.view.SquareImageView
+
+            <com.ums.eproject.view.ScaleImageView
                 android:id="@+id/user_order_goods_img"
                 android:layout_width="120dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="120dp"
+                android:scaleType="fitXY"
+                app:shapeAppearance="@style/RoundedAllStyle"
+                android:src="@drawable/goods_test_img" />
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_marginStart="10dp"

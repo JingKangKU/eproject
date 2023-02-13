@@ -70,11 +70,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-                <com.ums.eproject.view.SquareImageView
+                <com.ums.eproject.view.ScaleImageView
                     android:id="@+id/user_order_goods_img"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="100dp"
+                    android:scaleType="fitXY"
+                    app:shapeAppearance="@style/RoundedAllStyle"/>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_marginStart="10dp"
@@ -481,6 +482,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:visibility="gone"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="15dp"
@@ -492,6 +494,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/or_dtl_cancel"
             android:layout_marginStart="13dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -504,6 +507,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/or_dtl_delete"
             android:layout_marginStart="13dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"

@@ -1,18 +1,12 @@
 package com.ums.eproject.activity;
 
-import static android.os.Build.VERSION_CODES.M;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.webkit.ConsoleMessage;
 import android.webkit.PermissionRequest;
@@ -26,22 +20,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.FileProvider;
 
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.mosect.lib.immersive.LayoutAdapter;
-import com.ums.eproject.BuildConfig;
 import com.ums.eproject.R;
 import com.ums.eproject.utils.MLog;
-import com.ums.eproject.utils.UIHelp;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-public class CommonWebViewActivity extends BaseActivity implements View.OnClickListener {
+public class ImgPreviewActivity extends BaseActivity implements View.OnClickListener {
 
     private LinearLayout title_view, title_right;
     private TextView title_text;
@@ -51,7 +36,7 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_common_web_view);
+        setContentView(R.layout.activity_img_preview);
 
         title_view = findViewById(R.id.title_view);
         title_right = findViewById(R.id.title_right);

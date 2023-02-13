@@ -6,8 +6,11 @@ import android.util.Log;
 
 import com.ums.eproject.bean.AddressBean;
 import com.ums.eproject.bean.AuthBean;
+import com.ums.eproject.bean.BalanceBean;
 import com.ums.eproject.bean.BaseRequest;
+import com.ums.eproject.bean.BookBalance;
 import com.ums.eproject.bean.CBPayResultBean;
+import com.ums.eproject.bean.CommonBean;
 import com.ums.eproject.bean.DepositRuleBean;
 import com.ums.eproject.bean.DepositTrial;
 import com.ums.eproject.bean.DynamicLink;
@@ -15,6 +18,7 @@ import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.MarketProductsBean;
 import com.ums.eproject.bean.MarketingDetailsBean;
+import com.ums.eproject.bean.MemberBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.OrderBean;
 import com.ums.eproject.bean.OrderDetailBean;
@@ -22,6 +26,7 @@ import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.PerPdtOrder;
 import com.ums.eproject.bean.PlaceOrderBean;
 import com.ums.eproject.bean.ProductsBean;
+import com.ums.eproject.bean.ResetPwBean;
 import com.ums.eproject.bean.StartAdvertise;
 import com.ums.eproject.bean.UserBean;
 import com.ums.eproject.https.BaseApi;
@@ -149,7 +154,7 @@ public class CommRequestApi extends BaseApi {
         toSubscribe(observable,subscriber);
     }
 
-    public void forgetPwd(String mobile,String passwd,String code,Subscriber<UserBean> subscriber){
+    public void forgetPwd(String mobile,String passwd,String code,Subscriber<ResetPwBean> subscriber){
         JSONObject json = new JSONObject();
         String signKey = "";
         try {
@@ -728,6 +733,131 @@ public class CommRequestApi extends BaseApi {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
         Observable observable = httpRequestService.getOrderDetail(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    public void cancelOrder(long id,Subscriber<CommonBean> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("id", id);
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.cancelOrder(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    public void deleteOrder(long id,Subscriber<CommonBean> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("id", id);
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.deleteOrder(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    public void getMemberDetails(Subscriber<MemberBean> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.getMemberDetails(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    public void getAccountBalance(Subscriber<BalanceBean> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.getAccountBalance(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    public void queryBookBalance(Integer incomeType,int pageNum,int pageSize,Subscriber<BookBalance> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("incomeType",incomeType);
+            json.put("pageNum",pageNum);
+            json.put("pageSize",pageSize);
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.queryBookBalance(signKey,body).map(new HttpResultFunc<>());
 
         toSubscribe(observable,subscriber);
     }

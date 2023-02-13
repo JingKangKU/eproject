@@ -11,27 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.ums.eproject.R;
 import com.ums.eproject.bean.OrderBean;
-import com.ums.eproject.bean.OrderDetailBean;
-import com.ums.eproject.bean.ProductsBean;
-import com.ums.eproject.https.HttpSubscriber;
-import com.ums.eproject.https.SubscriberOnListener;
-import com.ums.eproject.https.comm.CommRequestApi;
 import com.ums.eproject.utils.Constant;
-import com.ums.eproject.utils.MsgUtil;
 import com.ums.eproject.view.ConfirmDialog;
 import com.ums.eproject.view.ScaleImageView;
-import com.ums.eproject.view.SquareImageView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
-import es.dmoral.toasty.Toasty;
-
-public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.ViewHolder> {
+public class UserBalanceAdapter extends RecyclerView.Adapter<UserBalanceAdapter.ViewHolder> {
     private Context context;
     public List<OrderBean.DataBean.ListBean> listData;
-    public UserOrderAdapter(Context context, List<OrderBean.DataBean.ListBean> listData) {
+    public UserBalanceAdapter(Context context, List<OrderBean.DataBean.ListBean> listData) {
         this.listData = listData;
         this.context = context;
     }

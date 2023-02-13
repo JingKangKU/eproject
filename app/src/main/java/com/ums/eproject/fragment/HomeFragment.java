@@ -2,6 +2,7 @@ package com.ums.eproject.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.Display;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.chinaums.common.utils.UMSScreenUtil;
+import com.luck.picture.lib.tools.SPUtils;
 import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.entity.BaseBannerInfo;
 import com.stx.xhb.androidx.transformers.Transformer;
@@ -28,6 +30,7 @@ import com.ums.eproject.R;
 import com.ums.eproject.activity.AuditWebViewActivity;
 import com.ums.eproject.activity.CommonWebViewActivity;
 import com.ums.eproject.activity.EasyparkActivity;
+import com.ums.eproject.activity.LoginActivity;
 import com.ums.eproject.activity.MallActivity;
 import com.ums.eproject.activity.MarketingActivity;
 import com.ums.eproject.adapter.HomeAbilityAdapter;
@@ -158,7 +161,12 @@ public class HomeFragment extends Fragment  implements View.OnClickListener {
                     setBannerData(data.getData().get(0).getList());
                     initAbilityRecyclerView(data.getData().get(1).getList());
                     initFuncRecyclerView(data.getData().get(2).getList());
+                }else if(data.getCode() == 401){
+                    // TODO: 2023/2/12 token过期并且刷新token失败 的临时解决方案
+                    reLogin();
+
                 }else{
+
                     MsgUtil.showCustom(getActivity(),data.getMessage());
                 }
             }
@@ -169,6 +177,18 @@ public class HomeFragment extends Fragment  implements View.OnClickListener {
             }
         }, context));
     }
+    private void reLogin() {
+        SPUtils.getInstance().put("login_name","");
+        SPUtils.getInstance().put("tokenReq", "");
+        SPUtils.getInstance().put("token", "");
+        SPUtils.getInstance().put("tokenHead", "");
+
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+
     private void getDynamicLink(String linkUrl,String navName) {
         CommRequestApi.getInstance().getDynamicLink(linkUrl,new HttpSubscriber<>(new SubscriberOnListener<DynamicLink>() {
             @Override

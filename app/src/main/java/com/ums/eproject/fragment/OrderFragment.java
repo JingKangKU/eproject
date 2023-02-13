@@ -1,10 +1,16 @@
 package com.ums.eproject.fragment;
 
 
+
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -22,7 +28,9 @@ import com.ums.eproject.adapter.GoodsAdapter;
 import com.ums.eproject.adapter.GridDecoration;
 
 import com.ums.eproject.adapter.UserOrderAdapter;
+import com.ums.eproject.bean.CommonBean;
 import com.ums.eproject.bean.OrderBean;
+import com.ums.eproject.bean.OrderDetailBean;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.ProductsBean;
 import com.ums.eproject.https.HttpSubscriber;
@@ -34,6 +42,7 @@ import com.ums.eproject.utils.UIHelp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
@@ -52,6 +61,7 @@ public class OrderFragment extends BaseLazyFragment {
     private UserOrderAdapter adapter;
     private int pageNum;
     private int pageSize;
+
     public OrderFragment(String fragmentTitle,String orderStatus){
         this.fragmentTitle = fragmentTitle;
         this.orderStatus = orderStatus;
@@ -74,10 +84,16 @@ public class OrderFragment extends BaseLazyFragment {
         initRecyclerView();
     }
 
+
+
     @Override
     protected void initData() {
         super.initData();
         queryOrders(pageNum,pageSize);
+    }
+
+    public void refreshData(){
+        queryOrders(1,pageSize);
     }
 
     @Override
@@ -111,16 +127,22 @@ public class OrderFragment extends BaseLazyFragment {
         adapter.setClickListener(new UserOrderAdapter.ClickListenerInterface() {
             @Override
             public void doClick(long id) {
-                Bundle bundle = new Bundle();
-                bundle.putLong("orderId",id);
-                UIHelp.startActivity(context, UserOrderDetailActivity.class,bundle);
-
+                clickOrderItemListenerInterface.doClick(id);
+            }
+        });
+        adapter.setCancelClickListener(new UserOrderAdapter.CancelClickListenerInterface() {
+            @Override
+            public void doClick(long id) {
+                cancelOrder(id);
             }
         });
         order_recycler_view.setAdapter(adapter);
 
     }
-
+    private void refreshNotifyNoneRecyclerView(){ //无数据情况
+        adapter.getListData().clear();
+        adapter.notifyDataSetChanged();
+    }
 
     private void refreshNotifyRecyclerView(List<OrderBean.DataBean.ListBean> list){
         adapter.getListData().clear();
@@ -149,9 +171,11 @@ public class OrderFragment extends BaseLazyFragment {
 
                         if (pageNum == 1){
                             MsgUtil.showCustom(context,"暂无数据");
+                            refreshNotifyNoneRecyclerView();
                         }
                         refreshLayout.finishRefresh(false);
                         refreshLayout.finishLoadMore(true);
+
 
                     }else{ //有数据状态
 
@@ -183,7 +207,25 @@ public class OrderFragment extends BaseLazyFragment {
         }, context));
     }
 
+    private void cancelOrder(long orderId) {
+        CommRequestApi.getInstance().cancelOrder(orderId, new HttpSubscriber<>(new SubscriberOnListener<CommonBean>() {
+            @Override
+            public void onSucceed(CommonBean data) {
+                if (data.getCode() == 200) {
+                    MsgUtil.showCustom(context,"已取消当前订单");
+                    pageNum = 1;
+                    queryOrders(pageNum,pageSize);
+                } else {
+                    MsgUtil.showCustom(context, data.getMessage());
+                }
+            }
+            @Override
+            public void onError(int code, String msg) {
+                Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
 
+            }
+        }, context));
+    }
 
     private void setPageNum(int pageNum) {
         this.pageNum = pageNum;
@@ -191,5 +233,11 @@ public class OrderFragment extends BaseLazyFragment {
 
     public CharSequence getTitle(){ return fragmentTitle; }
 
-
+    private  ClickOrderItemListenerInterface clickOrderItemListenerInterface;
+    public interface ClickOrderItemListenerInterface {
+        void doClick(long id);
+    }
+    public void setClickOrderItemListenerInterface(ClickOrderItemListenerInterface clickOrderItemListenerInterface) {
+        this.clickOrderItemListenerInterface = clickOrderItemListenerInterface;
+    }
 }

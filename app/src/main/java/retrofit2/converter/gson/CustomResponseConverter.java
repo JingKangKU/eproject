@@ -31,6 +31,7 @@ class CustomResponseConverter<T> implements Converter<ResponseBody, T> {
             JSONObject json = new JSONObject(originalBody);
             int code = json.optInt(CODE);
             // 当 code 不为 200 时，设置 data 为 null，这样转化就不会出错了
+            // TODO: 2023/2/12  待调整
             if (code == 401) {
                 Map<String, String> map = gson.fromJson(originalBody, new TypeToken<Map<String, String>>() {
                 }.getType());

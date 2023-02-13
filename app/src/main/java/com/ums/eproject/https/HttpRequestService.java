@@ -5,8 +5,11 @@ package com.ums.eproject.https;
 
 import com.ums.eproject.bean.AddressBean;
 import com.ums.eproject.bean.AuthBean;
+import com.ums.eproject.bean.BalanceBean;
 import com.ums.eproject.bean.BaseRequest;
+import com.ums.eproject.bean.BookBalance;
 import com.ums.eproject.bean.CBPayResultBean;
+import com.ums.eproject.bean.CommonBean;
 import com.ums.eproject.bean.DepositRuleBean;
 import com.ums.eproject.bean.DepositTrial;
 import com.ums.eproject.bean.DynamicLink;
@@ -14,12 +17,14 @@ import com.ums.eproject.bean.GoodsDetail;
 import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.MarketProductsBean;
 import com.ums.eproject.bean.MarketingDetailsBean;
+import com.ums.eproject.bean.MemberBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.OrderBean;
 import com.ums.eproject.bean.OrderDetailBean;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.PerPdtOrder;
 import com.ums.eproject.bean.ProductsBean;
+import com.ums.eproject.bean.ResetPwBean;
 import com.ums.eproject.bean.StartAdvertise;
 import com.ums.eproject.bean.UserBean;
 
@@ -53,7 +58,7 @@ public interface HttpRequestService {
 
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:true"})
     @POST("/tetapp/sso/forgetPwd")
-    Observable<UserBean> forgetPwd(@Header("signKey") String signKey, @Body RequestBody body);
+    Observable<ResetPwBean> forgetPwd(@Header("signKey") String signKey, @Body RequestBody body);
 
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:true"})
     @POST("/tetapp/sso/loginByMsg")
@@ -158,5 +163,30 @@ public interface HttpRequestService {
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
     @POST("/tetapp/ord/getOrderDetail")
     Observable<OrderDetailBean> getOrderDetail(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //取消订单
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/ord/cancelOrder")
+    Observable<CommonBean> cancelOrder(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //删除订单
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/ord/deleteOrder")
+    Observable<CommonBean> deleteOrder(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //我的会员信息
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mem/getMemberDetails")
+    Observable<MemberBean> getMemberDetails(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //会员余额查询
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mem/getAccountBalance")
+    Observable<BalanceBean> getAccountBalance(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //会员余额台账
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mem/queryBookBalance")
+    Observable<BookBalance> queryBookBalance(@Header("signKey") String signKey, @Body RequestBody body);
 
 }

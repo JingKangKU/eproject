@@ -225,10 +225,15 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"/>
             </LinearLayout>
+            <TextView
+                android:visibility="gone"
+                android:text="密码需包含数字、大写字符、小写字符和特殊符且不能少于8位"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/login_submit"
+            android:id="@+id/login_reset_submit"
             android:background="@drawable/login_submit_shape"
             android:layout_marginTop="24dp"
             android:layout_marginRight="28dp"
