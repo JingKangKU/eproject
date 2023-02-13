@@ -8,11 +8,15 @@ import android.widget.TextView;
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.ums.eproject.R;
 import com.ums.eproject.activity.BaseActivity;
+import com.ums.eproject.bean.BalanceBean;
 import com.ums.eproject.bean.MemberBean;
 import com.ums.eproject.https.HttpSubscriber;
 import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
 import com.ums.eproject.utils.MsgUtil;
+import com.ums.eproject.utils.UIHelp;
+
+import org.w3c.dom.Text;
 
 import es.dmoral.toasty.Toasty;
 
@@ -22,7 +26,7 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
     private TextView title_text;
 
 
-
+    private TextView user_balance_txt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,8 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
         immersiveLayout.addAdapter(layout -> title_view.setPadding(0, layout.getPaddingTop(), 0, 0));
         immersiveLayout.requestLayout();
 
+        user_balance_txt = findViewById(R.id.user_balance_txt);
+        findViewById(R.id.user_balance_detail).setOnClickListener(this);
 
         getAccountBalance();
     }
@@ -55,14 +61,22 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
             case R.id.title_back:
                 finish();
                 break;
+            case R.id.user_balance_detail:
+                UIHelp.startActivity(context,UserBalanceChangeActivity.class);
+                break;
         }
     }
-    private void getAccountBalance() {
-        CommRequestApi.getInstance().getAccountBalance( new HttpSubscriber<>(new SubscriberOnListener<MemberBean>() {
-            @Override
-            public void onSucceed(MemberBean data) {
-                if (data.getCode() == 200) {
+    private void setBalanceData(BalanceBean data) {
 
+        user_balance_txt.setText(String.valueOf(data.getData().getBalance()));
+
+    }
+    private void getAccountBalance() {
+        CommRequestApi.getInstance().getAccountBalance( new HttpSubscriber<>(new SubscriberOnListener<BalanceBean>() {
+            @Override
+            public void onSucceed(BalanceBean data) {
+                if (data.getCode() == 200) {
+                    setBalanceData(data);
                 } else {
                     MsgUtil.showCustom(context, data.getMessage());
 
@@ -76,5 +90,7 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
             }
         }, context,false));
     }
+
+
 
 }

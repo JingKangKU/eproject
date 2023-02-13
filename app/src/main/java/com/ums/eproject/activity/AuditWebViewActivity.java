@@ -87,7 +87,7 @@ public class AuditWebViewActivity extends BaseActivity implements View.OnClickLi
         });
         // 请求沉浸式布局
         immersiveLayout.requestLayout();
-
+        findViewById(R.id.title_back).setOnClickListener(this);
 
         Bundle bundle = getIntent().getBundleExtra("bundle");
         String url = bundle.getString("url");

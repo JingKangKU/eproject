@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F3F3F3"
     android:orientation="vertical"
-    tools:context=".activity.user.UserAgreementListActivity">
+    tools:context=".activity.user.UserSettingActivity">
 
     <include layout="@layout/layout_title" />
 
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
-                android:id="@+id/user_agreement_yh"
+                android:id="@+id/user_setting_agreement"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:paddingLeft="18dp"
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_weight="1"
-                    android:text="用户服务协议"
+                    android:text="相关协议"
                     android:textColor="#333333"
                     android:textSize="15sp"
                     android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
                     android:layout_height="15sp"/>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/user_agreement_ys"
+                android:id="@+id/user_setting_reLogin"
                 android:layout_marginTop="10dp"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_weight="1"
-                    android:text="隐私政策"
+                    android:text="退出登录"
                     android:textColor="#333333"
                     android:textSize="15sp"
                     android:layout_width="wrap_content"
@@ -62,30 +62,8 @@
                     android:layout_width="15sp"
                     android:layout_height="15sp"/>
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/user_agreement_mm"
-                android:layout_marginTop="10dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="18dp"
-                android:paddingRight="18dp"
-                android:background="@drawable/white_round_shape_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_weight="1"
-                    android:text="余额免密支付协议"
-                    android:textColor="#333333"
-                    android:textSize="15sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <ImageView
-                    android:src="@mipmap/right"
-                    android:layout_width="15sp"
-                    android:layout_height="15sp"/>
-            </LinearLayout>
+
         </LinearLayout>
 
     </com.ums.eproject.view.OverScrollView>
-
 </LinearLayout>

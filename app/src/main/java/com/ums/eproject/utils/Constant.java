@@ -18,7 +18,8 @@ public class Constant {
     public static int RESPONSECODE;
 
 
-    public static String baseUrl = "http://121.40.88.223:8601/";
+//    public static String baseUrl = "http://121.40.88.223:8601/";//测试1
+    public static String baseUrl = "http://36.137.57.29:7484/"; //测试2
 
     public static String signReqHeader = "signKey";
 
@@ -189,6 +190,4 @@ public class Constant {
     //免密协议
     public static final String agreement_mm = "http://36.137.57.29:7480/tetprotocols/grantservice.html";
 
-    // TODO: 2023/2/10 全局持有 会员信息对象  待修改
-    public static UserBean.DataBean USER_INFO;
 }

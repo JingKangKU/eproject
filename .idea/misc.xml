@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/bg_splash.xml" value="0.1953125" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/bottom_ellipse.xml" value="0.1953125" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/fragment_bg_shape.xml" value="0.17592592592592593" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_17.xml" value="0.12685185185185185" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_22.xml" value="0.1287037037037037" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_25.xml" value="0.13518518518518519" />
@@ -30,14 +31,16 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_topup_recycler.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_agreement_list.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_balance.xml" value="0.13360507246376813" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_balance_change.xml" value="0.11911231884057971" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_order.xml" value="0.1272644927536232" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_order_detail.xml" value="0.11503623188405797" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_reset_pw.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_reset_px.xml" value="0.13496376811594202" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_setting.xml" value="0.11911231884057971" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_commodity.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_mall.xml" value="0.1" />
-        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_user.xml" value="0.13722826086956522" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_user.xml" value="0.16666666666666666" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_user_order.xml" value="0.11503623188405797" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_goods.xml" value="0.15625" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_home_ability.xml" value="0.11775362318840579" />

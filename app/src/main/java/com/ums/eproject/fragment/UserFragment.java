@@ -20,6 +20,7 @@ import com.ums.eproject.activity.MainActivity;
 import com.ums.eproject.activity.user.UserBalanceActivity;
 import com.ums.eproject.activity.TopupActivity;
 import com.ums.eproject.activity.user.UserOrderActivity;
+import com.ums.eproject.activity.user.UserSettingActivity;
 import com.ums.eproject.bean.MemberBean;
 import com.ums.eproject.bean.OrderDetailBean;
 import com.ums.eproject.https.HttpSubscriber;
@@ -92,11 +93,13 @@ public class UserFragment extends Fragment  implements View.OnClickListener {
                 break;
             case R.id.user_item_7:
                 break;
-            case R.id.user_item_8:
+            case R.id.user_item_8: //设置
+                UIHelp.startActivity(requireActivity(), UserSettingActivity.class);
                 break;
             case R.id.ll_user_balance:
                 UIHelp.startActivity(requireActivity(), UserBalanceActivity.class);
                 break;
+
         }
     }
 

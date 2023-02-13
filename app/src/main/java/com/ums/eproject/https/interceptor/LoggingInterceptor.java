@@ -4,14 +4,19 @@ package com.ums.eproject.https.interceptor;
 import static okhttp3.internal.platform.Platform.INFO;
 
 
+import android.content.Intent;
+
 import com.luck.picture.lib.tools.SPUtils;
+import com.ums.eproject.activity.LoginActivity;
 import com.ums.eproject.app.AppContext;
 import com.ums.eproject.utils.AesUtil;
 import com.ums.eproject.utils.Constant;
 import com.ums.eproject.utils.MLog;
+import com.ums.eproject.utils.MsgUtil;
 import com.ums.eproject.utils.RandomStrUtil;
 import com.ums.eproject.utils.SignHelper;
 import com.ums.eproject.utils.StrUtil;
+import com.ums.eproject.utils.UIHelp;
 
 import org.json.JSONObject;
 
@@ -355,6 +360,10 @@ public class LoggingInterceptor implements Interceptor {
                                 .addHeader(Constant.tokenReqHeader, tokenReq)
                                 .build();
                         return chain.proceed(newRequest);
+                    }else{
+                        // TODO: 2023/2/12 拦截后去登录页面待调整
+                        MLog.d("刷新token失败，前往登录页");
+
                     }
                 }
             }
@@ -393,7 +402,7 @@ public class LoggingInterceptor implements Interceptor {
      */
     private String getResponseInfo(Response response) {
         String str = "";
-        if (null == response || !response.isSuccessful()) {
+        if (null == response) {
             return str;
         }
         ResponseBody responseBody = response.body();

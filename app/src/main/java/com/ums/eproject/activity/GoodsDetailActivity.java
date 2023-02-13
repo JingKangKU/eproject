@@ -167,7 +167,10 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
             goods_detail_wb.setVisibility(View.GONE);
             return;
         }
-        goods_detail_wb.loadDataWithBaseURL(null, text, "text/html", "utf-8", null);
+        String varjs = "<script type='text/javascript'> \nwindow.onload = function()\n{var $img = document.getElementsByTagName('img');" +
+                "for(var p in  $img){$img[p].style.width = '100%'; $img[p].style.height ='auto'}}</script>";//将img标签属性定死的js代码
+        text = text.replaceAll("width=\"\\d+\"", "width=\"100%\"").replaceAll("height=\"\\d+\"", "height=\"auto\"");
+        goods_detail_wb.loadDataWithBaseURL(null, varjs+text, "text/html", "utf-8", null);
     }
 
     private void getProductDetails(long id) {
@@ -197,12 +200,13 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
         goods_detail_wb.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         goods_detail_wb.setScrollbarFadingEnabled(false);
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
+
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setPluginState(WebSettings.PluginState.ON);
         webSettings.setAllowFileAccess(true);
         webSettings.setUseWideViewPort(true);
-        webSettings.setLoadWithOverviewMode(true);
         webSettings.setSupportZoom(true);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
             webSettings.setDisplayZoomControls(false);
@@ -216,8 +220,9 @@ public class GoodsDetailActivity extends BaseActivity implements View.OnClickLis
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         }
-    }
 
+
+    }
 
     @Override
     public void onClick(View v) {

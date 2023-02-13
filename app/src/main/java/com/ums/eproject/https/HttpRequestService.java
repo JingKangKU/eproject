@@ -5,7 +5,9 @@ package com.ums.eproject.https;
 
 import com.ums.eproject.bean.AddressBean;
 import com.ums.eproject.bean.AuthBean;
+import com.ums.eproject.bean.BalanceBean;
 import com.ums.eproject.bean.BaseRequest;
+import com.ums.eproject.bean.BookBalance;
 import com.ums.eproject.bean.CBPayResultBean;
 import com.ums.eproject.bean.CommonBean;
 import com.ums.eproject.bean.DepositRuleBean;
@@ -180,6 +182,11 @@ public interface HttpRequestService {
     //会员余额查询
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
     @POST("/tetapp/mem/getAccountBalance")
-    Observable<MemberBean> getAccountBalance(@Header("signKey") String signKey, @Body RequestBody body);
+    Observable<BalanceBean> getAccountBalance(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //会员余额台账
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/mem/queryBookBalance")
+    Observable<BookBalance> queryBookBalance(@Header("signKey") String signKey, @Body RequestBody body);
 
 }

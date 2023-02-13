@@ -464,7 +464,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     //登录成功后的处理
     private void loginSuccess(UserBean userBean,String mobile){
-        Constant.USER_INFO = userBean.getData();
 
         SPUtils.getInstance().put("login_name",mobile);
 

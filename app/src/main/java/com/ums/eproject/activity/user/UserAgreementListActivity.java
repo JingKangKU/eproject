@@ -35,7 +35,7 @@ public class UserAgreementListActivity extends BaseActivity implements View.OnCl
         title_right.setVisibility(View.GONE);
         title_text = findViewById(R.id.title_text);
         title_text.setText("协议列表");
-
+        findViewById(R.id.title_back).setOnClickListener(this);
         // 请求沉浸式布局
         ImmersiveLayout immersiveLayout = new ImmersiveLayout(this);
         immersiveLayout.addAdapter(layout -> title_view.setPadding(0, layout.getPaddingTop(), 0, 0));

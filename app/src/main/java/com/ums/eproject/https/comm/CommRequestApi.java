@@ -6,7 +6,9 @@ import android.util.Log;
 
 import com.ums.eproject.bean.AddressBean;
 import com.ums.eproject.bean.AuthBean;
+import com.ums.eproject.bean.BalanceBean;
 import com.ums.eproject.bean.BaseRequest;
+import com.ums.eproject.bean.BookBalance;
 import com.ums.eproject.bean.CBPayResultBean;
 import com.ums.eproject.bean.CommonBean;
 import com.ums.eproject.bean.DepositRuleBean;
@@ -809,7 +811,7 @@ public class CommRequestApi extends BaseApi {
         toSubscribe(observable,subscriber);
     }
 
-    public void getAccountBalance(Subscriber<MemberBean> subscriber){
+    public void getAccountBalance(Subscriber<BalanceBean> subscriber){
         JSONObject json = new JSONObject();
         String signKey = "";
         try {
@@ -829,6 +831,33 @@ public class CommRequestApi extends BaseApi {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
         Observable observable = httpRequestService.getAccountBalance(signKey,body).map(new HttpResultFunc<>());
+
+        toSubscribe(observable,subscriber);
+    }
+
+    public void queryBookBalance(Integer incomeType,int pageNum,int pageSize,Subscriber<BookBalance> subscriber){
+        JSONObject json = new JSONObject();
+        String signKey = "";
+        try {
+            signKey = RandomStrUtil.getRandomString();
+
+            //业务参数start
+            json.put("incomeType",incomeType);
+            json.put("pageNum",pageNum);
+            json.put("pageSize",pageSize);
+            //业务参数end
+
+            json.put("randomStr",signKey);
+            json.put("source", Constant.source);
+
+            String sign = SignHelper.getSignValue(json.toString(), signKey + Constant.publicKey);
+            json.put("sign",sign);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8;"),json.toString());
+        Observable observable = httpRequestService.queryBookBalance(signKey,body).map(new HttpResultFunc<>());
 
         toSubscribe(observable,subscriber);
     }

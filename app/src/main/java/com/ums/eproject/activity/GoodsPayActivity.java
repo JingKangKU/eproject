@@ -147,6 +147,7 @@ public class GoodsPayActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onSucceed(PerPdtOrder data) {
                 if (data.getCode() == 200) {
+//                    if (data.getData().getPayStatus)
                     UIHelp.startActivity(context,PayStateActivity.class);
                 } else {
                     MsgUtil.showCustom(context, data.getMessage());
