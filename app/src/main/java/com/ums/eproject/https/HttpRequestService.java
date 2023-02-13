@@ -15,6 +15,8 @@ import com.ums.eproject.bean.HomeBean;
 import com.ums.eproject.bean.MarketProductsBean;
 import com.ums.eproject.bean.MarketingDetailsBean;
 import com.ums.eproject.bean.NETData;
+import com.ums.eproject.bean.OrderBean;
+import com.ums.eproject.bean.OrderDetailBean;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.PerPdtOrder;
 import com.ums.eproject.bean.ProductsBean;
@@ -48,6 +50,10 @@ public interface HttpRequestService {
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:true"})
     @POST("/tetapp/sso/loginByPwd")
     Observable<UserBean> loginByPwd(@Header("signKey") String signKey, @Body RequestBody body);
+
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:true"})
+    @POST("/tetapp/sso/forgetPwd")
+    Observable<UserBean> forgetPwd(@Header("signKey") String signKey, @Body RequestBody body);
 
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:true"})
     @POST("/tetapp/sso/loginByMsg")
@@ -142,4 +148,15 @@ public interface HttpRequestService {
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:true"})
     @POST("/tetapp/mkt/listStartAdvertise")
     Observable<StartAdvertise> listStartAdvertise(@Header("signKey") String signKey, @Body RequestBody body);
+
+     //我的订单
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/ord/queryOrders")
+    Observable<OrderBean> queryOrders(@Header("signKey") String signKey, @Body RequestBody body);
+
+    //我的订单详情
+    @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
+    @POST("/tetapp/ord/getOrderDetail")
+    Observable<OrderDetailBean> getOrderDetail(@Header("signKey") String signKey, @Body RequestBody body);
+
 }

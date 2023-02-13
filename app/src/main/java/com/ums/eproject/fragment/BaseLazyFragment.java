@@ -47,7 +47,7 @@ public abstract class BaseLazyFragment extends Fragment {
             initData();
             initEvent();
             isFirstLoad = false;
-            MsgUtil.showCustom(getActivity(),"数据加载");
+//            MsgUtil.showCustom(getActivity(),"数据加载");
         }
     }
 
