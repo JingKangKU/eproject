@@ -85,6 +85,7 @@ public class Constant {
         public static final int app_page = 3; //app
         public static final int wx_app = 4; //微信小程序
         public static final int dynamic_app = 5; //动态H5
+        public static final int html_str = 6; //富文本
     }
 
     public static class linkApp{
@@ -162,23 +163,23 @@ public class Constant {
 
     //订单详情的状态图片资源id
     public static int getOrderStatusIconId(int orderStatus){
-//        switch (orderStatus){
-//            case resp_orderStatus_dfk:
-//                return R.mipmap.order_detail_qx;
-//            case resp_orderStatus_dfh:
-//                return R.mipmap.order_detail_qx;
-//            case resp_orderStatus_dsh:
-//                return R.mipmap.order_detail_qx;
-//            case resp_orderStatus_ywc:
-//                return R.mipmap.order_detail_qx;
-//            case resp_orderStatus_ygb:
-//                return R.mipmap.order_detail_qx;
-//            case resp_orderStatus_wx:
-//                return R.mipmap.order_detail_qx;
-//            case resp_orderStatus_yth:
-//                return R.mipmap.order_detail_qx;
-//        }
-        return R.mipmap.order_detail_qx;
+        switch (orderStatus){
+            case resp_orderStatus_dfk:
+                return R.mipmap.order_detail_dfk;
+            case resp_orderStatus_dfh:
+                return R.mipmap.order_detail_dfh;
+            case resp_orderStatus_dsh:
+                return R.mipmap.order_detail_ysh;
+            case resp_orderStatus_ywc:
+                return R.mipmap.order_detail_ywc;
+            case resp_orderStatus_ygb:
+                return R.mipmap.order_detail_qx;
+            case resp_orderStatus_wx:
+                return R.mipmap.order_detail_wx;
+            case resp_orderStatus_yth:
+                return R.mipmap.order_detail_yth;
+        }
+        return R.mipmap.order_detail_wx;
     }
 
 

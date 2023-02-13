@@ -17,11 +17,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chinaums.common.component.ScanActivity;
 import com.chinaums.common.utils.CommonConst;
@@ -45,6 +47,7 @@ import com.ums.eproject.utils.Constant;
 import com.ums.eproject.utils.MsgUtil;
 import com.ums.eproject.utils.SPUtils;
 import com.ums.eproject.utils.UIHelp;
+import com.ums.eproject.view.ConfirmDialog;
 
 import org.json.JSONObject;
 
@@ -312,4 +315,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }, context));
     }
 
+    @Override
+    public void finish() {
+        ConfirmDialog confirmDialog = new ConfirmDialog(context, "确认退出泰e通？");
+        confirmDialog.setOnAction(new ConfirmDialog.OnAction() {
+            @Override
+            public void onCancleClicked(ConfirmDialog confirmDialog) {
+                confirmDialog.dismiss();
+            }
+
+            @Override
+            public void onConfirmClicked(ConfirmDialog confirmDialog) {
+                confirmDialog.dismiss();
+                mFinish();
+
+            }
+        });
+        confirmDialog.show();
+
+
+    }
+
+    private void mFinish(){
+        super.finish();
+    }
 }

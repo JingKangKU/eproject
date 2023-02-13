@@ -2,6 +2,7 @@ package com.ums.eproject.fragment;
 
 
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 
 
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,7 +43,10 @@ public class UserFragment extends Fragment  implements View.OnClickListener {
 
     private LinearLayout ll_user_balance,user_topup,user_item_8,user_item_7,user_item_6,user_item_5,user_item_4,user_item_3,user_item_2;
     private Context context;
-    private TextView user_info_balance;
+    private TextView user_info_balance,user_info_balance_dis;
+
+    private ImageView user_balance_eyes;
+    private boolean isShowBalance = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,12 +61,32 @@ public class UserFragment extends Fragment  implements View.OnClickListener {
         view.findViewById(R.id.user_item_7).setOnClickListener(this);
         view.findViewById(R.id.user_item_8).setOnClickListener(this);
         view.findViewById(R.id.ll_user_balance).setOnClickListener(this);
+
+        user_balance_eyes = view.findViewById(R.id.user_balance_eyes);
+        user_balance_eyes.setOnClickListener(this);
+
         user_info_balance = view.findViewById(R.id.user_info_balance);
+        user_info_balance_dis = view.findViewById(R.id.user_info_balance_dis);
         context = getActivity();
         getMemberDetails(true);
 
+        setBalanceEyesAndData();
+
         return view;
     }
+
+    private void setBalanceEyesAndData(){
+        if (isShowBalance){
+            user_info_balance.setVisibility(View.VISIBLE);
+            user_info_balance_dis.setVisibility(View.GONE);
+            user_balance_eyes.setImageResource(R.mipmap.user_eyes);
+        }else{
+            user_info_balance.setVisibility(View.GONE);
+            user_info_balance_dis.setVisibility(View.VISIBLE);
+            user_balance_eyes.setImageResource(R.mipmap.eyes);
+        }
+    }
+
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
@@ -98,6 +123,10 @@ public class UserFragment extends Fragment  implements View.OnClickListener {
                 break;
             case R.id.ll_user_balance:
                 UIHelp.startActivity(requireActivity(), UserBalanceActivity.class);
+                break;
+            case R.id.user_balance_eyes:
+                isShowBalance = !isShowBalance;
+                setBalanceEyesAndData();
                 break;
 
         }

@@ -27,7 +27,7 @@ public class PayStateActivity extends BaseActivity implements View.OnClickListen
         title_right.setVisibility(View.GONE);
         title_text = findViewById(R.id.title_text);
         findViewById(R.id.title_back).setOnClickListener(this);
-        title_text.setText("泰e通商城GO");
+        title_text.setText("支付结果");
         ImmersiveLayout immersiveLayout = new ImmersiveLayout(this);
         immersiveLayout.addAdapter(new LayoutAdapter() {
             @Override

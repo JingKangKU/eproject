@@ -22,6 +22,7 @@ import com.ums.eproject.https.HttpSubscriber;
 import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
 import com.ums.eproject.utils.MsgUtil;
+import com.ums.eproject.utils.UIHelp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
     private TextView title_text;
     private RecyclerView topup_recycler_view;
     private double depositAmount;
+    private LinearLayout ll_topup_input;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
 
         title_view = findViewById(R.id.title_view);
         title_right = findViewById(R.id.title_right);
-        title_right.setVisibility(View.VISIBLE);
+        title_right.setVisibility(View.GONE);
         title_text = findViewById(R.id.title_text);
 
         findViewById(R.id.title_back).setOnClickListener(this);
@@ -57,6 +59,7 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
         immersiveLayout.requestLayout();
 
         topup_recycler_view = findViewById(R.id.topup_recycler_view);
+        ll_topup_input = findViewById(R.id.ll_topup_input);
         findViewById(R.id.topup_recharge).setOnClickListener(this);;
 
         getDepositRuleList();
@@ -87,7 +90,9 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onSucceed(DepositTrial data) {
                 if (data.getCode() == 200) {
-                    MsgUtil.showCustom(context,"充值金额："+data.getData().getRechargeAmount()+"   试算金额："+data.getData().getPayAmount());
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("depositTrial",data);
+                    UIHelp.startActivity(context,TopupPayActivity.class,bundle);
                 } else {
                     MsgUtil.showCustom(context, data.getMessage());
                 }

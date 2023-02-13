@@ -33,6 +33,7 @@ import com.mosect.lib.immersive.LayoutAdapter;
 import com.ums.eproject.BuildConfig;
 import com.ums.eproject.R;
 import com.ums.eproject.utils.MLog;
+import com.ums.eproject.utils.StrUtil;
 import com.ums.eproject.utils.UIHelp;
 
 import java.io.File;
@@ -48,6 +49,8 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
 
     private WebView web_view;
     private boolean supportZoom;//是否支持放大缩小
+    private boolean isHtmlStr;//是否为父文本模式
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,12 +74,24 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
         // 请求沉浸式布局
         immersiveLayout.requestLayout();
 
+
         Bundle bundle = getIntent().getBundleExtra("bundle");
-        String url = bundle.getString("url");
-        String titleText = bundle.getString("titleText");
-        supportZoom = bundle.getBoolean("supportZoom",false);
-        title_text.setText(titleText);
-        initWebView(url);
+        isHtmlStr =  bundle.getBoolean("isHtmlStr",false);
+
+        if (isHtmlStr){
+            String titleText = bundle.getString("titleText");
+            title_text.setText(titleText);
+            String detailDesc = bundle.getString("detailDesc","");
+            initHtmlStrWebView();
+            setWebViewHtmlStr(detailDesc);
+        }else{
+            String url = bundle.getString("url","");
+            String titleText = bundle.getString("titleText");
+            title_text.setText(titleText);
+            supportZoom = bundle.getBoolean("supportZoom",false);
+            initWebView(url);
+        }
+
     }
 
     private void closeWebView() {
@@ -104,6 +119,50 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
         closeWebView();
         super.finish();
     }
+    private void initHtmlStrWebView() {
+
+        web_view.setOnLongClickListener(v -> false);
+        WebSettings webSettings = web_view.getSettings();
+        web_view.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        web_view.setScrollbarFadingEnabled(false);
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
+
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setPluginState(WebSettings.PluginState.ON);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setSupportZoom(true);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+            webSettings.setDisplayZoomControls(false);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
+
+        webSettings.setBlockNetworkImage(false);//解决图片不显示
+        // 解决混合资源的加载
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+        }
+
+
+
+    }
+
+    private void setWebViewHtmlStr(String text) {
+        if (StrUtil.isEmpty(text)){
+            web_view.setVisibility(View.GONE);
+            return;
+        }
+        String varjs = "<script type='text/javascript'> \nwindow.onload = function()\n{var $img = document.getElementsByTagName('img');" +
+                "for(var p in  $img){$img[p].style.width = '100%'; $img[p].style.height ='auto'}}</script>";//将img标签属性定死的js代码
+        text = text.replaceAll("width=\"\\d+\"", "width=\"100%\"").replaceAll("height=\"\\d+\"", "height=\"auto\"");
+        web_view.loadDataWithBaseURL(null, varjs+text, "text/html", "utf-8", null);
+    }
+
+
 
     private void initWebView(String url) {
 

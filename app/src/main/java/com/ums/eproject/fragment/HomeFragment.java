@@ -215,14 +215,17 @@ public class HomeFragment extends Fragment  implements View.OnClickListener {
         int linkType = 0;
         String linkUrl = "";
         String navName = "";
+        String detailDesc = "";
         if (listBean != null){
             linkType = listBean.getLinkType();
             linkUrl = listBean.getLinkUrl();
             navName = listBean.getNavName();
+            detailDesc = listBean.getDetailDesc();
         }else{
             linkType = detailsBean.getLinkType();
             linkUrl = detailsBean.getLinkUrl();
             navName = detailsBean.getFuncName();
+            detailDesc = detailsBean.getDetailDesc();
         }
 
         switch (linkType){
@@ -246,6 +249,14 @@ public class HomeFragment extends Fragment  implements View.OnClickListener {
                 break;
             case Constant.linkType.dynamic_app:
                 getDynamicLink(linkUrl,navName);
+                break;
+            case Constant.linkType.html_str:
+                Bundle bundle1 = new Bundle();
+                bundle1.putSerializable("url",linkUrl);
+                bundle1.putSerializable("titleText",navName);
+                bundle1.putString("detailDesc",detailDesc);
+                bundle1.putBoolean("isHtmlStr",true);
+                UIHelp.startActivity(context, CommonWebViewActivity.class,bundle1);
                 break;
         }
     }

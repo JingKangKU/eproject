@@ -1,6 +1,8 @@
 package com.ums.eproject.bean;
 
-public class DepositTrial {
+import java.io.Serializable;
+
+public class DepositTrial implements Serializable {
 
 
     /**
@@ -44,7 +46,7 @@ public class DepositTrial {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         private double payAmount;
         private double rechargeAmount;
         private int rechargeGiftAmount;

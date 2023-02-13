@@ -6,7 +6,20 @@
     android:layout_height="match_parent"
     android:background="#000000"
     android:orientation="vertical"
+    tools:context=".activity.ImgPreviewActivity">
 
-    tools:context=".activity.AuditWebViewActivity">
+    <com.stx.xhb.androidx.XBanner
+        android:id="@+id/preview_banner"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:AutoPlayTime="4000"
+        app:pointsPosition="RIGHT"
+        app:isShowNumberIndicator="true"
+        app:isShowIndicatorOnlyOne="true"
+        app:pageChangeDuration="2000"
+        app:pointNormal="@mipmap/ic_page_indicator_focused"
+        app:pointSelect="@mipmap/ic_page_indicator"
+        app:tipTextSize="14sp" >
+    </com.stx.xhb.androidx.XBanner>
 
 </LinearLayout>

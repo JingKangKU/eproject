@@ -99,6 +99,15 @@ public class HomeBean {
             private String imageUrl;
             private String navName;
             private String name;
+            private String detailDesc;
+
+            public String getDetailDesc() {
+                return detailDesc;
+            }
+
+            public void setDetailDesc(String detailDesc) {
+                this.detailDesc = detailDesc;
+            }
 
             public int getLinkType() {
                 return linkType;
@@ -184,6 +193,15 @@ public class HomeBean {
                 private int linkType;
                 private String linkTypeAlias;
                 private int productId;
+                private String detailDesc;
+
+                public String getDetailDesc() {
+                    return detailDesc;
+                }
+
+                public void setDetailDesc(String detailDesc) {
+                    this.detailDesc = detailDesc;
+                }
 
                 public String getLinkUrl() {
                     return linkUrl;
