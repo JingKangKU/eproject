@@ -2,6 +2,7 @@ package com.ums.eproject.activity;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -25,9 +26,11 @@ import com.ums.eproject.bean.SingleOption;
 import com.ums.eproject.https.HttpSubscriber;
 import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
+import com.ums.eproject.utils.DoubleUitl;
 import com.ums.eproject.utils.MsgUtil;
 import com.ums.eproject.utils.StrUtil;
 import com.ums.eproject.utils.UIHelp;
+import com.ums.eproject.view.CashierInputFilter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +47,8 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
     private EditText topup_input_amt;
 
     private TopupAdapter adapter;
+
+    private DepositRuleBean.DataBean depositData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +98,7 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void doClick(SingleOption singleOption,int position) {
                 depositAmount = singleOption.getDepositAmount();
+                topup_input_amt.setText("");
             }
         });
         topup_recycler_view.setAdapter(adapter);
@@ -105,6 +111,8 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
         }else{
             ll_topup_input.setVisibility(View.GONE);
         }
+
+        topup_input_amt.setFilters(new InputFilter[]{new CashierInputFilter()});
 
         topup_input_amt.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
             @Override
@@ -125,8 +133,16 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String inputAmt = s.toString();
                 if (!StrUtil.isEmpty(inputAmt)){
-                    depositAmount = Double.parseDouble(inputAmt);
+                    if (DoubleUitl.isDouble(inputAmt)){
+                        depositAmount = Double.parseDouble(inputAmt);
+                    }else{
+                        MsgUtil.showCustom(context,"请正确输入金额");
+                    }
+                    adapter.clearSelect();
+                }else{
+                    depositAmount = 0;
                 }
+
             }
 
             @Override
@@ -141,6 +157,7 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onSucceed(DepositRuleBean data) {
                 if (data.getCode() == 200){
+                    depositData = data.getData();
                     initRecyclerView(data.getData().getDepositAmountList());
                     setViewData(data.getData());
                 }else{
@@ -156,6 +173,13 @@ public class TopupActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void memDepositTrial(double depositAmount) {
+
+        if (!(depositAmount >= depositData.getUserInputMin() && depositAmount <= depositData.getUserInputMax())){
+            MsgUtil.showCustom(context,"输入金额需要在"+depositData.getUserInputMin()
+                    +"元至"+depositData.getUserInputMax()+"元之间！");
+            return;
+        }
+
         CommRequestApi.getInstance().memDepositTrial(depositAmount,new HttpSubscriber<>(new SubscriberOnListener<DepositTrial>() {
             @Override
             public void onSucceed(DepositTrial data) {

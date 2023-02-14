@@ -71,6 +71,7 @@
         <activity
             android:name=".activity.GoodsDetailActivity"
             android:exported="false"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.PdfPngActivity"
@@ -99,6 +100,7 @@
         <activity
             android:name=".activity.TopupActivity"
             android:exported="false"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AuditActivity"

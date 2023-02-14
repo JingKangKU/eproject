@@ -13,6 +13,7 @@ import com.mosect.lib.immersive.LayoutAdapter;
 import com.ums.eproject.R;
 import com.ums.eproject.bean.AddressBean;
 import com.ums.eproject.bean.GoodsDetail;
+import com.ums.eproject.bean.OrderPerPdt;
 import com.ums.eproject.bean.PerPdtOrder;
 import com.ums.eproject.bean.PlaceOrderBean;
 import com.ums.eproject.https.HttpSubscriber;
@@ -145,12 +146,15 @@ public class GoodsPayActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void preOrderPerPdt(PlaceOrderBean placeOrderBean){
-        CommRequestApi.getInstance().preOrderPerPdt(context, placeOrderBean,new HttpSubscriber<>(new SubscriberOnListener<PerPdtOrder>() {
+        CommRequestApi.getInstance().preOrderPerPdt(context, placeOrderBean,new HttpSubscriber<>(new SubscriberOnListener<OrderPerPdt>() {
             @Override
-            public void onSucceed(PerPdtOrder data) {
+            public void onSucceed(OrderPerPdt data) {
                 if (data.getCode() == 200) {
-//                    if (data.getData().getPayStatus)
-                    UIHelp.startActivity(context,PayStateActivity.class);
+                    int payState = data.getData().getPayStatus();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("payState",payState);
+                    bundle.putInt("jumpType",Constant.jumpType_goods);
+                    UIHelp.startActivity(context,PayStateActivity.class,bundle);
                 } else {
                     MsgUtil.showCustom(context, data.getMessage());
                 }

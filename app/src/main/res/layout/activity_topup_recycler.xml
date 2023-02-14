@@ -52,14 +52,21 @@
 
             <EditText
                 android:id="@+id/topup_input_amt"
-                android:digits="0123456789."
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:background="@null"
                 android:hint="¥手输金额"
-                android:inputType="phone|number"
+
+                android:imeOptions="actionDone"
+                android:digits="0123456789."
+                android:singleLine="true"
+                android:maxLines="1"
+                android:maxLength="12"
+                android:inputType="numberDecimal"
+
                 android:textColor="#e01222"
                 android:textColorHint="#ffbebdbd"
                 android:textCursorDrawable="@null"

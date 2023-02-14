@@ -10,13 +10,16 @@ import com.mosect.lib.immersive.ImmersiveLayout;
 import com.mosect.lib.immersive.LayoutAdapter;
 import com.ums.eproject.R;
 import com.ums.eproject.utils.Constant;
+import com.ums.eproject.utils.UIHelp;
 
 public class PayStateActivity extends BaseActivity implements View.OnClickListener {
 
     private LinearLayout title_view, title_right;
-    private TextView title_text,audit_state_desc,audit_state_card_type;
-    private ImageView audit_state_img;
-    private int auditState;
+    private TextView title_text;
+    private ImageView pay_state_img;
+    private TextView pay_state_desc;
+    private int payState;
+    private int jumpType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,22 +41,22 @@ public class PayStateActivity extends BaseActivity implements View.OnClickListen
         // 请求沉浸式布局
         immersiveLayout.requestLayout();
 
-        audit_state_img = findViewById(R.id.audit_state_img);
-        audit_state_desc = findViewById(R.id.audit_state_desc);
-        audit_state_card_type = findViewById(R.id.audit_state_card_type);
-        audit_state_card_type.setText("成人卡");
-//
-//        Bundle bundle = getIntent().getBundleExtra("bundle");
-//        auditState = bundle.getInt("auditState");
+        pay_state_img = findViewById(R.id.pay_state_img);
+        pay_state_desc = findViewById(R.id.pay_state_desc);
 
-        if (auditState == Constant.AUDIT_STATE_SUCCESS){
-            audit_state_img.setImageResource(R.mipmap.audit_ing);
-        }else if(auditState == Constant.AUDIT_STATE_ERR){
-            audit_state_img.setImageResource(R.mipmap.audit_err);
-        }else{
-            audit_state_img.setImageResource(R.mipmap.audit_succ);
+
+        Bundle bundle = getIntent().getBundleExtra("bundle");
+        payState = bundle.getInt("payState",-1);
+        jumpType = bundle.getInt("jumpType");
+
+        if (payState == Constant.pay_State_success){
+            pay_state_img.setImageResource(R.mipmap.audit_ing);
+//        }else if(payState == Constant.pay_State_error){
+//            pay_state_img.setImageResource(R.mipmap.audit_err);
+        } else{
+            pay_state_img.setImageResource(R.mipmap.audit_succ);
         }
-        audit_state_desc.setText(Constant.getAuditStateLabel(auditState));
+        pay_state_desc.setText(Constant.getPayStateLabel(payState));
     }
 
     @Override
@@ -68,8 +71,17 @@ public class PayStateActivity extends BaseActivity implements View.OnClickListen
             case R.id.title_back:
                 finish();
                 break;
-
         }
     }
 
+    @Override
+    public void finish() {
+        if (jumpType == Constant.jumpType_goods){
+            UIHelp.startActivity(context,GoodsDetailActivity.class);
+        }else if (jumpType == Constant.jumpType_topup){
+            UIHelp.startActivity(context,TopupActivity.class);
+        }
+
+        super.finish();
+    }
 }

@@ -21,6 +21,7 @@ import com.ums.eproject.bean.MemberBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.OrderBean;
 import com.ums.eproject.bean.OrderDetailBean;
+import com.ums.eproject.bean.OrderPerPdt;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.PerPdtOrder;
 import com.ums.eproject.bean.ProductsBean;
@@ -98,7 +99,7 @@ public interface HttpRequestService {
     //商品下单
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})
     @POST("/tetapp/ord/preOrderPerPdt")
-    Observable<PerPdtOrder> preOrderPerPdt(@Header("signKey") String signKey, @Body RequestBody body);
+    Observable<OrderPerPdt> preOrderPerPdt(@Header("signKey") String signKey, @Body RequestBody body);
 
     //商品查询
     @Headers({"Content-Type: application/json; charset=utf-8;","ignoreToken:false"})

@@ -113,6 +113,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
             public void onSucceed(StartAdvertise data) {
                 if (data.getCode() == 200){
                     if (data.getData().size()>0){
+                        ImmersiveLayout.darkStatusBar(SplashActivity.this);
                         setImageViewUrl(data.getData().get(0).getImageUrl());
                     }else{
                         toLoginOrMain();

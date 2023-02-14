@@ -6,9 +6,27 @@ package com.ums.eproject.utils;
  */
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DoubleUitl {
     private static final int DEF_DIV_SCALE = 10;
+
+    //判断是否是double类型
+    public static boolean isDouble(String input) {
+        Matcher mer = Pattern.compile("^[+-]?[0-9.]+$").matcher(input);
+        return mer.find();
+
+    }
+
+    //取两位小数 避免E 出现
+    public static String formatDouble(double dou) {
+        return   new DecimalFormat("#0.00").format(dou);
+
+    }
+
+
 
     /**
      * * 两个Double数相加 *

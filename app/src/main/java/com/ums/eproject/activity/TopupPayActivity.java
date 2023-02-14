@@ -24,6 +24,7 @@ import com.ums.eproject.https.HttpSubscriber;
 import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
 import com.ums.eproject.utils.Constant;
+import com.ums.eproject.utils.DoubleUitl;
 import com.ums.eproject.utils.MsgUtil;
 import com.ums.eproject.utils.UIHelp;
 
@@ -85,10 +86,10 @@ public class TopupPayActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void initViewData(DepositTrial depositTrial) {
-        topup_pay_rechargeAmount.setText(String.valueOf(depositTrial.getData().getRechargeAmount()));
-        topup_pay_rechargeGiftAmount.setText(String.valueOf(depositTrial.getData().getRechargeGiftAmount()));
-        topup_pay_rechargeDiscountAmount.setText(String.valueOf(depositTrial.getData().getRechargeDiscountAmount()));
-        topup_pay_payAmount.setText(String.valueOf(depositTrial.getData().getPayAmount()));
+        topup_pay_rechargeAmount.setText(DoubleUitl.formatDouble(depositTrial.getData().getRechargeAmount()));
+        topup_pay_rechargeGiftAmount.setText(DoubleUitl.formatDouble(depositTrial.getData().getRechargeGiftAmount()));
+        topup_pay_rechargeDiscountAmount.setText(DoubleUitl.formatDouble(depositTrial.getData().getRechargeDiscountAmount()));
+        topup_pay_payAmount.setText(DoubleUitl.formatDouble(depositTrial.getData().getPayAmount()));
 
     }
 
@@ -144,7 +145,10 @@ public class TopupPayActivity extends BaseActivity implements View.OnClickListen
                 if (defSelect == -1){
                     MsgUtil.showCustom(context,"请选择支付方式");
                 }else{
-                    UIHelp.startActivity(context,PayStateActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("payState",-1);
+                    bundle.putInt("jumpType",Constant.jumpType_topup);
+                    UIHelp.startActivity(context,PayStateActivity.class,bundle);
                 }
 
                 break;

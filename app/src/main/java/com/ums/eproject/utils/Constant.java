@@ -21,7 +21,7 @@ public class Constant {
 //    public static String baseUrl = "http://121.40.88.223:8601/";//测试1
 //    public static String baseUrl = "http://36.137.57.29:7484/"; //测试2
     public static String baseUrl = "https://app-test-tet.tzjtcyjt.com/"; //测试2
-    public static String fileUrl = "http://36.137.57.29:7480/"; //文件服务器测试地址1
+
 
 
     public static String signReqHeader = "signKey";
@@ -188,15 +188,34 @@ public class Constant {
 
     //用户相关三个协议
     //用户服务协议
-    public static final String agreement_yh = fileUrl+"tetprotocols/userservice.html";
+    public static final String agreement_yh = baseUrl+"tetprotocols/userservice.html";
     //隐私协议
-    public static final String agreement_ys = fileUrl+"tetprotocols/privateinfo.html";
+    public static final String agreement_ys = baseUrl+"tetprotocols/privateinfo.html";
     //免密协议
-    public static final String agreement_mm = fileUrl+"tetprotocols/grantservice.html";
+    public static final String agreement_mm = baseUrl+"tetprotocols/grantservice.html";
 
 
     //余额台账查询状态
     public static final Integer bookBalance_All = null;
     public static final Integer bookBalance_expenditure = 0;//支出
     public static final Integer bookBalance_income = 1;//收入
+
+
+    //支付状态
+    public static final int pay_State_success = 3;//已支付
+    public static final int pay_State_error = 0;//未支付
+    public static final int pay_State_none = -1;//状态未知
+
+    public static String getPayStateLabel(int val){
+        switch (val){
+            case pay_State_success: return "支付成功";
+            case pay_State_error: return "未支付";
+            case pay_State_none: return "状态未知";
+        }
+        return "状态未知";
+    }
+
+    //jump pay页面来源
+    public static final int jumpType_goods = 1;//商品下单来源
+    public static final int jumpType_topup = 2;//余额充值来源
 }

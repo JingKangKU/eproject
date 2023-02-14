@@ -22,6 +22,7 @@ import com.ums.eproject.bean.MemberBean;
 import com.ums.eproject.bean.NETData;
 import com.ums.eproject.bean.OrderBean;
 import com.ums.eproject.bean.OrderDetailBean;
+import com.ums.eproject.bean.OrderPerPdt;
 import com.ums.eproject.bean.PdtCategory;
 import com.ums.eproject.bean.PerPdtOrder;
 import com.ums.eproject.bean.PlaceOrderBean;
@@ -367,7 +368,7 @@ public class CommRequestApi extends BaseApi {
     }
 
     //商品下单
-    public void preOrderPerPdt(Context context, PlaceOrderBean placeOrderBean, Subscriber<PerPdtOrder> subscriber){
+    public void preOrderPerPdt(Context context, PlaceOrderBean placeOrderBean, Subscriber<OrderPerPdt> subscriber){
         JSONObject json = placeOrderBean.toJson();
         if (json == null){
             MsgUtil.showCustom(context,"数据解析异常,请重新打开页面");

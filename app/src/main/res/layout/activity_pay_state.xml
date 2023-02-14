@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F3F3F3"
     android:orientation="vertical"
-    tools:context=".activity.AuditStateActivity">
+    tools:context=".activity.PayStateActivity">
 
     <include layout="@layout/layout_title" />
 
@@ -26,25 +26,16 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/audit_state_img"
+                android:id="@+id/pay_state_img"
                 android:src="@mipmap/audit_succ"
                 android:layout_width="66dp"
                 android:layout_height="66dp"/>
             <TextView
-                android:id="@+id/audit_state_desc"
+                android:id="@+id/pay_state_desc"
                 android:layout_marginTop="28dp"
                 android:text="支付成功"
                 android:textColor="#333333"
                 android:textSize="21sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/audit_state_card_type"
-                android:layout_marginTop="5dp"
-                android:text="成人卡"
-                android:textColor="#ff999999"
-                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
