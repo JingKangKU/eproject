@@ -11,6 +11,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_25.xml" value="0.13518518518518519" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/grey_round_shape_5.xml" value="0.12685185185185185" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/login_submit_shape.xml" value="0.18333333333333332" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/title_bg_shape.xml" value="0.1824074074074074" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/white_round_shape_10.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/white_round_shape_5.xml" value="0.12685185185185185" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/drawable/yello_round_shape_13.xml" value="0.10462962962962963" />
@@ -28,6 +29,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_pdfpng.xml" value="0.1272644927536232" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_splash.xml" value="0.13269927536231885" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_test.xml" value="0.11775362318840579" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_topup_list.xml" value="0.12817028985507245" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_topup_pay.xml" value="0.12047101449275362" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_topup_recycler.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_agreement_list.xml" value="0.1" />
@@ -38,11 +40,13 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_reset_pw.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_reset_px.xml" value="0.13496376811594202" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/activity_user_setting.xml" value="0.11911231884057971" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_balance_change.xml" value="0.12817028985507245" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_commodity.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_mall.xml" value="0.1" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_user.xml" value="0.16666666666666666" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/fragment_user_order.xml" value="0.11503623188405797" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_balance_change.xml" value="0.12817028985507245" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_goods.xml" value="0.15625" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_home_ability.xml" value="0.11775362318840579" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/item_user_order.xml" value="0.11503623188405797" />
@@ -54,6 +58,7 @@
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_home_func_3.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_pay_pop.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_table_bar.xml" value="0.12454710144927536" />
+        <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_title.xml" value="0.12817028985507245" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_title_user.xml" value="0.129981884057971" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/layout/layout_trans_pop.xml" value="0.13360507246376813" />
         <entry key="..\:/AppGitHut/eproject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />

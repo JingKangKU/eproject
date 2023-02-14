@@ -51,7 +51,8 @@
                 android:textSize="15sp" />
 
             <EditText
-                android:id="@+id/login_phone"
+                android:id="@+id/topup_input_amt"
+                android:digits="0123456789."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

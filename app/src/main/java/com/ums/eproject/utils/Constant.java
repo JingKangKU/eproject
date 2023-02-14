@@ -19,7 +19,10 @@ public class Constant {
 
 
 //    public static String baseUrl = "http://121.40.88.223:8601/";//测试1
-    public static String baseUrl = "http://36.137.57.29:7484/"; //测试2
+//    public static String baseUrl = "http://36.137.57.29:7484/"; //测试2
+    public static String baseUrl = "https://app-test-tet.tzjtcyjt.com/"; //测试2
+    public static String fileUrl = "http://36.137.57.29:7480/"; //文件服务器测试地址1
+
 
     public static String signReqHeader = "signKey";
 
@@ -185,10 +188,15 @@ public class Constant {
 
     //用户相关三个协议
     //用户服务协议
-    public static final String agreement_yh = "http://36.137.57.29:7480/tetprotocols/userservice.html";
+    public static final String agreement_yh = fileUrl+"tetprotocols/userservice.html";
     //隐私协议
-    public static final String agreement_ys = "http://36.137.57.29:7480/tetprotocols/privateinfo.html";
+    public static final String agreement_ys = fileUrl+"tetprotocols/privateinfo.html";
     //免密协议
-    public static final String agreement_mm = "http://36.137.57.29:7480/tetprotocols/grantservice.html";
+    public static final String agreement_mm = fileUrl+"tetprotocols/grantservice.html";
 
+
+    //余额台账查询状态
+    public static final Integer bookBalance_All = null;
+    public static final Integer bookBalance_expenditure = 0;//支出
+    public static final Integer bookBalance_income = 1;//收入
 }

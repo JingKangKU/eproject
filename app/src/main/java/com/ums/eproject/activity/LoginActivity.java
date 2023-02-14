@@ -270,7 +270,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 MsgUtil.showCustom(context,"两次密码输入不一致");return;
             }
             if (!StrUtil.isComplexPassword(pwd)){
-                MsgUtil.showCustom(context,"密码规则不符，必须包含数字、大写字符、小写字符和特殊符且不能少于8位");return;
+                MsgUtil.showCustom(context,"密码规则不符，必须包含数字、大写字母、小写字母和特殊符且不能少于8位");return;
             }
             if (!isAgree){
                 MsgUtil.showCustom(context,"请阅读并同意相关协议");return;

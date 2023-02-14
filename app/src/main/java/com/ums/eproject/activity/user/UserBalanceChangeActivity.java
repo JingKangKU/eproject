@@ -8,7 +8,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -18,9 +20,13 @@ import com.ums.eproject.R;
 import com.ums.eproject.activity.BaseActivity;
 import com.ums.eproject.adapter.UserBalanceAdapter;
 import com.ums.eproject.adapter.UserOrderAdapter;
+import com.ums.eproject.adapter.ViewPagerBalanceChangeAdapter;
+import com.ums.eproject.adapter.ViewPagerOrderAdapter;
 import com.ums.eproject.bean.BalanceBean;
 import com.ums.eproject.bean.BookBalance;
 import com.ums.eproject.bean.OrderBean;
+import com.ums.eproject.fragment.BalanceChangeFragment;
+import com.ums.eproject.fragment.OrderFragment;
 import com.ums.eproject.https.HttpSubscriber;
 import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
@@ -37,13 +43,12 @@ public class UserBalanceChangeActivity extends BaseActivity implements View.OnCl
     private LinearLayout title_view, title_right;
     private TextView title_text;
 
-    private SmartRefreshLayout refreshLayout;
-    private RecyclerView balance_recycler_view;
-    private UserBalanceAdapter adapter;
+    TabLayout tabLayout;
+    ViewPager viewpager;
+    ArrayList<BalanceChangeFragment> fragments;
+    ViewPagerBalanceChangeAdapter adapter;
 
-    private int pageNum;
-    private int pageSize;
-
+    private TextView user_balance_amt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,121 +66,67 @@ public class UserBalanceChangeActivity extends BaseActivity implements View.OnCl
         immersiveLayout.addAdapter(layout -> title_view.setPadding(0, layout.getPaddingTop(), 0, 0));
         immersiveLayout.requestLayout();
 
-        refreshLayout = findViewById(R.id.refreshLayout);
-        balance_recycler_view = findViewById(R.id.balance_recycler_view);
+        user_balance_amt = findViewById(R.id.user_balance_amt);
 
-        pageNum = 1;
-        pageSize = 10;
+        tabLayout = findViewById(R.id.tabLayout);
+        viewpager = findViewById(R.id.viewpager);
 
-        initRefreshLayout();
-        initRecyclerView();
+        initView();
+        getAccountBalance();
     }
 
-    private void initRefreshLayout(){
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() { //下拉刷新
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshlayout) {
-                pageNum = 1;
-                queryBookBalance(pageNum,pageSize);
-            }
-        });
+    private void initView() {
+        //初始化数据
+        fragments = new ArrayList<>();
 
-        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() { //上拉加载更多
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshlayout) {
-                pageNum ++;
-                queryBookBalance(pageNum,pageSize);
-            }
-        });
-        refreshLayout.setEnableNestedScroll(true);
-    }
 
-    private void initRecyclerView(){
-        balance_recycler_view.setLayoutManager(new LinearLayoutManager(context));
+        fragments.add(new BalanceChangeFragment("全部", Constant.bookBalance_All));
+        fragments.add(new BalanceChangeFragment("支出", Constant.bookBalance_expenditure));
+        fragments.add(new BalanceChangeFragment("收入", Constant.bookBalance_income));
 
-        adapter = new UserBalanceAdapter(context,new ArrayList<>());
-        adapter.setClickListener(new UserBalanceAdapter.ClickListenerInterface() {
+
+        //设置ViewPager的适配器
+        adapter = new ViewPagerBalanceChangeAdapter(getSupportFragmentManager(),fragments);
+        viewpager.setAdapter(adapter);
+        viewpager.setOffscreenPageLimit(fragments.size());
+        //关联viewpager
+        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void doClick(long id) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
-        });
-        adapter.setCancelClickListener(new UserBalanceAdapter.CancelClickListenerInterface() {
+
             @Override
-            public void doClick(long id) {
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
 
             }
         });
-        balance_recycler_view.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewpager);
 
     }
-    private void refreshNotifyNoneRecyclerView(){ //无数据情况
-        adapter.getListData().clear();
-        adapter.notifyDataSetChanged();
-    }
 
-    private void refreshNotifyRecyclerView(List<OrderBean.DataBean.ListBean> list){
-        adapter.getListData().clear();
-        adapter.addListData(list);
-        adapter.notifyDataSetChanged();
-    }
-
-    private void addNotifyRecyclerView(List<OrderBean.DataBean.ListBean> list) {
-        adapter.addListData(list);
-        adapter.notifyItemRangeChanged(adapter.getListData().size()-10,adapter.getListData().size());
-    }
-
-    private void queryBookBalance(int pageNum,int pageSize) {
-
-        CommRequestApi.getInstance().queryBookBalance(1,pageNum, pageSize, new HttpSubscriber<>(new SubscriberOnListener<BookBalance>() {
+    private void getAccountBalance() {
+        CommRequestApi.getInstance().getAccountBalance( new HttpSubscriber<>(new SubscriberOnListener<BalanceBean>() {
             @Override
-            public void onSucceed(BookBalance data) {
+            public void onSucceed(BalanceBean data) {
                 if (data.getCode() == 200) {
-                    setPageNum(data.getData().getPageNum());
-                    if (data.getData().getList().size() <= 0){ //无数据状态
-
-                        if (pageNum == 1){
-                            MsgUtil.showCustom(context,"暂无数据");
-                            refreshNotifyNoneRecyclerView();
-                        }
-                        refreshLayout.finishRefresh(false);
-                        refreshLayout.finishLoadMore(true);
-
-
-                    }else{ //有数据状态
-
-                        if (pageNum == 1){
-//                            refreshNotifyRecyclerView( data.getData().getList() );
-//                        }else{
-//                            addNotifyRecyclerView( data.getData().getList() );
-                        }
-
-                        refreshLayout.finishRefresh(true);
-                        refreshLayout.finishLoadMore(true);
-                    }
-
+                    user_balance_amt.setText(String.valueOf(data.getData().getBalance()));
                 } else {
                     MsgUtil.showCustom(context, data.getMessage());
-                    refreshLayout.finishRefresh(false);
-                    refreshLayout.finishLoadMore(false);
-                    setPageNum(pageNum);
                 }
-
             }
             @Override
             public void onError(int code, String msg) {
                 Toasty.error(context, "数据返回异常   " + code + "   " + msg).show();
-                refreshLayout.finishRefresh(false);
-                refreshLayout.finishLoadMore(false);
-                setPageNum(pageNum);
+
             }
-        }, context));
+        }, context,false));
     }
-
-    private void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
-
     @Override
     protected void onResume() {
         super.onResume();

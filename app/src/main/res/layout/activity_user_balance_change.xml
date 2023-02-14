@@ -8,34 +8,91 @@
     android:orientation="vertical"
     tools:context=".activity.user.UserBalanceActivity">
 
-    <include layout="@layout/layout_title" />
     <LinearLayout
+        android:id="@+id/title_view"
+        android:background="@drawable/title_bg_shape"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/title_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="2dp"
+                android:padding="13dp"
+                android:src="@mipmap/title_back" />
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_centerInParent="true"
+                android:text="泰e通商城GO"
+                android:textColor="#ffffffff"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/title_right"
+                android:visibility="gone"
+                android:layout_marginRight="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_right"
+                    android:text="充值记录"
+                    android:textColor="#ffcfeaff"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:layout_marginLeft="4dp"
+                    android:src="@mipmap/user_right"
+                    android:layout_width="11dp"
+                    android:layout_height="11dp" />
+            </LinearLayout>
+        </RelativeLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/user_balance_amt"
+                android:text=""
+                android:textColor="#ffffff"
+                android:textSize="40sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:id="@+id/refreshLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/fragment_bg_shape"
-            tools:context=".fragment.OrderFragment">
 
-            <com.scwang.smartrefresh.layout.header.ClassicsHeader
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width ="match_parent"
+            android:layout_height ="wrap_content"
+            android:background="#FFFFFF"
+            app:tabIndicatorColor="#0869B6"
+            app:tabSelectedTextColor="#0869B6"
+            app:tabTextColor="#242424"
+            app:tabMaxWidth="0dp"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabIndicatorFullWidth="false"
+            android:layout_gravity ="top"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/balance_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp" />
-
-            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-    </LinearLayout>
+    </androidx.viewpager.widget.ViewPager>
 
 
 </LinearLayout>

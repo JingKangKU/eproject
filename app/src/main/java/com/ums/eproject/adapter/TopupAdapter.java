@@ -69,6 +69,13 @@ public class TopupAdapter extends RecyclerView.Adapter<TopupAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
+    public void clearSelect(){
+        for (int i = 0 ; i < topupList.size() ; i ++){
+            topupList.get(i).setSelectFlag("1");
+        }
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return topupList.size();

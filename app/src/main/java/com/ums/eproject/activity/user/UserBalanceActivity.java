@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,7 +32,11 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
     private TextView title_text;
 
     private ResizableImageView user_one_code,user_two_code;
-    private TextView user_balance_txt;
+    private TextView user_balance_txt,user_info_balance_dis;
+
+    private ImageView user_balance_eyes;
+
+    private boolean isShowBalance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +56,27 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
         user_one_code = findViewById(R.id.user_one_code);
         user_two_code = findViewById(R.id.user_two_code);
         user_balance_txt = findViewById(R.id.user_balance_txt);
+        user_info_balance_dis = findViewById(R.id.user_info_balance_dis);
+        user_balance_eyes = findViewById(R.id.user_balance_eyes);
+        user_balance_eyes.setOnClickListener(this);
         findViewById(R.id.user_balance_detail).setOnClickListener(this);
         findViewById(R.id.title_back).setOnClickListener(this);
 
         getAccountBalance();
 
-
+        isShowBalance = false;
+        setBalanceEyesAndData();
+    }
+    private void setBalanceEyesAndData(){
+        if (isShowBalance){
+            user_balance_txt.setVisibility(View.VISIBLE);
+            user_info_balance_dis.setVisibility(View.GONE);
+            user_balance_eyes.setImageResource(R.mipmap.black_eyes);
+        }else{
+            user_balance_txt.setVisibility(View.GONE);
+            user_info_balance_dis.setVisibility(View.VISIBLE);
+            user_balance_eyes.setImageResource(R.mipmap.eyes);
+        }
     }
 
     private void createQRCode(BalanceBean data) {
@@ -84,6 +104,10 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.user_balance_detail:
                 UIHelp.startActivity(context,UserBalanceChangeActivity.class);
+                break;
+            case R.id.user_balance_eyes:
+                isShowBalance = !isShowBalance;
+                setBalanceEyesAndData();
                 break;
         }
     }
