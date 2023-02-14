@@ -3,7 +3,6 @@ package com.ums.eproject.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -11,34 +10,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.entity.BaseBannerInfo;
 import com.stx.xhb.androidx.transformers.Transformer;
 import com.ums.eproject.R;
-import com.ums.eproject.adapter.MarketProductAdapter;
-import com.ums.eproject.bean.BaseRequest;
-import com.ums.eproject.bean.GoodsDetail;
-import com.ums.eproject.bean.MarketProductsBean;
 import com.ums.eproject.bean.MarketingDetailsBean;
-import com.ums.eproject.https.HttpSubscriber;
-import com.ums.eproject.https.SubscriberOnListener;
-import com.ums.eproject.https.comm.CommRequestApi;
-import com.ums.eproject.utils.MsgUtil;
 import com.ums.eproject.utils.StrUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import es.dmoral.toasty.Toasty;
 
 public class MarketingDetailsActivity extends BaseActivity {
     private static final String TAG = MarketingDetailsActivity.class.getName();
@@ -67,7 +48,7 @@ public class MarketingDetailsActivity extends BaseActivity {
             if (null != showData.getGallery()) {
                 setBannerData();
             }
-            setWebViewData(showData.getDescription());
+            setWebViewData(showData.getDetailDesc());
             subjectName.setText(showData.getSubjectCategoryName());
             unitName.setText(showData.getTitle());
             callLL.setOnClickListener(new View.OnClickListener() {

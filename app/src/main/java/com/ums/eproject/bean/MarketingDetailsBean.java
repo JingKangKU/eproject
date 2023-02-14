@@ -1,7 +1,6 @@
 package com.ums.eproject.bean;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
 public class MarketingDetailsBean implements Serializable{
@@ -30,7 +29,7 @@ public class MarketingDetailsBean implements Serializable{
     private List<String> gallery;
     private String contactPerson;
     private String contactTel;
-    private String description;
+    private String detailDesc;
     private Object remark;
 
     @Override
@@ -45,7 +44,7 @@ public class MarketingDetailsBean implements Serializable{
                 ", gallery=" + gallery +
                 ", contactPerson='" + contactPerson + '\'' +
                 ", contactTel='" + contactTel + '\'' +
-                ", description=" + description +
+                ", description=" + detailDesc +
                 ", remark=" + remark +
                 '}';
     }
@@ -122,12 +121,12 @@ public class MarketingDetailsBean implements Serializable{
         this.contactTel = contactTel;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDetailDesc() {
+        return detailDesc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDetailDesc(String detailDesc) {
+        this.detailDesc = detailDesc;
     }
 
     public Object getRemark() {
