@@ -8,10 +8,10 @@
     android:orientation="vertical"
     tools:context=".activity.user.UserResetPWActivity">
 
-<!--    <com.ums.eproject.view.OverScrollView-->
-<!--        android:background="#F3F3F3"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
+    <com.ums.eproject.view.OverScrollView
+        android:background="#F3F3F3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -247,7 +247,7 @@
 
 
     </LinearLayout>
-<!--    </com.ums.eproject.view.OverScrollView>-->
+    </com.ums.eproject.view.OverScrollView>
 
 
 </LinearLayout>

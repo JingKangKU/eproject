@@ -1,11 +1,16 @@
 package com.ums.eproject.activity;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.Glide;
+import com.chinaums.common.utils.permission.PermissionListener;
+import com.chinaums.common.utils.permission.UMSPermissionUtil;
 import com.luck.picture.lib.tools.SPUtils;
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.mosect.lib.immersive.LayoutAdapter;
@@ -58,7 +63,8 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         double wsh = UIHelp.getWsH(this);
         new Handler().postDelayed(new Runnable(){ public void run() {
             listStartAdvertise(wsh);
-        } }, 0);
+            permissionGranted();
+        } }, 1000);
 
     }
 
@@ -68,6 +74,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void countDownFinished() {
                 toLoginOrMain();
+
             }
         });
 
@@ -95,6 +102,23 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         super.onResume();
         ImmersiveLayout.lightStatusBar(this);
 //        ImmersiveLayout.lightNavigationBar(this);
+
+
+
+    }
+
+    private void permissionGranted() {
+        UMSPermissionUtil.requestPermission(new PermissionListener() {
+            @Override
+            public void permissionGranted(@NonNull String[] permission) {
+
+            }
+
+            @Override
+            public void permissionDenied(@NonNull String[] permission) {
+
+            }
+        }, Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     private void listStartAdvertise(double screenRate) {

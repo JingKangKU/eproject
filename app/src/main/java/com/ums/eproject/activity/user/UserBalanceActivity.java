@@ -45,8 +45,27 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
 
         user_balance_txt = findViewById(R.id.user_balance_txt);
         findViewById(R.id.user_balance_detail).setOnClickListener(this);
+        findViewById(R.id.title_back).setOnClickListener(this);
 
         getAccountBalance();
+
+        createQRCode();
+    }
+
+    private void createQRCode() {
+        //开线程
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+//                Bitmap bitmap = QRCodeEncoder.syncEncodeQRCode("我爱你,我的祖国!", 400);
+//
+//                QRCodeEncoder.syncEncodeQRCode(AppConst.QrCodeCommon.ADD+"我是帅逼",UIUtils.dip2Px(100),R.color.black,UIUtils.getBitmap(R.mipmap.default_header))
+//
+//                Message message = handler.obtainMessage();
+//                message.obj = bitmap;
+//                handler.sendMessage(message);
+            }
+        }).start();
     }
 
     @Override

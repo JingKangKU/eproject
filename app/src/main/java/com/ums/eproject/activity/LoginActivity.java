@@ -145,27 +145,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onStart() {
         super.onStart();
-        permissionGranted();
+
     }
 
-    private void permissionGranted() {
-        UMSPermissionUtil.requestPermission(new PermissionListener() {
-            @Override
-            public void permissionGranted(@NonNull String[] permission) {
 
-            }
-
-            @Override
-            public void permissionDenied(@NonNull String[] permission) {
-
-            }
-        }, Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE);
-    }
     @Override
     protected void onResume() {
         super.onResume();
 
-         ImmersiveLayout.darkStatusBar(this);
+        ImmersiveLayout.darkStatusBar(this);
+
     }
 
     @Override

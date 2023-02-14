@@ -65,7 +65,7 @@ public class GoodsPayActivity extends BaseActivity implements View.OnClickListen
         // 请求沉浸式布局
         immersiveLayout.requestLayout();
 
-        initPopView();
+
 
         pay_order_address_desc = findViewById(R.id.pay_order_address_desc);
         pay_order_address_name = findViewById(R.id.pay_order_address_name);
@@ -84,6 +84,7 @@ public class GoodsPayActivity extends BaseActivity implements View.OnClickListen
         findViewById(R.id.ll_order_pay_pop).setOnClickListener(this);
         findViewById(R.id.goods_order_go_pay).setOnClickListener(this);
 
+        initPopView();
 
         Bundle bundle = getIntent().getBundleExtra("bundle");
         PerPdtOrder perPdtOrder = (PerPdtOrder) bundle.getSerializable("perPdtOrder");
@@ -102,6 +103,7 @@ public class GoodsPayActivity extends BaseActivity implements View.OnClickListen
         // TODO: 2023/2/8 默认余额支付
         defSelect = 0;
         comPayType = Constant.getComPayType(defSelect);
+        pay_goods_type.setText(Constant.transTypes[defSelect]);
         popView = LayoutInflater.from(this).inflate(R.layout.layout_pay_pop, null, false);
         popView.findViewById(R.id.popup_item1).setOnClickListener(this);
         popView.findViewById(R.id.popup_item2).setOnClickListener(this);
