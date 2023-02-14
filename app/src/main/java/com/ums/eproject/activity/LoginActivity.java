@@ -139,7 +139,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         initEyes();
 
-
+        permissionGranted();
     }
 
     @Override
@@ -202,6 +202,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 setAgree();
                 break;
         }
+    }
+
+    private void permissionGranted() {
+        UMSPermissionUtil.requestPermission(new PermissionListener() {
+            @Override
+            public void permissionGranted(@NonNull String[] permission) {
+
+            }
+
+            @Override
+            public void permissionDenied(@NonNull String[] permission) {
+
+            }
+        }, Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     private void setAgree() {

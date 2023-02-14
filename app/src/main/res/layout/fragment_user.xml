@@ -5,9 +5,9 @@
     android:layout_height="match_parent"
     android:background="#F3F3F3"
     tools:context=".fragment.UserFragment">
-    <com.ums.eproject.view.OverScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<!--    <com.ums.eproject.view.OverScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -146,6 +146,7 @@
                         android:layout_height="15dp"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/user_item_2"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -169,11 +170,13 @@
                         android:layout_height="15dp"/>
                 </LinearLayout>
                 <View
+                    android:visibility="gone"
                     android:background="#EFEDED"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp">
                 </View>
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/user_item_3"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -198,11 +201,13 @@
                 </LinearLayout>
 
                 <View
+                    android:visibility="gone"
                     android:background="#EFEDED"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp">
                 </View>
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/user_item_6"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -226,11 +231,13 @@
                         android:layout_height="15dp"/>
                 </LinearLayout>
                 <View
+                    android:visibility="gone"
                     android:background="#EFEDED"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp">
                 </View>
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/user_item_7"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -284,5 +291,5 @@
 
             </LinearLayout>
         </LinearLayout>
-    </com.ums.eproject.view.OverScrollView>
+<!--    </com.ums.eproject.view.OverScrollView>-->
 </FrameLayout>

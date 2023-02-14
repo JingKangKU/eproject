@@ -1,10 +1,13 @@
 package com.ums.eproject.activity.user;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.zxing.WriterException;
 import com.mosect.lib.immersive.ImmersiveLayout;
 import com.ums.eproject.R;
 import com.ums.eproject.activity.BaseActivity;
@@ -14,7 +17,9 @@ import com.ums.eproject.https.HttpSubscriber;
 import com.ums.eproject.https.SubscriberOnListener;
 import com.ums.eproject.https.comm.CommRequestApi;
 import com.ums.eproject.utils.MsgUtil;
+import com.ums.eproject.utils.QRCodeUtil;
 import com.ums.eproject.utils.UIHelp;
+import com.ums.eproject.view.ResizableImageView;
 
 import org.w3c.dom.Text;
 
@@ -25,7 +30,7 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
     private LinearLayout title_view, title_right;
     private TextView title_text;
 
-
+    private ResizableImageView user_one_code,user_two_code;
     private TextView user_balance_txt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,29 +48,26 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
         immersiveLayout.addAdapter(layout -> title_view.setPadding(0, layout.getPaddingTop(), 0, 0));
         immersiveLayout.requestLayout();
 
+        user_one_code = findViewById(R.id.user_one_code);
+        user_two_code = findViewById(R.id.user_two_code);
         user_balance_txt = findViewById(R.id.user_balance_txt);
         findViewById(R.id.user_balance_detail).setOnClickListener(this);
         findViewById(R.id.title_back).setOnClickListener(this);
 
         getAccountBalance();
 
-        createQRCode();
+
     }
 
-    private void createQRCode() {
-        //开线程
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-//                Bitmap bitmap = QRCodeEncoder.syncEncodeQRCode("我爱你,我的祖国!", 400);
-//
-//                QRCodeEncoder.syncEncodeQRCode(AppConst.QrCodeCommon.ADD+"我是帅逼",UIUtils.dip2Px(100),R.color.black,UIUtils.getBitmap(R.mipmap.default_header))
-//
-//                Message message = handler.obtainMessage();
-//                message.obj = bitmap;
-//                handler.sendMessage(message);
-            }
-        }).start();
+    private void createQRCode(BalanceBean data) {
+        try {
+            Bitmap bitmap1 = QRCodeUtil.CreateOneDCode(data.getData().getDynamicCode(),100,30);
+            Bitmap bitmap2 = QRCodeUtil.CreateTwoDCode(data.getData().getDynamicCode(),300,300);
+            user_one_code.setImageBitmap(bitmap1);
+            user_two_code.setImageBitmap(bitmap2);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -96,6 +98,7 @@ public class UserBalanceActivity extends BaseActivity implements View.OnClickLis
             public void onSucceed(BalanceBean data) {
                 if (data.getCode() == 200) {
                     setBalanceData(data);
+                    createQRCode(data);
                 } else {
                     MsgUtil.showCustom(context, data.getMessage());
 

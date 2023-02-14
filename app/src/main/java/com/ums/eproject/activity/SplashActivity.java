@@ -63,8 +63,8 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         double wsh = UIHelp.getWsH(this);
         new Handler().postDelayed(new Runnable(){ public void run() {
             listStartAdvertise(wsh);
-            permissionGranted();
-        } }, 1000);
+
+        } }, 0);
 
     }
 
@@ -105,20 +105,6 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
 
 
 
-    }
-
-    private void permissionGranted() {
-        UMSPermissionUtil.requestPermission(new PermissionListener() {
-            @Override
-            public void permissionGranted(@NonNull String[] permission) {
-
-            }
-
-            @Override
-            public void permissionDenied(@NonNull String[] permission) {
-
-            }
-        }, Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     private void listStartAdvertise(double screenRate) {

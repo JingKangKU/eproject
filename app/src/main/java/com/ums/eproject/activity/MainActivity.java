@@ -120,6 +120,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         clickMainBtn();
 
+        permissionGranted();
     }
     public void setUserFragmentTitleInfo(MemberBean memberBean){
         user_info_mobile.setText(memberBean.getData().getMobile());
@@ -160,6 +161,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    private void permissionGranted() {
+        UMSPermissionUtil.requestPermission(new PermissionListener() {
+            @Override
+            public void permissionGranted(@NonNull String[] permission) {
+
+            }
+
+            @Override
+            public void permissionDenied(@NonNull String[] permission) {
+
+            }
+        }, Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    }
 
     private void goToAudit() {
         UIHelp.startActivity(this, AuditActivity.class);
