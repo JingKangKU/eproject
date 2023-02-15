@@ -128,8 +128,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         user_info_card_type.setText(memberBean.getData().getMemberTypeAlias());
         if (memberBean.getData().getIsVerified() == 1) { //0未实名  1已实名
             linear_user_audit_state_succ.setVisibility(View.VISIBLE);
-        } else {
             linear_user_audit_state_none.setVisibility(View.GONE);
+        } else {
+            linear_user_audit_state_succ.setVisibility(View.GONE);
+            linear_user_audit_state_none.setVisibility(View.VISIBLE);
         }
 
 

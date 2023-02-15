@@ -58,7 +58,8 @@ public class AuditActivity extends BaseActivity implements View.OnClickListener 
                 finish();
                 break;
             case R.id.rl_audit_cr:
-                goToAudit(Constant.AUDIT_TYPE_CR_VAL);
+//                goToAudit(Constant.AUDIT_TYPE_CR_VAL);
+                goToAudit(Constant.AUDIT_TYPE_LOGIN_AUDIT_VAL);
                 break;
             case R.id.rl_audit_xs:
                 goToAudit(Constant.AUDIT_TYPE_XS_VAL);
