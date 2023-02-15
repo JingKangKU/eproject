@@ -1,9 +1,11 @@
 package com.ums.eproject.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -13,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.chinaums.common.utils.UMSStringUtil;
 import com.lljjcoder.Interface.OnCityItemClickListener;
 import com.lljjcoder.bean.CityBean;
 import com.lljjcoder.bean.DistrictBean;
@@ -33,7 +36,7 @@ import es.dmoral.toasty.Toasty;
 public class AddressModifyActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = AddressModifyActivity.class.getName();
     private LinearLayout title_view, title_right;
-    private TextView title_text, areaTv,right_tv;
+    private TextView title_text, areaTv, right_tv;
     private ImageView backIv;
     private EditText nameEt, mobileEt, detailEt;
     RadioGroup labelRG;
@@ -45,6 +48,7 @@ public class AddressModifyActivity extends BaseActivity implements View.OnClickL
     String selectDistrict;
     long paramId;
     AddressBean modifyBean;
+    InputMethodManager imm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class AddressModifyActivity extends BaseActivity implements View.OnClickL
         Bundle bundle = this.getIntent().getBundleExtra("bundle");
         paramId = bundle.getLong("id");
         initTitle();
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (0 != paramId) {
             getAddressById();
             title_text.setText("编辑收货地址");
@@ -73,7 +78,7 @@ public class AddressModifyActivity extends BaseActivity implements View.OnClickL
         title_right.setVisibility(View.VISIBLE);
         title_right.setOnClickListener(this);
         title_text = findViewById(R.id.title_text);
-        right_tv= findViewById(R.id.tv_right);
+        right_tv = findViewById(R.id.tv_right);
         right_tv.setText("保存");
     }
 
@@ -92,6 +97,7 @@ public class AddressModifyActivity extends BaseActivity implements View.OnClickL
         areaTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imm.hideSoftInputFromWindow(areaTv.getWindowToken(), 0);
                 mPicker.showCityPicker();
             }
         });
@@ -124,17 +130,36 @@ public class AddressModifyActivity extends BaseActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.title_right:
+                String name = nameEt.getText().toString().trim();
+                String mobile = mobileEt.getText().toString().trim();
+                String detail = detailEt.getText().toString().trim();
+                if (UMSStringUtil.isEmpty(name)) {
+                    MsgUtil.info(context, "请输入姓名");
+                    return;
+                }
+                if (UMSStringUtil.isEmpty(mobile)) {
+                    MsgUtil.info(context, "请输入联系方式");
+                    return;
+                }
+                if (UMSStringUtil.isEmpty(detail)) {
+                    MsgUtil.info(context, "请输入详细地址");
+                    return;
+                }
+                if (!UMSStringUtil.isMobile(mobile)) {
+                    MsgUtil.info(context, "请输入正确的手机号码");
+                    return;
+                }
                 AddressBean dataBean = new AddressBean();
                 if (paramId == 0)
                     dataBean.setId(null);
                 else
                     dataBean.setId(paramId);
-                dataBean.setName(nameEt.getText().toString().trim());
-                dataBean.setMobile(AesUtil.encryptValue(mobileEt.getText().toString().trim()));
+                dataBean.setName(name);
+                dataBean.setMobile(AesUtil.encryptValue(mobile));
                 dataBean.setProvinceName(selectProvince);
                 dataBean.setCityName(selectCity);
                 dataBean.setCountyName(selectDistrict);
-                dataBean.setDetailAddress(detailEt.getText().toString().trim());
+                dataBean.setDetailAddress(detail);
                 dataBean.setIsDefault(defaultCB.isChecked() ? "1" : "0");
                 CommRequestApi.getInstance().saveAddress(dataBean, new HttpSubscriber<>(new SubscriberOnListener<BaseRequest<String>>() {
                     @Override
@@ -167,9 +192,9 @@ public class AddressModifyActivity extends BaseActivity implements View.OnClickL
                     if (null != data) {
                         modifyBean = bean;
                         if (null != modifyBean) {
-                            selectProvince = bean.getProvinceName();
-                            selectCity = bean.getCityName();
-                            selectDistrict = bean.getCountyName();
+                            selectProvince = UMSStringUtil.isNotEmpty(bean.getProvinceName()) ? bean.getProvinceName() : "";
+                            selectCity = UMSStringUtil.isNotEmpty(bean.getCityName()) ? bean.getCityName() : "";
+                            selectDistrict = UMSStringUtil.isNotEmpty(bean.getCountyName()) ? bean.getCountyName() : "";
                             showData(modifyBean);
                         }
                     }

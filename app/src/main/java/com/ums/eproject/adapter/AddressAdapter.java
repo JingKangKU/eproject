@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chinaums.common.utils.UMSStringUtil;
 import com.ums.eproject.R;
 import com.ums.eproject.activity.AddressModifyActivity;
 import com.ums.eproject.bean.AddressBean;
@@ -53,7 +54,7 @@ public class AddressAdapter extends RecyclerView.Adapter {
         this.listener = listener;
     }
 
-    public void setItemClickListener(ItemClickListener itemClickListener){
+    public void setItemClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
@@ -70,7 +71,13 @@ public class AddressAdapter extends RecyclerView.Adapter {
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.nameTv.setText(data.name);
         viewHolder.mobileTv.setText(data.mobile);
-        viewHolder.addressTv.setText(data.provinceName + " " + data.getCityName() + " " + data.getCountyName() + " " + data.getDetailAddress());
+        viewHolder.addressTv.setText((UMSStringUtil.isNotEmpty(data.provinceName) ? data.provinceName : "")
+                + " "
+                + (UMSStringUtil.isNotEmpty(data.getCityName()) ? data.getCityName() : "")
+                + " "
+                + (UMSStringUtil.isNotEmpty(data.getCountyName()) ? data.getCountyName() : "")
+                + " "
+                + data.getDetailAddress());
         if (data.isDefault.equals("1")) {
             viewHolder.idDefaultTv.setVisibility(View.VISIBLE);
             viewHolder.getDeafultIV().setImageResource(R.mipmap.selected);
@@ -143,7 +150,7 @@ public class AddressAdapter extends RecyclerView.Adapter {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               itemClickListener.itemClick(data);
+                itemClickListener.itemClick(data);
             }
         });
 
