@@ -215,8 +215,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void permissionDenied(@NonNull String[] permission) {
 
             }
-        }, Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }, Manifest.permission.CAMERA,
+                Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION);
     }
+
 
     private void setAgree() {
         isAgree = !isAgree;
@@ -475,9 +480,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         SPUtils.getInstance().put("tokenHead",userBean.getData().getTokenHead());
 
         if (userBean.getData().getUserInfo().getIsVerified() == 0){   //0未实名  1已实名 todo
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("auditTypeVal",Constant.AUDIT_TYPE_LOGIN_AUDIT_VAL);
-            UIHelp.startActivity(context,AuthenticationActivity.class,bundle);
+            UMSPermissionUtil.requestPermission(new PermissionListener() {
+                @Override
+                public void permissionGranted(@NonNull String[] permission) {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("auditTypeVal",Constant.AUDIT_TYPE_LOGIN_AUDIT_VAL);
+                    UIHelp.startActivity(context,AuthenticationActivity.class,bundle);
+
+                }
+
+                @Override
+                public void permissionDenied(@NonNull String[] permission) {
+
+                }
+            },
+            Manifest.permission.CAMERA,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
         }else{
             UIHelp.startActivity(context,MainActivity.class);
         }

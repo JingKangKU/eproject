@@ -69,8 +69,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Context context;
 
     //UserFlagMent相关
-    private TextView user_info_mobile,user_info_card_type;
-    private LinearLayout linear_user_audit_state_succ,linear_user_audit_state_none;
+    private TextView user_info_mobile, user_info_card_type;
+    private LinearLayout linear_user_audit_state_succ, linear_user_audit_state_none;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,17 +122,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         permissionGranted();
     }
-    public void setUserFragmentTitleInfo(MemberBean memberBean){
+
+    public void setUserFragmentTitleInfo(MemberBean memberBean) {
         user_info_mobile.setText(memberBean.getData().getMobile());
         user_info_card_type.setText(memberBean.getData().getMemberTypeAlias());
-        if (memberBean.getData().getIsVerified() == 1){ //0未实名  1已实名
+        if (memberBean.getData().getIsVerified() == 1) { //0未实名  1已实名
             linear_user_audit_state_succ.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             linear_user_audit_state_none.setVisibility(View.GONE);
         }
 
 
     }
+
     @Override
     public void onClick(View v) {
 
@@ -150,10 +152,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 goToAudit();
                 break;
             case R.id.linear_user_audit_state_succ:
-                goToAuditState(3);
+                goToAuditState(Constant.AUDIT_STATE_SUCCESS);
                 break;
             case R.id.linear_user_audit_state_none:
-                goToAuditState(4);
+                goToAuditState(Constant.AUDIT_STATE_NONE);
                 break;
             case R.id.iv_scan:
                 gotoScan();
@@ -172,12 +174,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void permissionDenied(@NonNull String[] permission) {
 
             }
-        }, Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        },
+        Manifest.permission.CAMERA,
+        Manifest.permission.RECORD_AUDIO,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
     private void goToAudit() {
+
         UIHelp.startActivity(this, AuditActivity.class);
+
     }
+
 
     private void goToAuditState(int auditState) {
         Bundle bundle = new Bundle();
@@ -306,6 +316,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         // 底部整体比较暗，则启用暗黑导航栏模式
         // ImmersiveLayout.darkNavigationBar(this);
     }
+
     private void busFeeC2BPay(String result) {
         CommRequestApi.getInstance().busFeeC2BPay(result, new HttpSubscriber<>(new SubscriberOnListener<BaseRequest<CBPayResultBean>>() {
             @Override
@@ -350,7 +361,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
-    private void mFinish(){
+    private void mFinish() {
         super.finish();
     }
 }

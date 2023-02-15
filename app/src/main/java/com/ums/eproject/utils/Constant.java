@@ -71,11 +71,13 @@ public class Constant {
     public static final int AUDIT_STATE_SUCCESS = 1;
     public static final int AUDIT_STATE_ERR = 2;
     public static final int AUDIT_STATE_ING = 3;
+    public static final int AUDIT_STATE_NONE = 4;
     public static String getAuditStateLabel(int val){
         switch (val){
             case AUDIT_STATE_SUCCESS: return "审核通过";
             case AUDIT_STATE_ERR: return "审核未通过";
             case AUDIT_STATE_ING: return "审核中";
+            case AUDIT_STATE_NONE: return "未认证";
         }
         return "状态未知";
     }

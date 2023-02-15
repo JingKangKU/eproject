@@ -51,6 +51,8 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
     private boolean supportZoom;//是否支持放大缩小
     private boolean isHtmlStr;//是否为父文本模式
 
+
+    private boolean isFinish = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +111,7 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.title_back:
+                isFinish = true;
                 finish();
                 break;
         }
@@ -116,8 +119,15 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void finish() {
-        closeWebView();
-        super.finish();
+
+        if (isFinish){
+            closeWebView();
+            super.finish();
+        }else{
+            if (web_view != null){
+                web_view.goBack();
+            }
+        }
     }
     private void initHtmlStrWebView() {
 
@@ -228,6 +238,8 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
 
 
         });
+
+
         web_view.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onPermissionRequest(final PermissionRequest request) {
@@ -276,5 +288,6 @@ public class CommonWebViewActivity extends BaseActivity implements View.OnClickL
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 
 }
